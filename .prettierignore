@@ -1,0 +1,8 @@
+# Ignore artifacts:
+build
+coverage
+.yarn
+.npmrc
+.nvmrc
+dist
+node_modules
