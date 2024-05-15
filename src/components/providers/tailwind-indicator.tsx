@@ -1,18 +1,11 @@
 import { cn } from '@/lib/utils'
-
-type TailwindIndicatorProps = {
-  children: React.ReactNode
-}
-
-function TailwindIndicator({ children }: TailwindIndicatorProps) {
+function TailwindIndicator() {
   return (
     <div
-      className={cn('h-screen w-screen antialiased', {
+      className={cn('antialiased', {
         'debug-screens': process.env.NODE_ENV === 'development'
       })}
-    >
-      {children}
-    </div>
+    />
   )
 }
 
