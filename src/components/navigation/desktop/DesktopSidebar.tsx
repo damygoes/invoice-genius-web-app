@@ -1,4 +1,4 @@
-import SidebarSecondarySection from '@/components/SidebarSecondarySection'
+import SidebarSecondarySection from '@/components/sidebar/SidebarSecondarySection'
 import { useSidebar } from '@/hooks/useSidebar'
 import { DesktopNavLinkItem } from '@/routes/navigation-links'
 import { useLocation } from 'react-router-dom'
