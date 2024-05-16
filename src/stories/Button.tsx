@@ -40,7 +40,7 @@ export const Button = ({
     <button
       type='button'
       className={[
-        'outline-dashed outline-2 outline-pink-300',
+        'outline-pink-300 outline-dashed outline-2',
         'storybook-button',
         `storybook-button--${size}`,
         mode

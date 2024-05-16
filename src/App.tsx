@@ -1,23 +1,20 @@
-import TailwindIndicator from "@/components/providers/tailwind-indicator";
-import { RouterProvider, createRouter } from "@tanstack/react-router";
-import { routeTree } from "./routeTree.gen";
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
+import { Suspense } from 'react'
+import { RouterProvider } from 'react-router-dom'
+import { router } from './routes/router'
 
-// Create a new router instance
-const router = createRouter({ routeTree });
+const queryClient = new QueryClient()
 
-// Register the router instance for type safety
-declare module "@tanstack/react-router" {
-  interface Register {
-    router: typeof router;
-  }
-}
 function App() {
   return (
-    <>
-      <RouterProvider router={router} />
-      <TailwindIndicator />
-    </>
-  );
+    <QueryClientProvider client={queryClient}>
+      <Suspense
+        fallback={<div className='border border-solid p-4'>App Loading...</div>}
+      >
+        <RouterProvider router={router} />
+      </Suspense>
+    </QueryClientProvider>
+  )
 }
 
-export default App;
+export default App
