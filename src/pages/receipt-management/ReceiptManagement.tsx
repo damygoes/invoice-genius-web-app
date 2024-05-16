@@ -1,5 +1,7 @@
+import PageLayout from '@/components/layout/page-layout/PageLayout'
+
 const ReceiptManagement = () => {
-  return <div>ReceiptManagement</div>
+  return <PageLayout>ReceiptManagement </PageLayout>
 }
 
 export default ReceiptManagement

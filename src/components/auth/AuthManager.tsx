@@ -1,5 +1,5 @@
 import { Navigate, useLocation } from 'react-router-dom'
-import AppShell from '../layout/AppShell'
+import RootLayout from '../layout/root-layout/RootLayout'
 
 const AuthManager = () => {
   const user = {
@@ -12,7 +12,7 @@ const AuthManager = () => {
   if (!user.isOnboarded) {
     return <Navigate to='/onboarding' state={{ from: location }} replace />
   } else {
-    return <AppShell />
+    return <RootLayout />
   }
 }
 

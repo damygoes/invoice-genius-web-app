@@ -1,5 +1,7 @@
+import PageLayout from '@/components/layout/page-layout/PageLayout'
+
 const SubscriptionsManagement = () => {
-  return <div>SubscriptionsManagement</div>
+  return <PageLayout>SubscriptionsManagement</PageLayout>
 }
 
 export default SubscriptionsManagement
