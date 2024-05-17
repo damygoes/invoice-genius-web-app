@@ -22,7 +22,7 @@ function DesktopSidebar({ links, logo }: DesktopSidebarProps) {
     <div className='flex h-full w-full flex-col items-center justify-between gap-6 bg-muted px-2 py-4 shadow-xl'>
       <img src={logo || 'Logo'} alt='apomap Logo' className='h-6' />
       <nav className='flex w-full flex-1 flex-col items-center gap-6'>
-        <div className='flex h-full w-full flex-col items-center justify-start gap-5 py-5'>
+        <div className='flex h-full w-full flex-col items-center justify-start gap-5 px-3'>
           {links.map((link, index) =>
             isSidebarCollapsed ? (
               <NavItemWithTooltip

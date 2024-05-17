@@ -22,22 +22,22 @@ const DesktopNavigationLinks = () => {
 
   const navigationLinks: DesktopNavLinkItem[] = [
     {
-      title: `${t('dashboard.title', 'Dashboard')}`,
+      title: `${t('sidebarNav.dashboard', 'Dashboard')}`,
       href: '/dashboard',
       icon: LayoutDashboard
     },
     {
-      title: `${t('receiptManagement.title', 'Receipts')}`,
+      title: `${t('sidebarNav.receipt', 'Receipts')}`,
       href: '/receipt-management',
       icon: ReceiptText
     },
     {
-      title: `${t('subscriptionManagement.title', 'Subscriptions')}`,
+      title: `${t('sidebarNav.subscription', 'Subscriptions')}`,
       href: '/subscriptions-management',
       icon: Rss
     },
     {
-      title: `${t('invoiceManagement.title', 'Invoicing')}`,
+      title: `${t('sidebarNav.invoicing', 'Invoicing')}`,
       href: '/invoice-management',
       icon: BookUser
     }
@@ -50,19 +50,19 @@ const MobileNavigationLinks = () => {
 
   const mobileNavigationLinks: MobileNavLinkItem[] = [
     {
-      title: `${t('dashboard.title', 'Dashboard')}`,
+      title: `${t('sidebarNav.dashboard', 'Dashboard')}`,
       href: '/dashboard'
     },
     {
-      title: `${t('receiptManagement.title', 'Receipt Management')}`,
+      title: `${t('sidebarNav.receipt', 'Receipt Management')}`,
       href: '/receipt-management'
     },
     {
-      title: `${t('subscriptionManagement.title', 'Subscription Management')}`,
+      title: `${t('sidebarNav.subscription', 'Subscription Management')}`,
       href: '/subscriptions-management'
     },
     {
-      title: `${t('invoiceManagement.title', 'Invoice Management')}`,
+      title: `${t('sidebarNav.invoicing', 'Invoice Management')}`,
       href: '/invoice-management'
     }
   ]

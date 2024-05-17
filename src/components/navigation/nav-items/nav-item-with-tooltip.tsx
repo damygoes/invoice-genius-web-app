@@ -3,6 +3,7 @@ import {
   TooltipContent,
   TooltipTrigger
 } from '@/components/ui/tooltip'
+import { Typography } from '@/components/ui/typography'
 import { cn } from '@/lib/utils'
 import { DesktopNavLinkItem } from '@/routes/navigation-links'
 import { renderIcon } from '@/utils/render-nav-icons'
@@ -28,13 +29,15 @@ function NavItemWithTooltip({ link, active }: NavItemWithTooltipProps) {
           )}
         >
           {renderIcon(link.icon)}
-          <span className='sr-only'>{link.title}</span>
+          <Typography className='sr-only'>{link.title}</Typography>
         </NavLink>
       </TooltipTrigger>
       <TooltipContent side='right' className='flex items-center gap-4'>
-        {link.title}
+        <Typography size='sm'> {link.title}</Typography>
         {link.label && (
-          <span className='ml-auto text-muted-foreground'>{link.label}</span>
+          <Typography className='ml-auto' size='sm'>
+            {link.label}
+          </Typography>
         )}
       </TooltipContent>
     </Tooltip>

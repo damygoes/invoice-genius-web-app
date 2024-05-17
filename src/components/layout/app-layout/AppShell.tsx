@@ -20,8 +20,8 @@ const AppShellLayout = ({ navigationBar, children }: AppShellProps) => {
         className={cn(
           'group relative inline-flex h-full w-full flex-shrink-0 flex-col items-center justify-between',
           {
-            'lg:px-md lg:py-xl lg:w-[78px]': isSidebarCollapsed,
-            'lg:w-[180px] lg:max-w-[180px]': !isSidebarCollapsed
+            'lg:w-[60px]': isSidebarCollapsed,
+            'lg:w-[200px] lg:max-w-[200px]': !isSidebarCollapsed
           }
         )}
       >

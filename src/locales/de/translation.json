@@ -1,0 +1,15 @@
+{
+  "sidebarNav": {
+    "dashboard": "Dashboard",
+    "receipt": "Rechnungen",
+    "subscription": "Abonnements",
+    "invoicing": "Rechnungsstellung"
+  },
+  "sidebarSecondaryNav": {
+    "settings": "Einstellungen",
+    "logout": "Abmelden"
+  },
+  "languageSwitchTitle": "Sprache",
+  "themeSwitchTitle": "Thema",
+  "userProfile": "Profil"
+}

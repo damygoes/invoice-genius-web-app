@@ -1,0 +1,15 @@
+{
+  "sidebarNav": {
+    "dashboard": "Dashboard",
+    "receipt": "Receipts",
+    "subscription": "Subscriptions",
+    "invoicing": "Invoicing"
+  },
+  "sidebarSecondaryNav": {
+    "settings": "Settings",
+    "logout": "Logout"
+  },
+  "languageSwitchTitle": "Language",
+  "themeSwitchTitle": "Theme",
+  "userProfile": "Profile"
+}

@@ -59,6 +59,15 @@ dependencies:
   clsx:
     specifier: ^2.1.0
     version: 2.1.0
+  i18next:
+    specifier: ^23.11.4
+    version: 23.11.4
+  i18next-browser-languagedetector:
+    specifier: ^8.0.0
+    version: 8.0.0
+  i18next-resources-for-ts:
+    specifier: ^1.5.0
+    version: 1.5.0
   localforage:
     specifier: ^1.10.0
     version: 1.10.0
@@ -9271,6 +9280,26 @@ packages:
     hasBin: true
     dev: true
 
+  /i18next-browser-languagedetector@8.0.0:
+    resolution:
+      {
+        integrity: sha512-zhXdJXTTCoG39QsrOCiOabnWj2jecouOqbchu3EfhtSHxIB5Uugnm9JaizenOy39h7ne3+fLikIjeW88+rgszw==
+      }
+    dependencies:
+      '@babel/runtime': 7.24.0
+    dev: false
+
+  /i18next-resources-for-ts@1.5.0:
+    resolution:
+      {
+        integrity: sha512-gzVYct/sMeeOzomK0+8nl7YSr61xiDzf4Kg51g7StBaXAaKE/Vb1CLNHZ8dY56sYz6qmbwHRYHqMPanGi0go4w==
+      }
+    hasBin: true
+    dependencies:
+      '@babel/runtime': 7.24.0
+      yaml: 2.4.1
+    dev: false
+
   /i18next@23.11.4:
     resolution:
       {
@@ -14516,7 +14545,6 @@ packages:
       }
     engines: { node: '>= 14' }
     hasBin: true
-    dev: true
 
   /yargs-parser@21.1.1:
     resolution:

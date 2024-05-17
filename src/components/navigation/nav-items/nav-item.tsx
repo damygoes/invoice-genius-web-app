@@ -1,3 +1,4 @@
+import { Typography } from '@/components/ui/typography'
 import { cn } from '@/lib/utils'
 import { DesktopNavLinkItem } from '@/routes/navigation-links'
 import { renderIcon } from '@/utils/render-nav-icons'
@@ -13,7 +14,7 @@ function NavItem({ link, active }: NavItemProps) {
     <NavLink
       to={link.href}
       className={cn(
-        'group flex w-full items-center justify-start gap-2 rounded-sm p-3 transition-colors duration-200 ease-in-out hover:bg-accent/60',
+        'group flex w-full items-center justify-start gap-2 rounded-sm p-2 transition-colors duration-200 ease-in-out hover:bg-accent/60',
         {
           'bg-accent': !active,
           'bg-background': active
@@ -21,8 +22,12 @@ function NavItem({ link, active }: NavItemProps) {
       )}
     >
       {renderIcon(link.icon)}
-      {link.title}
-      {link.label && <span className={cn('ml-auto')}>{link.label}</span>}
+      <Typography size='sm'>{link.title}</Typography>
+      {link.label && (
+        <Typography size='sm' className={cn('ml-auto')}>
+          {link.label}
+        </Typography>
+      )}
     </NavLink>
   )
 }

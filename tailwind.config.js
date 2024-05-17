@@ -58,7 +58,9 @@ export default {
         foreground: 'hsl(var(--card-foreground))'
       }
     },
-
+    fontFamily: {
+      sans: ['Lato', 'sans-serif']
+    },
     extend: {
       borderRadius: {
         lg: 'var(--radius)',
