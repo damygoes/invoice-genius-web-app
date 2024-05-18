@@ -1,26 +1,55 @@
+import { useMobileNavbar } from '@/hooks/useMobileNavbar'
 import { cn } from '@/lib/utils'
 import { MobileNavLinkItem } from '@/routes/navigation-links'
-import { NavLink } from 'react-router-dom'
+import { motion } from 'framer-motion'
+import { useNavigate } from 'react-router-dom'
 
-export type MobileNavItemProps = {
+type MobileNavItemProps = {
   link: MobileNavLinkItem
-  active?: boolean
+  index: number
 }
 
-function MobileNavItem({ link, active }: MobileNavItemProps) {
+function MobileNavItem({ link, index }: MobileNavItemProps) {
+  const navigate = useNavigate()
+  const { setNavbar } = useMobileNavbar()
+  const active = window.location.pathname === link.href
+
+  const handleNavItemClick = (link: MobileNavLinkItem) => {
+    setNavbar(false)
+    setTimeout(() => {
+      navigate(link.href)
+    }, 300) // Adjust the delay if necessary to match the close animation duration
+  }
+
   return (
-    <NavLink
-      to={link.href}
+    <motion.span
+      initial={{ opacity: 0, y: -8 }}
+      animate={{
+        opacity: 1,
+        y: 0,
+        transition: {
+          delay: 0.75 + index * 0.125,
+          duration: 0.5,
+          ease: 'easeInOut'
+        }
+      }}
+      exit={{ opacity: 0, y: -8 }}
       className={cn(
-        'text-text-content hover:bg-icon-active-bg group flex w-full items-center gap-3 self-stretch rounded-sm p-4 text-center text-sm font-normal leading-loose transition-colors duration-200 ease-in-out',
+        'block cursor-pointer text-5xl font-semibold lowercase transition-colors hover:text-foreground/50 md:text-7xl',
         {
-          'bg-icon-active-bg': active,
-          'bg-transparent': !active
+          'text-primary hover:text-primary': active,
+          'text-foreground': !active
         }
       )}
+      onClick={() => handleNavItemClick(link)}
     >
+      <span>
+        {link.icon && (
+          <link.icon className='mr-2 inline-block size-4 align-baseline' />
+        )}
+      </span>
       {link.title}
-    </NavLink>
+    </motion.span>
   )
 }
 

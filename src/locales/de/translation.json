@@ -9,6 +9,9 @@
     "settings": "Einstellungen",
     "logout": "Abmelden"
   },
+  "footer": {
+    "contactUs": "Kontaktiere uns"
+  },
   "languageSwitchTitle": "Sprache",
   "themeSwitchTitle": "Thema",
   "userProfile": "Profil"

@@ -1,3 +1,4 @@
+import { Icons } from '@/components/shared/Icons'
 import SidebarSecondarySection from '@/components/sidebar/SidebarSecondarySection'
 import { useSidebar } from '@/hooks/useSidebar'
 import { DesktopNavLinkItem } from '@/routes/navigation-links'
@@ -13,6 +14,7 @@ type DesktopSidebarProps = {
 function DesktopSidebar({ links, logo }: DesktopSidebarProps) {
   const { isSidebarCollapsed } = useSidebar()
   const location = useLocation()
+  const CompanyLogo = Icons.companyLogo
 
   const isActiveLink = (linkHref: string) => {
     return location.pathname === linkHref
@@ -20,7 +22,12 @@ function DesktopSidebar({ links, logo }: DesktopSidebarProps) {
 
   return (
     <div className='flex h-full w-full flex-col items-center justify-between gap-6 bg-muted px-2 py-4 shadow-xl'>
-      <img src={logo || 'Logo'} alt='apomap Logo' className='h-6' />
+      {logo ? (
+        <img src={logo || 'Logo'} alt='apomap Logo' className='h-6' />
+      ) : (
+        <CompanyLogo />
+      )}
+
       <nav className='flex w-full flex-1 flex-col items-center gap-6'>
         <div className='flex h-full w-full flex-col items-center justify-start gap-5 px-3'>
           {links.map((link, index) =>

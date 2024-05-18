@@ -15,7 +15,7 @@ export type DesktopNavLinkItem = {
   disabled?: boolean
 }
 
-export type MobileNavLinkItem = Omit<DesktopNavLinkItem, 'icon' | 'label'>
+export type MobileNavLinkItem = Omit<DesktopNavLinkItem, 'label'>
 
 const DesktopNavigationLinks = () => {
   const { t } = useTranslation()
@@ -51,19 +51,23 @@ const MobileNavigationLinks = () => {
   const mobileNavigationLinks: MobileNavLinkItem[] = [
     {
       title: `${t('sidebarNav.dashboard', 'Dashboard')}`,
-      href: '/dashboard'
+      href: '/dashboard',
+      icon: LayoutDashboard
     },
     {
       title: `${t('sidebarNav.receipt', 'Receipt Management')}`,
-      href: '/receipt-management'
+      href: '/receipt-management',
+      icon: ReceiptText
     },
     {
       title: `${t('sidebarNav.subscription', 'Subscription Management')}`,
-      href: '/subscriptions-management'
+      href: '/subscriptions-management',
+      icon: Rss
     },
     {
       title: `${t('sidebarNav.invoicing', 'Invoice Management')}`,
-      href: '/invoice-management'
+      href: '/invoice-management',
+      icon: BookUser
     }
   ]
 
