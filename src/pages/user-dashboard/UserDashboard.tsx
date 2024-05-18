@@ -1,5 +1,7 @@
+import PageLayout from '@/components/layout/page-layout/PageLayout'
+
 const UserDashboard = () => {
-  return <div>UserDashboard</div>
+  return <PageLayout>User Dashboard</PageLayout>
 }
 
 export default UserDashboard

@@ -1,19 +1,17 @@
-import { Navigate, useLocation } from 'react-router-dom'
-import AppShell from '../layout/AppShell'
+import useAuth from '@/hooks/useAuth'
+import { Navigate, Outlet, useLocation } from 'react-router-dom'
 
 const AuthManager = () => {
-  const user = {
-    name: 'John Doe',
-    isOnboarded: true
-  }
+  const user = useAuth()
   const location = useLocation()
 
-  if (!user) return <Navigate to='/' state={{ from: location }} replace />
-  if (!user.isOnboarded) {
-    return <Navigate to='/onboarding' state={{ from: location }} replace />
-  } else {
-    return <AppShell />
+  if (!user || user === null) {
+    return <Navigate to='/login' state={{ from: location }} replace />
   }
+  if (user && user.isOnboarded === false) {
+    return <Navigate to='/onboarding' state={{ from: location }} replace />
+  }
+  return <Outlet />
 }
 
 export default AuthManager
