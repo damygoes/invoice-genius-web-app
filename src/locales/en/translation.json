@@ -14,5 +14,34 @@
   },
   "languageSwitchTitle": "Language",
   "themeSwitchTitle": "Theme",
-  "userProfile": "Profile"
+  "userProfile": "Profile",
+  "common": {
+    "logout": "Logout",
+    "authLoader": "Authenticating..."
+  },
+  "userTypeSelect": {
+    "private": "Private",
+    "business": "Business"
+  },
+  "serviceSelect": {
+    "receiptManagement": "Receipt Management",
+    "subscriptionManagement": "Subscription Management",
+    "invoicing": "Invoicing"
+  },
+  "onboarding": {
+    "title": "Welcome to Invoice Genius",
+    "subtitle": "Let's get you set up with the services you need.",
+    "userSelectTitle": "What type of user are you?",
+    "serviceSelectTitle": "What service(s) would you like to use?",
+    "submit": "Finish onboarding",
+    "serviceSelectError": "Please select at least one service.",
+    "onboardingSuccess": {
+      "title": "Welcome to Invoice Genius!",
+      "subtitle": "You have successfully completed the onboarding process."
+    },
+    "onboardingError": {
+      "title": "Oops!",
+      "subtitle": "Something went wrong. Please try again."
+    }
+  }
 }

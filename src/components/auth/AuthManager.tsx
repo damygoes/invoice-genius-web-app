@@ -1,17 +1,42 @@
-import useAuth from '@/hooks/useAuth'
-import { Navigate, Outlet, useLocation } from 'react-router-dom'
+import { useAuth } from '@/hooks/useAuth'
+import { useAuthedAppUser } from '@/hooks/useUser'
+import { useKindeAuth } from '@kinde-oss/kinde-auth-react'
+import { useEffect, useState } from 'react'
+import { Navigate, useLocation } from 'react-router-dom'
+import AuthLoader from './AuthLoader'
 
 const AuthManager = () => {
-  const user = useAuth()
+  const { user, isAuthenticated, isLoading } = useKindeAuth()
+  const { getUser } = useAuth()
+  const { authedAppUser, setAuthedAppUser } = useAuthedAppUser()
   const location = useLocation()
+  const [userChecked, setUserChecked] = useState(false)
 
-  if (!user || user === null) {
-    return <Navigate to='/login' state={{ from: location }} replace />
+  useEffect(() => {
+    const getIntendingAppUser = async () => {
+      if (!user) return
+      const intendingAppUser = await getUser(user.email as string, user)
+      setAuthedAppUser(intendingAppUser)
+      setUserChecked(true)
+    }
+    if (!isLoading && isAuthenticated) {
+      getIntendingAppUser()
+    }
+  }, [user, isAuthenticated, isLoading, getUser, setAuthedAppUser, location])
+
+  if (isLoading || !userChecked) {
+    return <AuthLoader />
   }
-  if (user && user.isOnboarded === false) {
+
+  if (!isLoading && !isAuthenticated) {
+    return <Navigate to='/' state={{ from: location }} replace />
+  }
+
+  if (userChecked && authedAppUser?.onboarded) {
+    return <Navigate to='/dashboard' state={{ from: location }} replace />
+  } else {
     return <Navigate to='/onboarding' state={{ from: location }} replace />
   }
-  return <Outlet />
 }
 
 export default AuthManager
