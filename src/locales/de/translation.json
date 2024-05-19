@@ -14,5 +14,37 @@
   },
   "languageSwitchTitle": "Sprache",
   "themeSwitchTitle": "Thema",
-  "userProfile": "Profil"
+  "userProfile": "Profil",
+  "common": {
+    "logout": "Abmelden",
+    "authLoader": "Authentifizierung lädt..."
+  },
+  "userTypeSelect": {
+    "private": "Privat",
+    "business": "Geschäftlich"
+  },
+  "serviceSelect": {
+    "receiptManagement": "Rechnungsmanagement",
+    "subscriptionManagement": "Abonnementverwaltung",
+    "invoicing": "Rechnungsstellung"
+  },
+  "onboarding": {
+    "title": "Willkommen bei Invoice Genius!",
+    "subtitle": "Bitte wählen Sie Ihren Benutzertyp und den Service, den Sie verwenden möchten.",
+    "userSelectTitle": "Welchen Benutzertyp sind Sie?",
+    "serviceSelectTitle": "Welche Service möchten Sie verwenden?",
+    "submit": "Einreichen",
+    "serviceSelectError": "Bitte wählen Sie einen Service aus.",
+    "onboardingSuccess": {
+      "title": "Herzlichen Glückwunsch!",
+      "subtitle": "Sie haben sich erfolgreich angemeldet."
+    },
+    "onboardingError": {
+      "title": "Oops!",
+      "subtitle": "Etwas ist schief gelaufen. Bitte versuchen Sie es erneut."
+    }
+  },
+  "receiptManagement": "Rechnungsmanagement",
+  "subscriptionManagement": "Abonnementverwaltung",
+  "invoicing": "Rechnungsstellung"
 }

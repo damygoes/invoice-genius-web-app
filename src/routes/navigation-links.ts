@@ -1,3 +1,4 @@
+import { useAuthedAppUser } from '@/hooks/useUser'
 import {
   BookUser,
   LayoutDashboard,
@@ -19,29 +20,55 @@ export type MobileNavLinkItem = Omit<DesktopNavLinkItem, 'label'>
 
 const DesktopNavigationLinks = () => {
   const { t } = useTranslation()
+  const { authedAppUser } = useAuthedAppUser()
 
   const navigationLinks: DesktopNavLinkItem[] = [
     {
       title: `${t('sidebarNav.dashboard', 'Dashboard')}`,
       href: '/dashboard',
       icon: LayoutDashboard
-    },
-    {
+    }
+  ]
+
+  if (authedAppUser?.selectedServices?.includes('receiptManagement')) {
+    navigationLinks.push({
       title: `${t('sidebarNav.receipt', 'Receipts')}`,
       href: '/receipt-management',
       icon: ReceiptText
-    },
-    {
+    })
+  } else if (
+    authedAppUser?.selectedServices?.includes('subscriptionManagement')
+  ) {
+    navigationLinks.push({
       title: `${t('sidebarNav.subscription', 'Subscriptions')}`,
       href: '/subscriptions-management',
       icon: Rss
-    },
-    {
+    })
+  } else if (authedAppUser?.selectedServices?.includes('invoicing')) {
+    navigationLinks.push({
       title: `${t('sidebarNav.invoicing', 'Invoicing')}`,
       href: '/invoice-management',
       icon: BookUser
-    }
-  ]
+    })
+  } else {
+    navigationLinks.push(
+      {
+        title: `${t('sidebarNav.receipt', 'Receipts')}`,
+        href: '/receipt-management',
+        icon: ReceiptText
+      },
+      {
+        title: `${t('sidebarNav.subscription', 'Subscriptions')}`,
+        href: '/subscriptions-management',
+        icon: Rss
+      },
+      {
+        title: `${t('sidebarNav.invoicing', 'Invoicing')}`,
+        href: '/invoice-management',
+        icon: BookUser
+      }
+    )
+  }
 
   return navigationLinks
 }

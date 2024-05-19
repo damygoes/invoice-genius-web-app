@@ -1,12 +1,17 @@
-import { AuthUser } from '@/types/User'
+import useAxiosInterceptor from '@/services/axios/axiosClient'
+import { AuthUser, IntendingKindeUser } from '@/types/User'
 
-const useAuth = (): AuthUser => {
-  // const user: AuthUser = null;
-  const user: AuthUser = {
-    name: 'John Doe',
-    isOnboarded: true
+export const useAuth = () => {
+  const axiosClient = useAxiosInterceptor()
+  const getUser = async (
+    userIdentifier: string,
+    intendingUser: IntendingKindeUser
+  ): Promise<AuthUser> => {
+    const user = await axiosClient.post(`users/${userIdentifier}`, {
+      ...intendingUser
+    })
+    return user.data
   }
-  return user
-}
 
-export default useAuth
+  return { getUser }
+}

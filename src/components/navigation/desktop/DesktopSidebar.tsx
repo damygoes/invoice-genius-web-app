@@ -28,7 +28,7 @@ function DesktopSidebar({ links, logo }: DesktopSidebarProps) {
         <CompanyLogo />
       )}
 
-      <nav className='flex w-full flex-1 flex-col items-center gap-6'>
+      <nav className='flex w-full flex-1 flex-col items-center gap-6 py-12'>
         <div className='flex h-full w-full flex-col items-center justify-start gap-5 px-3'>
           {links.map((link, index) =>
             isSidebarCollapsed ? (
