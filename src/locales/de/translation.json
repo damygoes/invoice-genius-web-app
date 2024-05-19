@@ -43,5 +43,8 @@
       "title": "Oops!",
       "subtitle": "Etwas ist schief gelaufen. Bitte versuchen Sie es erneut."
     }
-  }
+  },
+  "receiptManagement": "Rechnungsmanagement",
+  "subscriptionManagement": "Abonnementverwaltung",
+  "invoicing": "Rechnungsstellung"
 }

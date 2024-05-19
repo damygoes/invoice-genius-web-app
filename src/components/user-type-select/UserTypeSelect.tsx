@@ -31,6 +31,7 @@ const UserTypeSelect = ({
       {userTypeSelectOptions.map(type => {
         return (
           <Button
+            type='button'
             key={type.value}
             onClick={() =>
               handleSelectUserType(type.value as AvailableUserType)

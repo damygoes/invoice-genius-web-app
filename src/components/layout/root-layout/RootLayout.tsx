@@ -1,9 +1,7 @@
 import DesktopSidebar from '@/components/navigation/desktop/DesktopSidebar'
 import MobileNavbar from '@/components/navigation/mobile/MobileNavbar'
-// import useAuth from '@/hooks/useAuth'
 import useMediaQuery from '@/hooks/useMediaQuery'
 import { DesktopNavigationLinks } from '@/routes/navigation-links'
-// import { useKindeAuth } from "@kinde-oss/kinde-auth-react";
 import { Outlet } from 'react-router-dom'
 import AppShell from '../app-layout/AppShell'
 

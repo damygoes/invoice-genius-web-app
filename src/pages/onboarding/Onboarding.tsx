@@ -22,7 +22,7 @@ export type OnboardingFormPayload = {
 const Onboarding = () => {
   const { t } = useTranslation()
   const { toast } = useToast()
-  const { authedAppUser } = useAuthedAppUser()
+  const { authedAppUser, setAuthedAppUser } = useAuthedAppUser()
   const { onboardUser } = useOnboarding()
   const [selectedUserType, setSelectedUserType] =
     useState<AvailableUserType | null>('private')
@@ -39,8 +39,6 @@ const Onboarding = () => {
   const handleServiceSelect = (services: Set<ProvidedServices>) => {
     setSelectedServices(services)
   }
-
-  console.log('authedAppUser', authedAppUser)
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault()
@@ -61,7 +59,7 @@ const Onboarding = () => {
           services: Array.from(selectedServices),
           user: authedAppUser as AuthUser
         })
-        console.log('onboardedUser:', onboardedUser)
+        setAuthedAppUser(onboardedUser)
         setOnboardingOngoing(false)
         toast({
           title: t(

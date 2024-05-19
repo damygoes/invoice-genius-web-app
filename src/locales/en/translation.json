@@ -43,5 +43,8 @@
       "title": "Oops!",
       "subtitle": "Something went wrong. Please try again."
     }
-  }
+  },
+  "receiptManagement": "Receipt Management",
+  "subscriptionManagement": "Subscription Management",
+  "invoicing": "Invoicing"
 }

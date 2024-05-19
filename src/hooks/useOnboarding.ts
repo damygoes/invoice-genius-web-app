@@ -11,7 +11,7 @@ export const useOnboarding = () => {
     const user = await axiosClient.post('users/onboard-user', {
       ...userToBeOnboarded
     })
-    return user.data
+    return user.data.user
   }
 
   return { onboardUser }
