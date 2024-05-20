@@ -8,8 +8,12 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger
 } from '@/components/ui/dropdown-menu'
+import { useTranslation } from 'react-i18next'
+import { useNavigate } from 'react-router-dom'
 
 const UserAvatarMenu = () => {
+  const navigate = useNavigate()
+  const { t } = useTranslation()
   return (
     <DropdownMenu>
       <DropdownMenuTrigger>
@@ -18,7 +22,9 @@ const UserAvatarMenu = () => {
       <DropdownMenuContent align='end' side='right' sideOffset={12}>
         <DropdownMenuLabel>My Account</DropdownMenuLabel>
         <DropdownMenuSeparator />
-        <DropdownMenuItem>Profile</DropdownMenuItem>
+        <DropdownMenuItem onClick={() => navigate('/profile')}>
+          {t('userProfile', 'Profile')}
+        </DropdownMenuItem>
         <DropdownMenuItem>Support</DropdownMenuItem>
         <DropdownMenuSeparator />
         <DropdownMenuItem>

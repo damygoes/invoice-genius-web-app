@@ -1,3 +1,5 @@
+import { businessUserProfileFormSchemaType } from '@/models/businessUserProfileFormSchema'
+import useAxiosInterceptor from '@/services/axios/axiosClient'
 import { AuthUser } from '@/types/User'
 import { create } from 'zustand'
 import { persist } from 'zustand/middleware'
@@ -22,7 +24,28 @@ const useUserStore = create<IUserStore>()(
 )
 
 export const useAuthedAppUser = () => {
+  const axiosClient = useAxiosInterceptor()
+
   const { authedAppUser, setAuthedAppUser, resetAuthedAppUser } = useUserStore()
 
-  return { authedAppUser, setAuthedAppUser, resetAuthedAppUser }
+  const getUserProfile = async (id: string) => {
+    const userDetail = await axiosClient.get(`users/${id}`)
+    return userDetail.data
+  }
+
+  const updateBusinessUserProfile = async (
+    id: string,
+    data: businessUserProfileFormSchemaType
+  ) => {
+    const userDetail = await axiosClient.patch(`users/profile/${id}`, data)
+    return userDetail.data
+  }
+
+  return {
+    authedAppUser,
+    setAuthedAppUser,
+    resetAuthedAppUser,
+    getUserProfile,
+    updateBusinessUserProfile
+  }
 }

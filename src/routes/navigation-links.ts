@@ -36,42 +36,27 @@ const DesktopNavigationLinks = () => {
       href: '/receipt-management',
       icon: ReceiptText
     })
-  } else if (
-    authedAppUser?.selectedServices?.includes('subscriptionManagement')
-  ) {
+  }
+
+  if (authedAppUser?.selectedServices?.includes('subscriptionManagement')) {
     navigationLinks.push({
       title: `${t('sidebarNav.subscription', 'Subscriptions')}`,
       href: '/subscriptions-management',
       icon: Rss
     })
-  } else if (authedAppUser?.selectedServices?.includes('invoicing')) {
+  }
+
+  if (authedAppUser?.selectedServices?.includes('invoicing')) {
     navigationLinks.push({
       title: `${t('sidebarNav.invoicing', 'Invoicing')}`,
       href: '/invoice-management',
       icon: BookUser
     })
-  } else {
-    navigationLinks.push(
-      {
-        title: `${t('sidebarNav.receipt', 'Receipts')}`,
-        href: '/receipt-management',
-        icon: ReceiptText
-      },
-      {
-        title: `${t('sidebarNav.subscription', 'Subscriptions')}`,
-        href: '/subscriptions-management',
-        icon: Rss
-      },
-      {
-        title: `${t('sidebarNav.invoicing', 'Invoicing')}`,
-        href: '/invoice-management',
-        icon: BookUser
-      }
-    )
   }
 
   return navigationLinks
 }
+
 const MobileNavigationLinks = () => {
   const { t } = useTranslation()
 

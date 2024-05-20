@@ -34,17 +34,58 @@
     "userSelectTitle": "Welchen Benutzertyp sind Sie?",
     "serviceSelectTitle": "Welche Service möchten Sie verwenden?",
     "submit": "Einreichen",
+    "continue": "Fortsetzen",
+    "back": "Zurück",
     "serviceSelectError": "Bitte wählen Sie einen Service aus.",
     "onboardingSuccess": {
-      "title": "Herzlichen Glückwunsch!",
+      "title": "Herzlichen Glückwunsch 🎉",
       "subtitle": "Sie haben sich erfolgreich angemeldet."
     },
     "onboardingError": {
-      "title": "Oops!",
+      "title": "Oops! 🙈",
       "subtitle": "Etwas ist schief gelaufen. Bitte versuchen Sie es erneut."
-    }
+    },
+    "formDescription": "Bitte geben Sie Ihre Unternehmensinformationen an. Sie können dies später jederzeit in Ihrem Profil aktualisieren."
   },
   "receiptManagement": "Rechnungsmanagement",
   "subscriptionManagement": "Abonnementverwaltung",
-  "invoicing": "Rechnungsstellung"
+  "invoicing": "Rechnungsstellung",
+  "private": "Privat",
+  "business": "Geschäftlich",
+  "profileForm": {
+    "title": {
+      "private": "Profil",
+      "business": "Geschäftsprofil",
+      "businessAddress": "Geschäftsadresse"
+    },
+    "labels": {
+      "businessName": "Firmenname",
+      "firstName": "Vorname",
+      "lastName": "Nachname",
+      "address": {
+        "number": "Nummer",
+        "street": "Straße",
+        "city": "Stadt",
+        "state": "Bundesland",
+        "zip": "PLZ",
+        "country": "Land"
+      },
+      "website": "Website",
+      "email": "E-Mail",
+      "phone": "Telefonummer",
+      "mobile": "Handynummer",
+      "industry": "Branche z.b IT, Finanzen, etc.",
+      "businessInfo": "Betriebsinformationen"
+    },
+    "toasts": {
+      "success": "Profil erfolgreich aktualisiert.",
+      "error": "Profil konnte nicht aktualisiert werden. Bitte versuchen Sie es erneut."
+    },
+    "buttons": {
+      "edit": "Bearbeiten",
+      "update": "Aktualisieren",
+      "cancel": "Abbrechen"
+    },
+    "updating": "Aktualisierung läuft..."
+  }
 }

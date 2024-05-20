@@ -28,6 +28,7 @@ const GenericSelect = <T extends string | number | symbol>({
     <div className='flex w-full items-center justify-center gap-5'>
       {options.map(option => (
         <Button
+          type='button'
           key={option.value.toString()}
           onClick={() => handleSelect(option.value)}
           variant={selectedValue === option.value ? 'default' : 'outline'}

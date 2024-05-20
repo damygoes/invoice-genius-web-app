@@ -34,17 +34,58 @@
     "userSelectTitle": "What type of user are you?",
     "serviceSelectTitle": "What service(s) would you like to use?",
     "submit": "Finish onboarding",
+    "continue": "Continue",
+    "back": "Back",
     "serviceSelectError": "Please select at least one service.",
     "onboardingSuccess": {
-      "title": "Welcome to Invoice Genius!",
+      "title": "Welcome to Invoice Genius 🎉",
       "subtitle": "You have successfully completed the onboarding process."
     },
     "onboardingError": {
-      "title": "Oops!",
+      "title": "Oops! 🙈",
       "subtitle": "Something went wrong. Please try again."
-    }
+    },
+    "formDescription": "Please provide your business information. You can always update this later in your profile."
   },
   "receiptManagement": "Receipt Management",
   "subscriptionManagement": "Subscription Management",
-  "invoicing": "Invoicing"
+  "invoicing": "Invoicing",
+  "private": "Private",
+  "business": "Business",
+  "profileForm": {
+    "title": {
+      "private": "Profile",
+      "business": "Company Profile",
+      "businessAddress": "Company Address"
+    },
+    "labels": {
+      "businessName": "Business Name",
+      "firstName": "First Name",
+      "lastName": "Last Name",
+      "address": {
+        "number": "Number",
+        "street": "Street",
+        "city": "City",
+        "state": "State",
+        "zip": "ZIP",
+        "country": "Country"
+      },
+      "website": "Website",
+      "email": "Email",
+      "phone": "Phone",
+      "mobile": "Mobile",
+      "industry": "Industry e.g. Marketing & Advertising, IT Services, etc.",
+      "businessInfo": "Business Info"
+    },
+    "toasts": {
+      "success": "Profile updated successfully.",
+      "error": "Something went wrong. Please try again."
+    },
+    "buttons": {
+      "edit": "Edit",
+      "update": "Update",
+      "cancel": "Cancel"
+    },
+    "updating": "Updating..."
+  }
 }

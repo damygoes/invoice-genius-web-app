@@ -1,7 +1,7 @@
 import { AvailableUserType } from '@/types/User'
+import TransformToGenericSelectOptions from '@/utils/transformToGenericSelectOptions'
 import { useState } from 'react'
-import { useTranslation } from 'react-i18next'
-import { Button } from '../ui/button'
+import GenericSelect from '../generic-select/GenericSelect'
 
 type UserTypeSelectProps = {
   selectedUserType: AvailableUserType | null
@@ -12,14 +12,12 @@ const UserTypeSelect = ({
   selectedUserType,
   onSelect
 }: UserTypeSelectProps) => {
-  const { t } = useTranslation()
   const [selectedOption, setSelectedOption] =
     useState<AvailableUserType | null>(selectedUserType)
 
-  const userTypeSelectOptions = [
-    { value: 'private', label: `${t('userTypeSelect.private', 'Private')}` },
-    { value: 'business', label: `${t('userTypeSelect.business', 'Business')}` }
-  ]
+  const options: AvailableUserType[] = ['private', 'business']
+
+  const userTypeSelectOptions = TransformToGenericSelectOptions(options)
 
   const handleSelectUserType = (optionId: AvailableUserType) => {
     setSelectedOption(optionId)
@@ -28,20 +26,11 @@ const UserTypeSelect = ({
 
   return (
     <div className='flex w-full items-center justify-center gap-5'>
-      {userTypeSelectOptions.map(type => {
-        return (
-          <Button
-            type='button'
-            key={type.value}
-            onClick={() =>
-              handleSelectUserType(type.value as AvailableUserType)
-            }
-            variant={selectedOption === type.value ? 'default' : 'outline'}
-          >
-            {type.label}
-          </Button>
-        )
-      })}
+      <GenericSelect
+        options={userTypeSelectOptions}
+        selectedOption={selectedOption}
+        onSelect={handleSelectUserType}
+      />
     </div>
   )
 }
