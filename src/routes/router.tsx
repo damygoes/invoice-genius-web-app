@@ -4,7 +4,8 @@ import {
   InvoiceManagementPage,
   OnboardingPage,
   ReceiptManagementPage,
-  SubscriptionsManagementPage
+  SubscriptionsManagementPage,
+  UserProfilePage
 } from '@/pages'
 import HomePage from '@/pages/home/HomePage'
 import {
@@ -48,6 +49,13 @@ export const router = createBrowserRouter(
         <Route
           path='invoice-management'
           element={<InvoiceManagementPage />}
+          loader={() => {
+            return <div>Invoice Loader</div>
+          }}
+        />
+        <Route
+          path='profile'
+          element={<UserProfilePage />}
           loader={() => {
             return <div>Invoice Loader</div>
           }}

@@ -11,11 +11,13 @@ const InvoiceManagementPage = lazy(
   () => import('@/pages/invoice-management/InvoiceManagement')
 )
 const DashboardPage = lazy(() => import('@/pages/user-dashboard/UserDashboard'))
+const UserProfilePage = lazy(() => import('@/pages/user-profile/UserProfile'))
 
 export {
   DashboardPage,
   InvoiceManagementPage,
   OnboardingPage,
   ReceiptManagementPage,
-  SubscriptionsManagementPage
+  SubscriptionsManagementPage,
+  UserProfilePage
 }

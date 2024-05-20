@@ -1,6 +1,6 @@
 import { AvailableUserType, ProvidedServices } from '@/types/User'
-import { useTranslation } from 'react-i18next'
-import { ToggleGroup, ToggleGroupItem } from '../ui/toggle-group'
+import TransformToGenericSelectOptions from '@/utils/transformToGenericSelectOptions'
+import GenericMultiSelect from '../generic-select/GenericMultiSelect'
 
 type ServiceSelectProps = {
   userType: AvailableUserType | null
@@ -13,7 +13,6 @@ const ServiceSelect = ({
   selectedServices,
   onSelect
 }: ServiceSelectProps) => {
-  const { t } = useTranslation()
   const AVAILABLE_SERVICES_FOR_PRIVATE_USERS: ProvidedServices[] = [
     'receiptManagement',
     'subscriptionManagement'
@@ -29,34 +28,20 @@ const ServiceSelect = ({
       ? AVAILABLE_SERVICES_FOR_PRIVATE_USERS
       : AVAILABLE_SERVICES_FOR_BUSINESS_USERS
 
-  const toggleService = (service: ProvidedServices) => {
-    const updatedServices = new Set(selectedServices)
-    if (selectedServices.has(service)) {
-      updatedServices.delete(service)
-    } else {
-      updatedServices.add(service)
-    }
-    onSelect(updatedServices)
+  const selectOptions = TransformToGenericSelectOptions(availableServices)
+
+  const handleSelect = (services: ProvidedServices[]) => {
+    onSelect(new Set(services))
   }
 
   return (
-    <ToggleGroup
-      type='multiple'
-      className='flex w-full items-center justify-center gap-5'
-    >
-      {availableServices.map(service => {
-        return (
-          <ToggleGroupItem
-            key={service}
-            value={service}
-            onClick={() => toggleService(service)}
-            variant={selectedServices.has(service) ? 'default' : 'outline'}
-          >
-            {t(`serviceSelect.${service}`)}
-          </ToggleGroupItem>
-        )
-      })}
-    </ToggleGroup>
+    <div>
+      <GenericMultiSelect
+        options={selectOptions}
+        selectedOptions={Array.from(selectedServices)}
+        onSelect={handleSelect}
+      />
+    </div>
   )
 }
 
