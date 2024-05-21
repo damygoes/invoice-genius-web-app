@@ -10,7 +10,7 @@ import { useForm } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
 import { useNavigate } from 'react-router-dom'
 import { z } from 'zod'
-import OnboardingBusinessUserProfileForm from './OnboardingBusinessProfileForm'
+import OnboardingBusinessUserProfileForm from '../../components/onboarding/OnboardingBusinessProfileForm'
 import OnboardingButtonsSection from './OnboardingButtonsSection'
 import OnboardingFirstStep from './OnboardingFirstStep'
 

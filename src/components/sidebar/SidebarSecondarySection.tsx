@@ -1,4 +1,4 @@
-import UserAvatarMenu from '@/features/user/UserAvatarMenu'
+import UserAvatarMenu from '@/components/user/UserAvatarMenu'
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import LanguageSwitch from '../shared/LanguageSwitch'
