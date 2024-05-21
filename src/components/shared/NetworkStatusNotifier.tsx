@@ -2,10 +2,12 @@ import useNetworkStatus from '@/hooks/useNetworkStatus'
 import { cn } from '@/lib/utils'
 import { Triangle } from 'lucide-react'
 import { useEffect, useState } from 'react'
+import { useTranslation } from 'react-i18next'
 
 const NetworkStatusNotifier = () => {
   const isOnline = useNetworkStatus()
   const [showError, setShowError] = useState(false)
+  const { t } = useTranslation()
 
   useEffect(() => {
     if (!isOnline) {
@@ -30,7 +32,10 @@ const NetworkStatusNotifier = () => {
         )}
       >
         <Triangle className='mr-2 h-4 w-4' />
-        You are offline. Please check your internet connection
+        {t(
+          'networkStatus.offline',
+          'You are offline. Please check your internet connection.'
+        )}
       </div>
     )
   }
