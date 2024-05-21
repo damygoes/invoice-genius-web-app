@@ -1,22 +1,20 @@
-import { RecurringInterval } from './RecurringInterval'
+import { RecurringIntervalType } from './RecurringInterval'
 
 export type SubscriptionPayload = {
   subscriptionName: string
   subscriptionCategory: string
-  recurring: boolean
-  recurringInterval?: RecurringInterval
+  recurringInterval?: RecurringIntervalType
   subscribedOn: Date
   expiresOn: Date
   setReminder: boolean
-  reminderPeriod?: Date
+  reminderPeriod?: Date | undefined
 }
 export type SubscriptionDTO = {
   id: string
   userId: string
   subscriptionName: string
   subscriptionCategory: string
-  recurring: boolean
-  recurringInterval?: RecurringInterval
+  recurringInterval?: RecurringIntervalType
   subscribedOn: Date
   expiresOn: Date
   setReminder: boolean

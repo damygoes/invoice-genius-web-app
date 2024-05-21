@@ -58,15 +58,12 @@ const DeleteConfirmationModal: React.FC<DeleteConfirmationModalProps> = ({
             onClick={onClose}
             disabled={disabled}
           >
-            {cancelText ?? t('common.deleteConfirmationModal.cancel', 'Cancel')}
+            {cancelText ?? t('common.cancel', 'Cancel')}
           </Button>
           <Button type='submit' onClick={onDelete} disabled={disabled}>
-            {confirmText ??
-              t('common.deleteConfirmationModal.confirm', 'Delete')}
+            {confirmText ?? t('common.delete', 'Delete')}
 
-            {isLoading &&
-              (loadingText ??
-                t('common.deleteConfirmationModal.loading', 'Deleting'))}
+            {isLoading && (loadingText ?? t('common.loading', 'Deleting'))}
           </Button>
         </DialogFooter>
       </DialogContent>

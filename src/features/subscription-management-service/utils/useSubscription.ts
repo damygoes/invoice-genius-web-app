@@ -14,6 +14,8 @@ type ISubscriptionStore = {
   setSubscriptionsToDelete: (subscriptions: SubscriptionDTO[]) => void
   addSubscriptionToDelete: (subscription: SubscriptionDTO) => void
   removeSubscriptionToDelete: (subscriptionId: string) => void
+  subscriptionToEdit: SubscriptionDTO | null
+  setSubscriptionToEdit: (subscription: SubscriptionDTO) => void
 }
 
 const subscriptionManagementStore = create<ISubscriptionStore>(set => ({
@@ -26,7 +28,9 @@ const subscriptionManagementStore = create<ISubscriptionStore>(set => ({
     set(state => ({
       ...state,
       isSubscriptionManagementModalOpen: false,
-      subscription: null
+      subscription: null,
+      subscriptionsToDelete: [],
+      subscriptionToEdit: null
     })),
   isDeleteSubscriptionModalOpen: false,
   setDeleteSubscriptionModalOpen: isOpen =>
@@ -43,7 +47,10 @@ const subscriptionManagementStore = create<ISubscriptionStore>(set => ({
       subscriptionsToDelete: state.subscriptionsToDelete.filter(
         sub => sub.id !== subscriptionId
       )
-    }))
+    })),
+  subscriptionToEdit: null,
+  setSubscriptionToEdit: subscription =>
+    set(state => ({ ...state, subscriptionToEdit: subscription }))
 }))
 
 export const useSubscriptionManagementStore = () => {
@@ -60,7 +67,9 @@ export const useSubscriptionManagementStore = () => {
     subscriptionsToDelete,
     setSubscriptionsToDelete,
     addSubscriptionToDelete,
-    removeSubscriptionToDelete
+    removeSubscriptionToDelete,
+    subscriptionToEdit,
+    setSubscriptionToEdit
   } = subscriptionManagementStore()
 
   const addNewSubscription = async (
@@ -86,6 +95,58 @@ export const useSubscriptionManagementStore = () => {
     return subscriptions.data.subscriptions as SubscriptionDTO[]
   }
 
+  const updateSubscription = async (
+    payload: SubscriptionPayload,
+    subscriptionId: string,
+    userId: string
+  ): Promise<SubscriptionDTO> => {
+    if (!subscriptionId) throw new Error('Subscription ID is required')
+    if (!userId) throw new Error('User ID is required')
+    const updatedSubscription = await axiosClient.patch(
+      `subscriptions-management/${subscriptionId}`,
+      {
+        ...payload,
+        userId
+      }
+    )
+    return updatedSubscription.data.subscription
+  }
+
+  const deleteSubscription = async (
+    subscriptionIds: string[],
+    userId: string
+  ) => {
+    if (subscriptionIds.length === 0) {
+      throw new Error('No subscription IDs provided')
+    }
+
+    try {
+      const deletedSubscriptions = await Promise.all(
+        subscriptionIds.map(async id => {
+          try {
+            const response = await axiosClient.delete(
+              `subscriptions-management/${id}`,
+              {
+                headers: {
+                  'User-ID': userId
+                }
+              }
+            )
+            return response.data
+          } catch (error) {
+            console.error(`Failed to delete subscription with ID: ${id}`, error)
+            throw new Error(`Failed to delete subscription with ID: ${id}`)
+          }
+        })
+      )
+
+      return deletedSubscriptions
+    } catch (error) {
+      console.error('One or more deletions failed', error)
+      throw new Error('One or more deletions failed')
+    }
+  }
+
   return {
     isSubscriptionManagementModalOpen,
     setSubscriptionManagementModalOpen,
@@ -99,6 +160,10 @@ export const useSubscriptionManagementStore = () => {
     subscriptionsToDelete,
     setSubscriptionsToDelete,
     addSubscriptionToDelete,
-    removeSubscriptionToDelete
+    removeSubscriptionToDelete,
+    subscriptionToEdit,
+    setSubscriptionToEdit,
+    updateSubscription,
+    deleteSubscription
   }
 }

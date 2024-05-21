@@ -149,5 +149,23 @@ export const Icons = {
         points='15.25 25.66 22.25 33.66 23.75 32.34 16.75 24.34'
       ></polygon>
     </svg>
+  ),
+  empty: ({ className, ...props }: IconProps) => (
+    <svg
+      xmlns='http://www.w3.org/2000/svg'
+      viewBox='0 0 64 64'
+      id='folder'
+      className={cn('', className)}
+      {...props}
+    >
+      <path
+        fill='#cb83ff'
+        d='M60 32a28.1 28.1 0 0 1-28 27.99V4.01A28.1 28.1 0 0 1 60 32Z'
+      ></path>
+      <path
+        fill='#4e017d'
+        d='M32 3a29 29 0 1 0 29 29A29.032 29.032 0 0 0 32 3Zm0 56a27 27 0 1 1 27-27 27.03 27.03 0 0 1-27 27Zm16-39H32.35l-4.725-3.781A1 1 0 0 0 27 16H16a1 1 0 0 0-1 1v29a1 1 0 0 0 1 1h32a1 1 0 0 0 1-1V21a1 1 0 0 0-1-1Zm-31-2h9.649l2.5 2H17Zm30 27H17V22h30Z'
+      ></path>
+    </svg>
   )
 }

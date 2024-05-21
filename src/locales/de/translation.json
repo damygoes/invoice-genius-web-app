@@ -17,7 +17,12 @@
   "userProfile": "Profil",
   "common": {
     "logout": "Abmelden",
-    "authLoader": "Authentifizierung lädt..."
+    "authLoader": "Authentifizierung lädt...",
+    "cancel": "Abbrechen",
+    "delete": "Löschen",
+    "loading": "Laden...",
+    "drag": "Ziehen zum Neuanordnen",
+    "edit": "Bearbeiten"
   },
   "userTypeSelect": {
     "private": "Privat",
@@ -87,5 +92,89 @@
       "cancel": "Abbrechen"
     },
     "updating": "Aktualisierung läuft..."
+  },
+  "networkStatus": {
+    "offline": "Sie sind offline. Bitte überprüfen Sie Ihre Internetverbindung."
+  },
+  "subscriptionManagementPage": {
+    "addButton": "Abonnement hinzufügen",
+    "buttonText": {
+      "singular": "Abonnement",
+      "plural": "Abonnements"
+    },
+    "emptyState": {
+      "title": "Sie haben noch keine Abonnements",
+      "description": "Klicken Sie auf die Schaltfläche unten, um ein neues Abonnement hinzuzufügen."
+    }
+  },
+  "subscriptionManagementDeleteModal": {
+    "title": "Abonnement löschen",
+    "description": "Möchten Sie dieses Abonnement wirklich löschen:",
+    "loadingText": "Löschen läuft...",
+    "toasts": {
+      "success": {
+        "title": "Abonnement gelöscht",
+        "description": "Das Abonnement wurde erfolgreich gelöscht:"
+      },
+      "error": {
+        "title": "Fehler beim Löschen des Abonnements",
+        "description": "Das Abonnement konnte nicht gelöscht werden. Bitte versuchen Sie es erneut."
+      }
+    }
+  },
+  "subscriptionManagementListItems": {
+    "subscriptionDate": "Abonnementdatum",
+    "expirationDate": "Ablaufdatum",
+    "recurring": "Wiederkehrend",
+    "reminder": "Erinnerung",
+    "noReminder": "Keine Erinnerung",
+    "creationDate": "Erstellungsdatum"
+  },
+  "subscriptionManagementItemButtons": {
+    "edit": "Abonnement bearbeiten",
+    "delete": "Abonnement löschen"
+  },
+  "subscriptionManagementModal": {
+    "title": {
+      "add": "Abonnement hinzufügen",
+      "edit": "Abonnement bearbeiten"
+    },
+    "description": {
+      "add": "Bitte geben Sie die Details für das Abonnement an.",
+      "edit": "Bitte aktualisieren Sie die Details für das Abonnement."
+    }
+  },
+  "subscriptionManagementForm": {
+    "subscriptionName": "Abonnementname",
+    "subscriptionCategory": "Abonnementkategorie",
+    "subscribedOn": "Abonniert am",
+    "expiresOn": "Läuft ab",
+    "recurringInterval": "Wiederholungsintervall",
+    "reminder": "Eine Erinnerung für dieses Abonnement festlegen?",
+    "reminderPeriod": "Erinnerungszeitraum"
+  },
+  "subscriptionManagementFormButtons": {
+    "updatePending": "Aktualisierung läuft...",
+    "addPending": "Hinzufügen läuft...",
+    "update": "Aktualisieren",
+    "add": "Hinzufügen"
+  },
+  "subscriptionManagementFormToasts": {
+    "success": {
+      "add": {
+        "title": "Abonnement erfolgreich hinzugefügt."
+      },
+      "update": {
+        "title": "Abonnement erfolgreich aktualisiert."
+      }
+    },
+    "error": {
+      "add": {
+        "title": "Fehler beim Hinzufügen des Abonnements. Bitte versuchen Sie es erneut."
+      },
+      "update": {
+        "title": "Fehler beim Aktualisieren des Abonnements. Bitte versuchen Sie es erneut."
+      }
+    }
   }
 }

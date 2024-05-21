@@ -1,5 +1,6 @@
 import { cn } from '@/lib/utils'
 import { Grip } from 'lucide-react'
+import { useTranslation } from 'react-i18next'
 import { Tooltip, TooltipContent, TooltipTrigger } from '../ui/tooltip'
 
 type DraggableIconProps = {
@@ -8,6 +9,7 @@ type DraggableIconProps = {
 }
 
 const DraggableIcon = ({ side = 'top', className }: DraggableIconProps) => {
+  const { t } = useTranslation()
   return (
     <Tooltip>
       <TooltipTrigger asChild type='button'>
@@ -17,7 +19,9 @@ const DraggableIcon = ({ side = 'top', className }: DraggableIconProps) => {
           className={cn('cursor-grab', className)}
         />
       </TooltipTrigger>
-      <TooltipContent side={side}>Drag to reorder</TooltipContent>
+      <TooltipContent side={side} align='center'>
+        {t('common.drag', 'Drag')}
+      </TooltipContent>
     </Tooltip>
   )
 }

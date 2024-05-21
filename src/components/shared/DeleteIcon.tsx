@@ -1,5 +1,6 @@
 import { cn } from '@/lib/utils'
 import { Trash } from 'lucide-react'
+import { useTranslation } from 'react-i18next'
 import { Button } from '../ui/button'
 import { Tooltip, TooltipContent, TooltipTrigger } from '../ui/tooltip'
 
@@ -20,11 +21,12 @@ const DeleteIcon = ({
   className,
   buttonClassName
 }: DeleteIconProps) => {
+  const { t } = useTranslation()
   if (renderAs === 'button') {
     return (
       <Button variant='link' onClick={onClick} className={cn(buttonClassName)}>
         <Trash size={12} strokeWidth={2} className='mr-1' />
-        {tooltipContent || 'Delete'}
+        {tooltipContent || `${t('common.delete', 'Delete')}`}
       </Button>
     )
   }
@@ -39,7 +41,9 @@ const DeleteIcon = ({
           onClick={onClick}
         />
       </TooltipTrigger>
-      <TooltipContent side={side}>{tooltipContent || 'Delete'}</TooltipContent>
+      <TooltipContent side={side}>
+        {tooltipContent || `${t('common.delete', 'Delete')}`}
+      </TooltipContent>
     </Tooltip>
   )
 }

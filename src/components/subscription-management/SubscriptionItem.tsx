@@ -2,6 +2,7 @@ import { extractDatesFromSubscription } from '@/features/subscription-management
 import { useSubscriptionManagementStore } from '@/features/subscription-management-service/utils/useSubscription'
 import { SubscriptionDTO } from '@/types/Subscription'
 import { BellRing, CalendarPlus, Repeat, Rss, ShieldOff } from 'lucide-react'
+import { useTranslation } from 'react-i18next'
 import DeleteIcon from '../shared/DeleteIcon'
 import DraggableIcon from '../shared/DraggableIcon'
 import EditIcon from '../shared/EditIcon'
@@ -23,12 +24,20 @@ const SubscriptionItem = ({ subscription }: SubscriptionItemProps) => {
     setDeleteSubscriptionModalOpen,
     addSubscriptionToDelete,
     subscriptionsToDelete,
-    removeSubscriptionToDelete
+    removeSubscriptionToDelete,
+    setSubscriptionToEdit,
+    setSubscriptionManagementModalOpen
   } = useSubscriptionManagementStore()
 
+  const { t } = useTranslation()
+
   const handleDeleteSubscription = () => {
-    addSubscriptionToDelete(subscription)
-    setDeleteSubscriptionModalOpen(true)
+    if (subscriptionsToDelete.includes(subscription)) {
+      setDeleteSubscriptionModalOpen(true)
+    } else {
+      addSubscriptionToDelete(subscription)
+      setDeleteSubscriptionModalOpen(true)
+    }
   }
 
   const handleMarkSubscriptionForDeletion = () => {
@@ -38,6 +47,11 @@ const SubscriptionItem = ({ subscription }: SubscriptionItemProps) => {
     } else {
       addSubscriptionToDelete(subscription)
     }
+  }
+
+  const handleEditSubscriptionItem = () => {
+    setSubscriptionToEdit(subscription)
+    setSubscriptionManagementModalOpen(true)
   }
 
   return (
@@ -56,42 +70,79 @@ const SubscriptionItem = ({ subscription }: SubscriptionItemProps) => {
         </Typography>
       </div>
       <SubscriptionItemLabel
-        label={<TooltipIcon icon={Rss} tooltipContent='Subscription date' />}
+        label={
+          <TooltipIcon
+            icon={Rss}
+            tooltipContent={`${t('subscriptionManagementListItems.subscriptionDate', 'Subscription date')}`}
+          />
+        }
         value={subscriptionDate}
       />
       <SubscriptionItemLabel
         label={
-          <TooltipIcon icon={ShieldOff} tooltipContent='Expiration date' />
+          <TooltipIcon
+            icon={ShieldOff}
+            tooltipContent={`${t('subscriptionManagementListItems.expirationDate', 'Expiry date')}`}
+          />
         }
         value={expiryDate}
       />
-      {subscription.recurring && (
+      {subscription.recurringInterval && (
         <Badge>
-          <TooltipIcon icon={Repeat} tooltipContent='Recurring subscription' />
+          <TooltipIcon
+            icon={Repeat}
+            tooltipContent={t(
+              'subscriptionManagementListItems.recurring',
+              'Recurring interval'
+            )}
+          />
 
           {subscription.recurringInterval}
         </Badge>
       )}
-      {subscription.reminderPeriod && (
+      {subscription.reminderPeriod ? (
         <SubscriptionItemLabel
-          label={<TooltipIcon icon={BellRing} tooltipContent='Reminder date' />}
+          label={
+            <TooltipIcon
+              icon={BellRing}
+              tooltipContent={t(
+                'subscriptionManagementListItems.reminder',
+                'Reminder date'
+              )}
+            />
+          }
           value={reminderDate}
         />
+      ) : (
+        <SubscriptionItemLabel
+          label={<TooltipIcon icon={BellRing} tooltipContent='Reminder date' />}
+          value={t('subscriptionManagementListItems.noReminder', 'No reminder')}
+        />
       )}
+
       {subscription.subscriptionCategory &&
         subscription.subscriptionCategory !== '' && (
           <Badge>{subscription.subscriptionCategory}</Badge>
         )}
       <SubscriptionItemLabel
         label={
-          <TooltipIcon icon={CalendarPlus} tooltipContent='Creation date' />
+          <TooltipIcon
+            icon={CalendarPlus}
+            tooltipContent={t(
+              'subscriptionManagementListItems.creationDate',
+              'Creation date'
+            )}
+          />
         }
         value={creationDate}
       />
       <section className='invisible flex items-center gap-4 group-hover:visible'>
-        <EditIcon tooltipContent='Edit Subscription' />
+        <EditIcon
+          tooltipContent={`${t('subscriptionManagementItemButtons.edit', 'Edit subscription')}`}
+          onClick={handleEditSubscriptionItem}
+        />
         <DeleteIcon
-          tooltipContent='Delete Subscription'
+          tooltipContent={`${t('subscriptionManagementItemButtons.delete', 'Delete subscription')}`}
           onClick={handleDeleteSubscription}
         />
       </section>

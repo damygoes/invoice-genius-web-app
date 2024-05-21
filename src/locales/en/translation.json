@@ -17,7 +17,12 @@
   "userProfile": "Profile",
   "common": {
     "logout": "Logout",
-    "authLoader": "Authenticating..."
+    "authLoader": "Authenticating...",
+    "cancel": "Cancel",
+    "delete": "Delete",
+    "loading": "Loading...",
+    "drag": "Drag to reorder",
+    "edit": "Edit"
   },
   "userTypeSelect": {
     "private": "Private",
@@ -87,5 +92,89 @@
       "cancel": "Cancel"
     },
     "updating": "Updating..."
+  },
+  "networkStatus": {
+    "offline": "You are offline. Please check your internet connection."
+  },
+  "subscriptionManagementPage": {
+    "addButton": "Add Subscription",
+    "buttonText": {
+      "singular": "subscription",
+      "plural": "subscriptions"
+    },
+    "emptyState": {
+      "title": "You have no subscriptions yet.",
+      "description": "Start managing subscriptions as soon as you add one."
+    }
+  },
+  "subscriptionManagementDeleteModal": {
+    "title": "Delete Subscription",
+    "description": "Are you sure you want to delete the following subscriptions:",
+    "loadingText": "Deleting...",
+    "toasts": {
+      "success": {
+        "title": "Subscription(s) deleted successfully.",
+        "description": "The following subscriptions have been deleted:"
+      },
+      "error": {
+        "title": "Something went wrong. Please try again.",
+        "description": "An error occurred while deleting the subscription(s)"
+      }
+    }
+  },
+  "subscriptionManagementListItems": {
+    "subscriptionDate": "Subscription date",
+    "expirationDate": "Expiration date",
+    "recurring": "Recurring subscription",
+    "reminder": "Reminder date",
+    "noReminder": "No reminder set",
+    "creationDate": "Creation date"
+  },
+  "subscriptionManagementItemButtons": {
+    "edit": "Edit Subscription",
+    "delete": "Delete Subscription"
+  },
+  "subscriptionManagementModal": {
+    "title": {
+      "add": "Add Subscription",
+      "edit": "Edit Subscription"
+    },
+    "description": {
+      "add": "Please provide the subscription details.",
+      "edit": "Update the subscription details."
+    }
+  },
+  "subscriptionManagementForm": {
+    "subscriptionName": "Subscription Name",
+    "subscriptionCategory": "Subscription Category",
+    "subscribedOn": "Subscribed On",
+    "expiresOn": "Expires On",
+    "recurringInterval": "Recurring Interval",
+    "reminder": "Set a reminder for this subscription?",
+    "reminderPeriod": "Reminder Date"
+  },
+  "subscriptionManagementFormButtons": {
+    "updatePending": "Updating Subscription...",
+    "addPending": "Adding Subscription...",
+    "update": "Update Subscription",
+    "add": "Add Subscription"
+  },
+  "subscriptionManagementFormToasts": {
+    "success": {
+      "add": {
+        "title": "Subscription added successfully."
+      },
+      "update": {
+        "title": "Subscription updated successfully."
+      }
+    },
+    "error": {
+      "add": {
+        "title": "Error adding subscription. Please try again."
+      },
+      "update": {
+        "title": "Error updating subscription. Please try again."
+      }
+    }
   }
 }
