@@ -1,10 +1,6 @@
 import PageLayout from '@/components/layout/page-layout/PageLayout'
 import ProcessSettingsForm from '@/components/process-settings-form/ProcessSettingsForm'
-import {
-  ResizableHandle,
-  ResizablePanel,
-  ResizablePanelGroup
-} from '@/components/ui/resizable'
+import ResizeablePageLayout from '@/components/resizeable-page-layout/ResizeablePageLayout'
 import { useAuthedAppUser } from '@/hooks/useUser'
 import { useQuery } from '@tanstack/react-query'
 import { lazy } from 'react'
@@ -46,15 +42,10 @@ const UserProfile = () => {
 
   return (
     <PageLayout showHeader={false}>
-      <ResizablePanelGroup direction='horizontal' className='space-x-4 p-8'>
-        <ResizablePanel className='h-full w-full overflow-auto rounded-xl bg-card p-4 shadow-sm'>
-          {FormComponent}
-        </ResizablePanel>
-        <ResizableHandle className='my-auto h-4/5 bg-muted-foreground' />
-        <ResizablePanel className='h-full w-full rounded-xl bg-card p-4 shadow-sm'>
-          <ProcessSettingsForm />
-        </ResizablePanel>
-      </ResizablePanelGroup>
+      <ResizeablePageLayout
+        leftSection={FormComponent}
+        rightSection={<ProcessSettingsForm />}
+      />
     </PageLayout>
   )
 }
