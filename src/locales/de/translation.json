@@ -176,5 +176,19 @@
         "title": "Fehler beim Aktualisieren des Abonnements. Bitte versuchen Sie es erneut."
       }
     }
+  },
+  "savedClients": {
+    "buttons": {
+      "add": "Kunde hinzufügen",
+      "edit": "Kunde bearbeiten",
+      "delete": "Kunde löschen"
+    }
+  },
+  "invoicingPage": {
+    "buttons": {
+      "add": "Rechnung hinzufügen",
+      "edit": "Rechnung bearbeiten",
+      "delete": "Rechnung löschen"
+    }
   }
 }
