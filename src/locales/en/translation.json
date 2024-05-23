@@ -176,5 +176,19 @@
         "title": "Error updating subscription. Please try again."
       }
     }
+  },
+  "savedClients": {
+    "buttons": {
+      "add": "Add Client",
+      "edit": "Edit Client",
+      "delete": "Delete Client"
+    }
+  },
+  "invoicingPage": {
+    "buttons": {
+      "add": "Add Invoice",
+      "edit": "Edit Invoice",
+      "delete": "Delete Invoice"
+    }
   }
 }
