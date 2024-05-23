@@ -6,11 +6,11 @@ import { ThemeProvider } from '@/context/theme-provider'
 import { router } from '@/routes/router'
 import '@/services/i18n/i18n'
 import i18n from '@/services/i18n/i18n'
-import KindeAuthProvider from '@/services/kinde-auth/KindeAuthProvider'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
 import { Suspense } from 'react'
 import { RouterProvider } from 'react-router-dom'
+import { AuthProvider } from './context/auth-context'
 
 const queryClient = new QueryClient()
 
@@ -27,9 +27,9 @@ function App() {
               <div className='border border-solid p-4'>App Loading...</div>
             }
           >
-            <KindeAuthProvider>
+            <AuthProvider>
               <RouterProvider router={router} />
-            </KindeAuthProvider>
+            </AuthProvider>
           </Suspense>
         </TooltipProvider>
       </ThemeProvider>

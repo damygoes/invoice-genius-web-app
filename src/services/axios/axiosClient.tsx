@@ -1,45 +1,64 @@
 import { ENV_VARIABLES } from '@/lib/env'
-import { useKindeAuth } from '@kinde-oss/kinde-auth-react'
-import type { AxiosRequestHeaders, InternalAxiosRequestConfig } from 'axios'
-import axios from 'axios'
+import axios, {
+  AxiosError,
+  AxiosRequestHeaders,
+  InternalAxiosRequestConfig
+} from 'axios'
 import { useEffect } from 'react'
+import refreshAccessToken from './refreshAccessToken'
 
 const axiosClient = axios.create({
   baseURL: ENV_VARIABLES.BASE_URL
 })
 
 const useAxiosInterceptor = () => {
-  const { getToken } = useKindeAuth()
-
   useEffect(() => {
     const requestInterceptor = async (
       config: InternalAxiosRequestConfig
     ): Promise<InternalAxiosRequestConfig> => {
-      const accessToken = await getToken()
-
-      // If not available, return the config without Authorization Header
-      if (!accessToken) return config
-
-      if (config.headers) {
-        ;(config.headers as AxiosRequestHeaders)['Authorization'] =
-          `Bearer ${accessToken}`
-      } else {
+      const accessToken = localStorage.getItem('accessToken')
+      if (accessToken) {
         config.headers = {
+          ...config.headers,
           Authorization: `Bearer ${accessToken}`
         } as AxiosRequestHeaders
       }
-
       return config
     }
 
-    const interceptorId =
+    const responseInterceptor = async (error: AxiosError) => {
+      const originalRequest = error.config as InternalAxiosRequestConfig & {
+        _retry?: boolean
+      }
+      if (
+        error.response?.status === 401 &&
+        originalRequest &&
+        !originalRequest._retry
+      ) {
+        originalRequest._retry = true
+        const newAccessToken = await refreshAccessToken()
+        if (newAccessToken) {
+          axios.defaults.headers.common['Authorization'] =
+            `Bearer ${newAccessToken}`
+          originalRequest.headers['Authorization'] = `Bearer ${newAccessToken}`
+          return axiosClient(originalRequest)
+        }
+      }
+      return Promise.reject(error)
+    }
+
+    const requestInterceptorId =
       axiosClient.interceptors.request.use(requestInterceptor)
+    const responseInterceptorId = axiosClient.interceptors.response.use(
+      response => response,
+      responseInterceptor
+    )
 
     return () => {
-      // Eject the interceptor when the component unmounts
-      axiosClient.interceptors.request.eject(interceptorId)
+      axiosClient.interceptors.request.eject(requestInterceptorId)
+      axiosClient.interceptors.response.eject(responseInterceptorId)
     }
-  }, [getToken])
+  }, [])
 
   return axiosClient
 }

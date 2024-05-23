@@ -1,4 +1,4 @@
-import { useAuthedAppUser } from '@/hooks/useUser'
+import { useUser } from '@/hooks/useUser'
 import { cn } from '@/lib/utils'
 import { businessUserProfileFormSchema } from '@/models/businessUserProfileFormSchema'
 import { BusinessUserProfile } from '@/types/BusinessUserProfile'
@@ -38,7 +38,7 @@ const BusinessUserProfileForm = ({
   const queryClient = new QueryClient()
   const { toast } = useToast()
   const { t } = useTranslation()
-  const { updateBusinessUserProfile } = useAuthedAppUser()
+  const { updateBusinessUserProfile } = useUser()
   const [isFormInEditMode, setIsFormInEditMode] = useState(false)
   const form = useForm<z.infer<typeof businessUserProfileFormSchema>>({
     resolver: zodResolver(businessUserProfileFormSchema),

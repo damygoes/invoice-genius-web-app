@@ -61,7 +61,8 @@
     "title": {
       "private": "Profil",
       "business": "Geschäftsprofil",
-      "businessAddress": "Geschäftsadresse"
+      "businessAddress": "Geschäftsadresse",
+      "privateAddress": "Adresse"
     },
     "labels": {
       "businessName": "Firmenname",
@@ -80,7 +81,8 @@
       "phone": "Telefonummer",
       "mobile": "Handynummer",
       "industry": "Branche z.b IT, Finanzen, etc.",
-      "businessInfo": "Betriebsinformationen"
+      "businessInfo": "Betriebsinformationen",
+      "username": "Benutzername"
     },
     "toasts": {
       "success": "Profil erfolgreich aktualisiert.",
@@ -189,6 +191,49 @@
       "add": "Rechnung hinzufügen",
       "edit": "Rechnung bearbeiten",
       "delete": "Rechnung löschen"
+    }
+  },
+  "authPage": {
+    "title": "Beginnen Sie mit Invoice Genius",
+    "subtitle": "Geben Sie Ihre E-Mail-Adresse ein, um zu beginnen.",
+    "form": {
+      "email": "Email",
+      "footer": "Keine Registrierung erforderlich. Geben Sie einfach Ihre E-Mail-Adresse ein und wir kümmern uns um den Rest."
+    },
+    "button": {
+      "continue": "Fortsetzen",
+      "emailSubmissionPending": "Einreichen läuft...",
+      "verify": "Überprüfen",
+      "verifyPending": "Überprüfung läuft..."
+    },
+    "verificationPage": {
+      "title": "E-Mail-Überprüfung",
+      "subtitle": "Bitte geben Sie den Bestätigungscode ein, den wir an Ihre E-Mail-Adresse gesendet haben."
+    },
+    "toasts": {
+      "success": {
+        "title": "E-Mail gesendet",
+        "description": "Bitte überprüfen Sie Ihre E-Mails auf den Bestätigungscode."
+      },
+      "error": {
+        "title": "Fehler beim Senden der E-Mail",
+        "description": "Die E-Mail konnte nicht gesendet werden. Bitte versuchen Sie es erneut."
+      },
+      "verificationSuccess": {
+        "title": "E-Mail bestätigt",
+        "description": "Bitte aktualisieren Sie Ihr Profil, um die beste Erfahrung zu machen.",
+        "profileUpdateCta": "Profil aktualisieren"
+      },
+      "verificationError": {
+        "title": "Fehler bei der E-Mail-Überprüfung",
+        "description": "Der Bestätigungscode ist ungültig. Bitte überprüfen Sie Ihre E-Mails und versuchen Sie es erneut."
+      }
+    },
+    "otp": {
+      "title": "Bestätigungscode ",
+      "subtitle": "Bitte geben Sie den Bestätigungscode ein, der Ihnen per E-Mail zugesandt wurde",
+      "label": "Bestätigungscode",
+      "otpFormError": "OTP muss 6 Zeichen lang sein"
     }
   }
 }

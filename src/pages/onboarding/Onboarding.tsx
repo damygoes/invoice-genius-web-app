@@ -2,7 +2,7 @@ import { Heading } from '@/components/ui/heading'
 import { Typography } from '@/components/ui/typography'
 import { useToast } from '@/components/ui/use-toast'
 import { useOnboarding } from '@/hooks/useOnboarding'
-import { useAuthedAppUser } from '@/hooks/useUser'
+import { useUser } from '@/hooks/useUser'
 import { onboardingBusinessUserProfileFormSchema } from '@/models/businessUserProfileFormSchema'
 import { AuthUser, AvailableUserType } from '@/types/User'
 import { zodResolver } from '@hookform/resolvers/zod'
@@ -17,7 +17,6 @@ import OnboardingFirstStep from './OnboardingFirstStep'
 const Onboarding = () => {
   const { t } = useTranslation()
   const { toast } = useToast()
-  const { authedAppUser, setAuthedAppUser } = useAuthedAppUser()
   const {
     selectedServices,
     selectedUserType,
@@ -25,6 +24,7 @@ const Onboarding = () => {
     onboardingStep,
     onboardUser
   } = useOnboarding()
+  const { user, setUser } = useUser()
 
   const navigate = useNavigate()
 
@@ -82,9 +82,9 @@ const Onboarding = () => {
         const onboardedUser = await onboardUser({
           userType: selectedUserType as AvailableUserType,
           services: Array.from(selectedServices),
-          user: authedAppUser as AuthUser
+          user: user as AuthUser
         })
-        setAuthedAppUser(onboardedUser)
+        setUser(onboardedUser)
         setOnboardingOngoing(false)
         toast({
           title: t(
@@ -119,11 +119,11 @@ const Onboarding = () => {
           {
             userType: selectedUserType as AvailableUserType,
             services: Array.from(selectedServices),
-            user: authedAppUser as AuthUser
+            user: user as AuthUser
           },
           businessFormData
         )
-        setAuthedAppUser(onboardedUser)
+        setUser(onboardedUser)
         setOnboardingOngoing(false)
         toast({
           title: t(

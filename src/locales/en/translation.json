@@ -61,7 +61,8 @@
     "title": {
       "private": "Profile",
       "business": "Company Profile",
-      "businessAddress": "Company Address"
+      "businessAddress": "Company Address",
+      "privateAddress": "Address"
     },
     "labels": {
       "businessName": "Business Name",
@@ -80,7 +81,8 @@
       "phone": "Phone",
       "mobile": "Mobile",
       "industry": "Industry e.g. Marketing & Advertising, IT Services, etc.",
-      "businessInfo": "Business Info"
+      "businessInfo": "Business Info",
+      "username": "Username"
     },
     "toasts": {
       "success": "Profile updated successfully.",
@@ -189,6 +191,49 @@
       "add": "Add Invoice",
       "edit": "Edit Invoice",
       "delete": "Delete Invoice"
+    }
+  },
+  "authPage": {
+    "title": "Get started with Invoice Genius",
+    "subtitle": "Enter your email to get started.",
+    "form": {
+      "email": "Email",
+      "footer": "No registration needed. Just enter your email and we cover the rest."
+    },
+    "button": {
+      "continue": "Continue",
+      "emailSubmissionPending": "processing...",
+      "verify": "Verify Email",
+      "verifyPending": "Verifying..."
+    },
+    "verificationPage": {
+      "title": "Verify your email",
+      "subtitle": "Please enter the verification code sent to your email."
+    },
+    "toasts": {
+      "success": {
+        "title": "Email sent successfully.",
+        "description": "Please check your email for the verification code."
+      },
+      "error": {
+        "title": "Error sending email. Please try again.",
+        "description": "An error occurred while sending the verification email to:"
+      },
+      "verificationSuccess": {
+        "title": "Email verified successfully.",
+        "description": "Please update your profile to have the best experience.",
+        "profileUpdateCta": "Update Profile"
+      },
+      "verificationError": {
+        "title": "Error verifying email. Please try again.",
+        "description": "An error occurred while verifying the email."
+      }
+    },
+    "otp": {
+      "title": "Enter verification code",
+      "subtitle": "Please enter the verification code sent to your email",
+      "label": "Verification Code",
+      "otpFormError": "OTP must be 6 characters"
     }
   }
 }
