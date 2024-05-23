@@ -1,5 +1,5 @@
 import { useSubscriptionManagementStore } from '@/features/subscription-management-service/utils/useSubscription'
-import { useAuthedAppUser } from '@/hooks/useUser'
+import { useUser } from '@/hooks/useUser'
 import { QueryClient, useMutation } from '@tanstack/react-query'
 import { useMemo } from 'react'
 import { useTranslation } from 'react-i18next'
@@ -15,7 +15,7 @@ const DeleteSubscriptionItemModal = () => {
     setSubscriptionsToDelete,
     deleteSubscription
   } = useSubscriptionManagementStore()
-  const { authedAppUser } = useAuthedAppUser()
+  const { user } = useUser()
   const { toast } = useToast()
   const { t } = useTranslation()
 
@@ -30,7 +30,7 @@ const DeleteSubscriptionItemModal = () => {
 
   const deleteMutation = useMutation({
     mutationFn: () =>
-      deleteSubscription(subscriptionsToDeleteIds, authedAppUser?.id as string),
+      deleteSubscription(subscriptionsToDeleteIds, user?.id as string),
     onSuccess: () => {
       // Invalidate and refetch
       queryClient.invalidateQueries({
