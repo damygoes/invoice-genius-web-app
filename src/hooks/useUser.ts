@@ -1,21 +1,22 @@
 import { businessUserProfileFormSchemaType } from '@/models/businessUserProfileFormSchema'
+import { privateUserProfileFormSchemaType } from '@/models/privateUserProfileFormSchema'
 import useAxiosInterceptor from '@/services/axios/axiosClient'
 import { AuthUser } from '@/types/User'
 import { create } from 'zustand'
 import { persist } from 'zustand/middleware'
 
 type IUserStore = {
-  authedAppUser: AuthUser | null
-  setAuthedAppUser: (user: AuthUser) => void
-  resetAuthedAppUser: () => void
+  user: AuthUser | null
+  setUser: (user: AuthUser) => void
+  resetUser: () => void
 }
 
 const useUserStore = create<IUserStore>()(
   persist(
     set => ({
-      authedAppUser: null,
-      setAuthedAppUser: user => set({ authedAppUser: user }),
-      resetAuthedAppUser: () => set({ authedAppUser: null })
+      user: null,
+      setUser: user => set({ user: user }),
+      resetUser: () => set({ user: null })
     }),
     {
       name: 'authed-user-storage'
@@ -23,10 +24,10 @@ const useUserStore = create<IUserStore>()(
   )
 )
 
-export const useAuthedAppUser = () => {
+export const useUser = () => {
   const axiosClient = useAxiosInterceptor()
 
-  const { authedAppUser, setAuthedAppUser, resetAuthedAppUser } = useUserStore()
+  const { user, setUser, resetUser } = useUserStore()
 
   const getUserProfile = async (id: string) => {
     const userDetail = await axiosClient.get(`users/${id}`)
@@ -41,11 +42,20 @@ export const useAuthedAppUser = () => {
     return userDetail.data
   }
 
+  const updateUserProfile = async (
+    id: string,
+    data: privateUserProfileFormSchemaType
+  ) => {
+    const userDetail = await axiosClient.patch(`users/profile/${id}`, data)
+    return userDetail.data
+  }
+
   return {
-    authedAppUser,
-    setAuthedAppUser,
-    resetAuthedAppUser,
+    user,
+    setUser,
+    resetUser,
     getUserProfile,
-    updateBusinessUserProfile
+    updateBusinessUserProfile,
+    updateUserProfile
   }
 }

@@ -1,20 +1,20 @@
 import PageLayout from '@/components/layout/page-layout/PageLayout'
-import { useAuthedAppUser } from '@/hooks/useUser'
+import { useUser } from '@/hooks/useUser'
 import { ProvidedServices } from '@/types/User'
 import { useMemo, useState } from 'react'
 import DashboardContentSelector from './DashboardContentSelector'
 
 const UserDashboard = () => {
-  const { authedAppUser } = useAuthedAppUser()
+  const { user } = useUser()
   const userSelectedServices = useMemo(
-    () => authedAppUser?.selectedServices ?? [],
-    [authedAppUser?.selectedServices]
+    () => user?.selectedServices ?? [],
+    [user?.selectedServices]
   )
   const [serviceDashboard, setServiceDashboard] = useState<ProvidedServices>(
     userSelectedServices[0]
   )
 
-  if (!authedAppUser) {
+  if (!user) {
     return <div> Dashboard skeleton </div>
   }
 

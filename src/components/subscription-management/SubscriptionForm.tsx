@@ -1,6 +1,6 @@
 import { useSubscriptionManagementStore } from '@/features/subscription-management-service/utils/useSubscription'
 import { validateRecurringInterval } from '@/features/subscription-management-service/utils/validRecurringInterval'
-import { useAuthedAppUser } from '@/hooks/useUser'
+import { useUser } from '@/hooks/useUser'
 import { subscriptionFormSchema } from '@/models/subscriptionFormSchema'
 import { RECURRENCE_INTERVALS } from '@/types/RecurringInterval'
 import { zodResolver } from '@hookform/resolvers/zod'
@@ -37,7 +37,7 @@ const SubscriptionForm = () => {
     subscriptionToEdit,
     updateSubscription
   } = useSubscriptionManagementStore()
-  const { authedAppUser } = useAuthedAppUser()
+  const { user } = useUser()
 
   const subscriptionRecurringInterval = validateRecurringInterval(
     subscriptionToEdit?.recurringInterval
@@ -70,7 +70,7 @@ const SubscriptionForm = () => {
 
   const createMutation = useMutation({
     mutationFn: (data: z.infer<typeof subscriptionFormSchema>) =>
-      addNewSubscription(data, authedAppUser?.id as string),
+      addNewSubscription(data, user?.id as string),
     onSuccess: () => {
       // Invalidate and refetch
       queryClient.invalidateQueries({
@@ -83,7 +83,7 @@ const SubscriptionForm = () => {
       updateSubscription(
         data,
         subscriptionToEdit?.id ?? '',
-        authedAppUser?.id as string
+        user?.id as string
       ),
     onSuccess: () => {
       // Invalidate and refetch

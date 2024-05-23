@@ -1,15 +1,12 @@
-import { useAuthedAppUser } from '@/hooks/useUser'
-import { useKindeAuth } from '@kinde-oss/kinde-auth-react'
+import { useAuth } from '@/hooks/useAuth'
 import { useTranslation } from 'react-i18next'
 import { DropdownMenuItem } from '../ui/dropdown-menu'
 
 const LogoutButton = () => {
-  const { logout } = useKindeAuth()
-  const { resetAuthedAppUser } = useAuthedAppUser()
+  const { logout } = useAuth()
   const { t } = useTranslation()
 
   const handleLogout = () => {
-    resetAuthedAppUser()
     logout()
   }
 

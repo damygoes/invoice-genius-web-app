@@ -1,5 +1,5 @@
 import { useSubscriptionManagementStore } from '@/features/subscription-management-service/utils/useSubscription'
-import { useAuthedAppUser } from '@/hooks/useUser'
+import { useUser } from '@/hooks/useUser'
 import { SubscriptionDTO } from '@/types/Subscription'
 import { useQuery } from '@tanstack/react-query'
 import { AnimatePresence, Reorder } from 'framer-motion'
@@ -14,7 +14,7 @@ import AddNewSubscriptionButton from './AddNewSubscriptionButton'
 import SubscriptionItem from './SubscriptionItem'
 
 const SubscriptionList = () => {
-  const { authedAppUser } = useAuthedAppUser()
+  const { user } = useUser()
   const {
     getUserSubscriptions,
     addSubscriptionToDelete,
@@ -30,8 +30,8 @@ const SubscriptionList = () => {
     isError
   } = useQuery({
     queryKey: ['user_subscriptions'],
-    queryFn: () => getUserSubscriptions(authedAppUser?.id as string),
-    enabled: !!authedAppUser,
+    queryFn: () => getUserSubscriptions(user?.id as string),
+    enabled: !!user,
     refetchInterval: 5000 // 5 seconds
   })
 

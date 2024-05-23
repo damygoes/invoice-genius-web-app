@@ -1,4 +1,4 @@
-import { useAuthedAppUser } from '@/hooks/useUser'
+import { useUser } from '@/hooks/useUser'
 import {
   BookUser,
   LayoutDashboard,
@@ -20,7 +20,7 @@ export type MobileNavLinkItem = Omit<DesktopNavLinkItem, 'label'>
 
 const DesktopNavigationLinks = () => {
   const { t } = useTranslation()
-  const { authedAppUser } = useAuthedAppUser()
+  const { user } = useUser()
 
   const navigationLinks: DesktopNavLinkItem[] = [
     {
@@ -30,7 +30,7 @@ const DesktopNavigationLinks = () => {
     }
   ]
 
-  if (authedAppUser?.selectedServices?.includes('receiptManagement')) {
+  if (user?.selectedServices?.includes('receiptManagement')) {
     navigationLinks.push({
       title: `${t('sidebarNav.receipt', 'Receipts')}`,
       href: '/receipt-management',
@@ -38,7 +38,7 @@ const DesktopNavigationLinks = () => {
     })
   }
 
-  if (authedAppUser?.selectedServices?.includes('subscriptionManagement')) {
+  if (user?.selectedServices?.includes('subscriptionManagement')) {
     navigationLinks.push({
       title: `${t('sidebarNav.subscription', 'Subscriptions')}`,
       href: '/subscriptions-management',
@@ -46,7 +46,7 @@ const DesktopNavigationLinks = () => {
     })
   }
 
-  if (authedAppUser?.selectedServices?.includes('invoicing')) {
+  if (user?.selectedServices?.includes('invoicing')) {
     navigationLinks.push({
       title: `${t('sidebarNav.invoicing', 'Invoicing')}`,
       href: '/invoice-management',

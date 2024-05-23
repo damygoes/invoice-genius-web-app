@@ -5,7 +5,7 @@ import {
   ResizablePanel,
   ResizablePanelGroup
 } from '@/components/ui/resizable'
-import { useAuthedAppUser } from '@/hooks/useUser'
+import { useUser } from '@/hooks/useUser'
 import { useQuery } from '@tanstack/react-query'
 import { lazy } from 'react'
 
@@ -17,7 +17,7 @@ const BusinessUserForm = lazy(
 )
 
 const UserProfile = () => {
-  const { authedAppUser, getUserProfile } = useAuthedAppUser()
+  const { user, getUserProfile } = useUser()
 
   const {
     data: Profile,
@@ -25,8 +25,8 @@ const UserProfile = () => {
     isError
   } = useQuery({
     queryKey: ['userProfile'],
-    queryFn: () => getUserProfile(authedAppUser?.id as string),
-    enabled: !!authedAppUser
+    queryFn: () => getUserProfile(user?.id as string),
+    enabled: !!user
   })
 
   if (isLoading) {
@@ -38,10 +38,10 @@ const UserProfile = () => {
   }
 
   const FormComponent =
-    authedAppUser?.userType === 'business' ? (
-      <BusinessUserForm profile={Profile} userId={authedAppUser.id} />
+    user?.userType === 'business' ? (
+      <BusinessUserForm profile={Profile} userId={user.id} />
     ) : (
-      <PrivateUserForm />
+      <PrivateUserForm profile={Profile} userId={user?.id as string} />
     )
 
   return (
