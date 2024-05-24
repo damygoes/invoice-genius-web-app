@@ -46,9 +46,9 @@ const AuthForm = () => {
 
   async function onSubmit(values: z.infer<typeof authFormSchema>) {
     setIntendingUserEmail(values.email)
-    setAuthStep(1)
     try {
       await otpRequestMutation.mutateAsync()
+      setAuthStep(1)
       toast({
         title: `${t('authPage.toasts.success.title', 'Email sent')}`,
         description: `${t('authPage.toasts.success.description', 'Please check your email for the verification code.')} ${form.getValues('email')}`

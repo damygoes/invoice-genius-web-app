@@ -1,14 +1,17 @@
+import { useAvatar } from '@/hooks/useAvatar'
 import { useUser } from '@/hooks/useUser'
 import { cn } from '@/lib/utils'
 import { privateUserProfileFormSchema } from '@/models/privateUserProfileFormSchema'
 import { PrivateUserProfile } from '@/types/PrivateUserProfile'
+import { convertBase64StringToUrl } from '@/utils/convertBase64StringToUrl'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { QueryClient, useMutation } from '@tanstack/react-query'
+import { QueryClient, useMutation, useQuery } from '@tanstack/react-query'
 import { useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
 import { z } from 'zod'
 import ControlledEditingInput from '../controlled-editing-input/ControlledEditingInput'
+import AvatarUploader from '../shared/AvatarUploader'
 import {
   Form,
   FormControl,
@@ -37,6 +40,7 @@ const PrivateUserForm = ({
   const { toast } = useToast()
   const { t } = useTranslation()
   const { updateUserProfile } = useUser()
+  const { fetchAvatar, setUploadedImageUrl } = useAvatar()
   const [isFormInEditMode, setIsFormInEditMode] = useState(false)
   const form = useForm<z.infer<typeof privateUserProfileFormSchema>>({
     resolver: zodResolver(privateUserProfileFormSchema),
@@ -75,6 +79,12 @@ const PrivateUserForm = ({
     }
   }, [form, profile])
 
+  const { data: UserAvatar, isLoading: isAvatarLoading } = useQuery({
+    queryKey: ['userAvatar'],
+    queryFn: () => fetchAvatar(userId),
+    enabled: !!profile
+  })
+
   const updateMutation = useMutation({
     mutationFn: (data: z.infer<typeof privateUserProfileFormSchema>) =>
       updateUserProfile(userId, data),
@@ -105,37 +115,38 @@ const PrivateUserForm = ({
     }
   }
 
+  useEffect(() => {
+    if (UserAvatar) {
+      const decodedJPEGUrl = convertBase64StringToUrl(
+        UserAvatar.avatarBase64,
+        'jpeg'
+      )
+      setUploadedImageUrl(decodedJPEGUrl)
+    } else {
+      setUploadedImageUrl('')
+    }
+  }, [UserAvatar, setUploadedImageUrl])
+
   return (
     <Form {...form}>
-      <Typography size='2xl'>
-        {t('profileForm.title.private', 'Profile')}
-      </Typography>
+      <div className='flex items-center justify-between gap-4'>
+        <Typography size='2xl'>
+          {t('profileForm.title.private', 'Profile')}
+        </Typography>
+        <AvatarUploader
+          containerClassName='size-14'
+          isLoading={isAvatarLoading}
+        />
+      </div>
       <form
         onSubmit={form.handleSubmit(onSubmit)}
         className={cn(
-          'scrollbar-hide flex h-full flex-col justify-start gap-10 overflow-y-auto overflow-x-hidden p-2',
+          'scrollbar-hide flex h-full flex-col justify-start gap-2 overflow-y-auto overflow-x-hidden p-2',
           className
         )}
       >
-        <ScrollArea className='h-[85%] pt-4'>
-          <div className='my-2 grid w-full grid-cols-1 gap-x-5 lg:grid-cols-3'>
-            <FormField
-              control={form.control}
-              name='profilePicture'
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Business Logo</FormLabel>
-                  <FormControl>
-                    <ControlledEditingInput
-                      placeholder='Avatar'
-                      disabled={!isFormInEditMode}
-                      {...field}
-                    />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
+        <ScrollArea className=' min-h-[75%]'>
+          <div className='my-2 grid w-full grid-cols-1 gap-x-5 lg:grid-cols-2'>
             <FormField
               control={form.control}
               name='firstName'

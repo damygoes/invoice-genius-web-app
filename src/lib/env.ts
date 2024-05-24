@@ -7,5 +7,7 @@ export const ENV_VARIABLES = {
   REQUEST_OTP_URL: `${import.meta.env.VITE_REQUEST_OTP_URL}`,
   VERIFY_OTP_URL: `${import.meta.env.VITE_VERIFY_OTP_URL}`,
   REFRESH_TOKEN_URL: `${import.meta.env.VITE_REFRESH_TOKEN_URL}`,
-  LOGOUT_URL: `${import.meta.env.VITE_LOG_OUT_URL}`
+  LOGOUT_URL: `${import.meta.env.VITE_LOG_OUT_URL}`,
+  SUPABASE_URL: `${import.meta.env.VITE_SUPABASE_URL}`,
+  SUPABASE_ANON_KEY: `${import.meta.env.VITE_SUPABASE_ANON_KEY}`
 }

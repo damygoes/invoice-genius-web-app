@@ -13,6 +13,8 @@ type IAuthStore = {
   authStep: number
   setAuthStep: (step: number) => void
   resetStore: () => void
+  firstStepCompleted: boolean
+  setFirstStepCompleted: (completed: boolean) => void
 }
 
 const authStore = create<IAuthStore>(set => ({
@@ -23,7 +25,9 @@ const authStore = create<IAuthStore>(set => ({
   authStep: 0,
   setAuthStep: step => set({ authStep: step }),
   resetStore: () =>
-    set({ intendingUserEmail: null, intendingUserOTP: null, authStep: 0 })
+    set({ intendingUserEmail: null, intendingUserOTP: null, authStep: 0 }),
+  firstStepCompleted: false,
+  setFirstStepCompleted: completed => set({ firstStepCompleted: completed })
 }))
 
 export const useAuth = () => {
@@ -96,7 +100,9 @@ export const useAuth = () => {
     setIntendingUserOTP,
     authStep,
     setAuthStep,
-    resetStore
+    resetStore,
+    firstStepCompleted,
+    setFirstStepCompleted
   } = authStore()
 
   return {
@@ -110,21 +116,8 @@ export const useAuth = () => {
     requestOTP,
     verifyOTP,
     refreshAccessToken,
-    logout
+    logout,
+    firstStepCompleted,
+    setFirstStepCompleted
   }
 }
-
-// export const useAuth = () => {
-//   const axiosClient = useAxiosInterceptor();
-//   const getUser = async (
-//     userIdentifier: string,
-//     intendingUser: IntendingKindeUser,
-//   ): Promise<AuthUser> => {
-//     const user = await axiosClient.post(`users/${userIdentifier}`, {
-//       ...intendingUser,
-//     });
-//     return user.data;
-//   };
-
-//   return { getUser };
-// };
