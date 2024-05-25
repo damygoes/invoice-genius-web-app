@@ -81,7 +81,7 @@ const OnboardingBusinessUserProfileForm = ({
                     </FormLabel>
                     <FormControl>
                       <Input
-                        placeholder={`${t('profileForm.labels.industry', 'Industry')}`}
+                        placeholder={`${t('profileForm.labels.industryPlaceholder', 'Industry')}`}
                         {...field}
                         {...register('industry', {
                           onChange: () => clearErrors('industry')

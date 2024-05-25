@@ -52,7 +52,7 @@ const SavedClientsList = () => {
                 <Reorder.Item key={savedClient.id} value={savedClient}>
                   <div
                     key={savedClient.id}
-                    className='w-full rounded-md bg-input p-3'
+                    className='w-full cursor-grab rounded-md bg-input p-3'
                   >
                     {savedClient.id}. {savedClient.name}
                   </div>

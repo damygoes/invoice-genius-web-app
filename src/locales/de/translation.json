@@ -80,7 +80,8 @@
       "email": "E-Mail",
       "phone": "Telefonummer",
       "mobile": "Handynummer",
-      "industry": "Branche z.b IT, Finanzen, etc.",
+      "industry": "Branche",
+      "industryPlaceholder": "z.b IT, Finanzen, etc.",
       "businessInfo": "Betriebsinformationen",
       "username": "Benutzername"
     },

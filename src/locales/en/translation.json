@@ -80,7 +80,8 @@
       "email": "Email",
       "phone": "Phone",
       "mobile": "Mobile",
-      "industry": "Industry e.g. Marketing & Advertising, IT Services, etc.",
+      "industry": "Industry",
+      "industryPlaceholder": "e.g. Marketing & Advertising, IT Services, etc.",
       "businessInfo": "Business Info",
       "username": "Username"
     },

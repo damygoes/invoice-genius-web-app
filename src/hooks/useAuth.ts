@@ -3,6 +3,7 @@ import { ENV_VARIABLES } from '@/lib/env'
 import useAxiosInterceptor from '@/services/axios/axiosClient'
 import { useNavigate } from 'react-router-dom'
 import { create } from 'zustand'
+import { useAvatar } from './useAvatar'
 import { useUser } from './useUser'
 
 type IAuthStore = {
@@ -34,6 +35,7 @@ export const useAuth = () => {
   const axiosClient = useAxiosInterceptor()
   const { setAccessToken, setRefreshToken } = useAuthContext()
   const { setUser } = useUser()
+  const { setUploadedImageUrl } = useAvatar()
   const navigate = useNavigate()
 
   const requestOTP = async (email: string) => {
@@ -85,6 +87,8 @@ export const useAuth = () => {
     if (response.status === 204) {
       localStorage.removeItem('accessToken')
       localStorage.removeItem('refreshToken')
+      localStorage.removeItem('avatar-upload-storage')
+      setUploadedImageUrl('')
       setAccessToken(null)
       setRefreshToken(null)
       navigate('/')

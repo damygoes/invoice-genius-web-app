@@ -4,14 +4,13 @@ import { businessUserProfileFormSchema } from '@/models/businessUserProfileFormS
 import { BusinessUserProfile } from '@/types/BusinessUserProfile'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { QueryClient, useMutation } from '@tanstack/react-query'
-import { CheckCircle, Edit, Loader, X } from 'lucide-react'
 import { useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
 import { z } from 'zod'
 import ControlledEditingInput from '../controlled-editing-input/ControlledEditingInput'
 import ControlledEditingTextarea from '../controlled-editing-text-area/ControlledEditingTextarea'
-import { Button } from '../ui/button'
+import AvatarUploader from '../shared/AvatarUploader'
 import {
   Form,
   FormControl,
@@ -23,6 +22,7 @@ import {
 import { ScrollArea } from '../ui/scroll-area'
 import { Typography } from '../ui/typography'
 import { useToast } from '../ui/use-toast'
+import ProfileFormButtons from './ProfileFormButtons'
 
 type BusinessUserProfileFormProps = {
   profile: BusinessUserProfile | null
@@ -125,55 +125,44 @@ const BusinessUserProfileForm = ({
 
   return (
     <Form {...form}>
-      <Typography size='2xl'>
-        {t('profileForm.title.business', 'Business Profile')}
-      </Typography>
+      <div className='flex max-h-16 items-center justify-between gap-4'>
+        <Typography size='2xl'>
+          {t('profileForm.title.business', 'Business Profile')}
+        </Typography>
+        <AvatarUploader
+          containerClassName='size-14'
+          // isLoading={isAvatarLoading}
+        />
+      </div>
+
       <form
         onSubmit={form.handleSubmit(onSubmit)}
         className={cn(
-          'scrollbar-hide flex h-full flex-col justify-start gap-10 overflow-y-auto overflow-x-hidden p-2',
+          'scrollbar-hide flex h-full flex-col justify-start gap-4 overflow-y-auto overflow-x-hidden p-2',
           className
         )}
       >
-        <ScrollArea className='h-[85%] pt-4'>
-          <div className='my-2 grid w-full grid-cols-1 gap-x-5 lg:grid-cols-2'>
-            <FormField
-              control={form.control}
-              name='businessLogo'
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Business Logo</FormLabel>
-                  <FormControl>
-                    <ControlledEditingInput
-                      placeholder='Business Logo'
-                      disabled={!isFormInEditMode}
-                      {...field}
-                    />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-            <FormField
-              control={form.control}
-              name='businessName'
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>
-                    {t('profileForm.labels.businessName', 'Company Name')}
-                  </FormLabel>
-                  <FormControl>
-                    <ControlledEditingInput
-                      placeholder={`${t('profileForm.labels.businessName', 'Company Name')}`}
-                      disabled={!isFormInEditMode}
-                      {...field}
-                    />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-          </div>
+        <ScrollArea className='h-[85%]'>
+          <FormField
+            control={form.control}
+            name='businessName'
+            render={({ field }) => (
+              <FormItem className='mb-4'>
+                <FormLabel>
+                  {t('profileForm.labels.businessName', 'Company Name')}
+                </FormLabel>
+                <FormControl>
+                  <ControlledEditingInput
+                    placeholder={`${t('profileForm.labels.businessName', 'Company Name')}`}
+                    disabled={!isFormInEditMode}
+                    {...field}
+                  />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+
           <FormField
             control={form.control}
             name='businessInfo'
@@ -413,51 +402,59 @@ const BusinessUserProfileForm = ({
             />
           </div>
         </ScrollArea>
-        <div className='flex items-center justify-between gap-3 overflow-hidden'>
-          {isFormInEditMode && (
-            <Button
-              type='button'
-              variant='outline'
-              className='w-1/3'
-              onClick={() => setIsFormInEditMode(false)}
-              disabled={updateMutation.isPending}
-            >
-              <X size={16} className='mr-2' />
-              {t('profileForm.buttons.cancel', 'Cancel')}
-            </Button>
-          )}
-          {!isFormInEditMode && (
-            <Button
-              type='button'
-              variant='outline'
-              className='w-1/3'
-              onClick={() => setIsFormInEditMode(true)}
-            >
-              <Edit size={16} className='mr-2' />
-              {t('profileForm.buttons.edit', 'Edit')}
-            </Button>
-          )}
-          <Button
-            type='submit'
-            className='flex-1'
-            disabled={!isFormInEditMode || updateMutation.isPending}
-          >
-            {updateMutation.isPending ? (
-              <>
-                <Loader size={16} className='mr-2 animate-spin' />
-                {t('profileForm.updating', 'Updating...')}
-              </>
-            ) : (
-              <>
-                <CheckCircle size={16} className='mr-2' />
-                {t('profileForm.buttons.update', 'Update')}
-              </>
-            )}
-          </Button>
-        </div>
+        <ProfileFormButtons
+          isFormInEditMode={isFormInEditMode}
+          setIsFormInEditMode={setIsFormInEditMode}
+          updateMutation={updateMutation}
+        />
       </form>
     </Form>
   )
 }
 
 export default BusinessUserProfileForm
+
+{
+  /* <div className="flex items-center justify-between gap-3 overflow-hidden">
+          {isFormInEditMode && (
+            <Button
+              type="button"
+              variant="outline"
+              className="w-1/3"
+              onClick={() => setIsFormInEditMode(false)}
+              disabled={updateMutation.isPending}
+            >
+              <X size={16} className="mr-2" />
+              {t("profileForm.buttons.cancel", "Cancel")}
+            </Button>
+          )}
+          {!isFormInEditMode && (
+            <Button
+              type="button"
+              variant="outline"
+              className="w-1/3"
+              onClick={() => setIsFormInEditMode(true)}
+            >
+              <Edit size={16} className="mr-2" />
+              {t("profileForm.buttons.edit", "Edit")}
+            </Button>
+          )}
+          <Button
+            type="submit"
+            className="flex-1"
+            disabled={!isFormInEditMode || updateMutation.isPending}
+          >
+            {updateMutation.isPending ? (
+              <>
+                <Loader size={16} className="mr-2 animate-spin" />
+                {t("profileForm.updating", "Updating...")}
+              </>
+            ) : (
+              <>
+                <CheckCircle size={16} className="mr-2" />
+                {t("profileForm.buttons.update", "Update")}
+              </>
+            )}
+          </Button>
+        </div> */
+}

@@ -52,7 +52,7 @@ const InvoiceList = () => {
                 <Reorder.Item key={invoice.id} value={invoice}>
                   <div
                     key={invoice.id}
-                    className='w-full rounded-md bg-primary p-3'
+                    className='w-full cursor-grabbing rounded-md bg-primary p-3'
                   >
                     {invoice.id}. {invoice.name}
                   </div>

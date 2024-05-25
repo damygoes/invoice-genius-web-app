@@ -129,7 +129,7 @@ const PrivateUserForm = ({
 
   return (
     <Form {...form}>
-      <div className='flex items-center justify-between gap-4'>
+      <div className='flex max-h-16 items-center justify-between gap-4'>
         <Typography size='2xl'>
           {t('profileForm.title.private', 'Profile')}
         </Typography>
@@ -141,7 +141,7 @@ const PrivateUserForm = ({
       <form
         onSubmit={form.handleSubmit(onSubmit)}
         className={cn(
-          'scrollbar-hide flex h-full flex-col justify-start gap-2 overflow-y-auto overflow-x-hidden p-2',
+          'scrollbar-hide flex h-full flex-col justify-start gap-12 overflow-y-auto overflow-x-hidden p-2',
           className
         )}
       >
@@ -390,7 +390,6 @@ const PrivateUserForm = ({
             />
           </div>
         </ScrollArea>
-        {/* <div className="flex items-center justify-between gap-3 overflow-hidden"> */}
         <ProfileFormButtons
           isFormInEditMode={isFormInEditMode}
           setIsFormInEditMode={setIsFormInEditMode}

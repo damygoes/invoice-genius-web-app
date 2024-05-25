@@ -39,7 +39,7 @@ const UserProfile = () => {
 
   const FormComponent =
     user?.userType === 'business' ? (
-      <BusinessUserForm profile={Profile} userId={user.id} />
+      <BusinessUserForm profile={Profile} userId={user?.id as string} />
     ) : (
       <PrivateUserForm profile={Profile} userId={user?.id as string} />
     )
