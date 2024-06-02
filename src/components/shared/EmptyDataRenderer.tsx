@@ -38,7 +38,7 @@ const EmptyDataRenderer = ({
   return (
     <section
       className={cn(
-        'flex h-full w-full flex-col items-center justify-center gap-4 rounded-lg border border-dotted border-input shadow-sm',
+        'flex h-full w-full flex-col items-center justify-center gap-4 rounded-lg bg-background shadow-none',
         className
       )}
     >

@@ -1,6 +1,7 @@
 import SaveClientButton from '@/components/saved-clients/SaveClientButton'
 import DeleteConfirmationModal from '@/components/shared/DeleteConfirmationModal'
 import EmptyDataRenderer from '@/components/shared/EmptyDataRenderer'
+import LoadingSkeleton from '@/components/shared/LoadingSkeleton'
 import { Heading } from '@/components/ui/heading'
 import { ScrollArea } from '@/components/ui/scroll-area'
 import { useToast } from '@/components/ui/use-toast'
@@ -48,7 +49,7 @@ const SavedClientsList = () => {
   }, [fetchedSavedClients])
 
   if (isLoading) {
-    return <div>Loading...</div>
+    return <LoadingSkeleton />
   }
 
   if (!fetchedSavedClients) {
@@ -84,7 +85,6 @@ const SavedClientsList = () => {
         <EmptyDataRenderer
           title={`${t('clientForm.emptyData.title', 'No Clients')}`}
           description={`${t('clientForm.emptyData.description', 'You have not saved any clients yet')}`}
-          className='border-none shadow-none'
         />
       ) : (
         <ScrollArea className='flex h-full w-full flex-col items-start justify-between gap-5 rounded-lg'>

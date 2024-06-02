@@ -1,4 +1,5 @@
 import RootLayout from '@/components/layout/root-layout/RootLayout'
+import Error404Page from '@/components/shared/Error404Page'
 import {
   DashboardPage,
   InvoiceManagementPage,
@@ -73,7 +74,7 @@ export const router = createBrowserRouter(
           </Route> */}
       </Route>
       {/* //* Catch All */}
-      <Route path='*' element={<div>Not found screen</div>} />,
+      <Route path='*' element={<Error404Page />} />,
     </Route>
     // </Route>,
   )

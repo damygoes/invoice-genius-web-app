@@ -7,6 +7,7 @@ import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import DeleteIcon from '../shared/DeleteIcon'
 import EmptyDataRenderer from '../shared/EmptyDataRenderer'
+import LoadingSkeleton from '../shared/LoadingSkeleton'
 import { Checkbox } from '../ui/checkbox'
 import { MinusCheckbox } from '../ui/minus-checkbox'
 import { ScrollArea } from '../ui/scroll-area'
@@ -46,7 +47,7 @@ const SubscriptionList = () => {
   }, [UserSubscriptions])
 
   if (isLoading) {
-    return <div>Skeleton...</div>
+    return <LoadingSkeleton />
   }
 
   if (isError) {
@@ -104,7 +105,7 @@ const SubscriptionList = () => {
 
   return (
     <section className='flex h-full w-full flex-col gap-2'>
-      {orderedSubscriptions.length === 0 && (
+      {orderedSubscriptions.length === 0 ? (
         <EmptyDataRenderer
           title={`${t('subscriptionManagementPage.emptyState.title', 'No subscriptions')}`}
           description={`${t('subscriptionManagementPage.emptyState.description', 'You have not added any subscriptions yet')}`}
@@ -113,8 +114,7 @@ const SubscriptionList = () => {
             <AddNewSubscriptionButton className='mt-4 self-auto' />
           }
         />
-      )}
-      {orderedSubscriptions.length > 0 && (
+      ) : (
         <>
           <div className='flex w-full items-center justify-start gap-3 overflow-hidden py-1 pl-[1.6rem]'>
             {someSelected && !allSelected ? (

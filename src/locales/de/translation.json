@@ -286,5 +286,10 @@
       "title": "Sie haben noch keine Kunden",
       "description": "Klicken Sie auf die Schaltfläche oben, um einen neuen Kunden hinzuzufügen."
     }
+  },
+  "error404Page": {
+    "title": "Ups! Im Hauptbuch verloren?",
+    "description": "Es sieht so aus, als ob auf der gesuchten Seite ein Ungleichgewicht herrscht.",
+    "action": "Zurück zum Geschäftlichen"
   }
 }
