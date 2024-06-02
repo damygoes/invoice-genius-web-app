@@ -16,35 +16,46 @@ const useAxiosInterceptor = () => {
     const requestInterceptor = async (
       config: InternalAxiosRequestConfig
     ): Promise<InternalAxiosRequestConfig> => {
-      const accessToken = localStorage.getItem('accessToken')
-      if (accessToken) {
-        config.headers = {
-          ...config.headers,
-          Authorization: `Bearer ${accessToken}`
-        } as AxiosRequestHeaders
+      try {
+        const accessToken = localStorage.getItem('accessToken')
+        if (accessToken) {
+          config.headers = {
+            ...config.headers,
+            Authorization: `Bearer ${accessToken}`
+          } as AxiosRequestHeaders
+        }
+        return config
+      } catch (error) {
+        console.error('Error in request interceptor:', error)
+        throw error
       }
-      return config
     }
 
     const responseInterceptor = async (error: AxiosError) => {
-      const originalRequest = error.config as InternalAxiosRequestConfig & {
-        _retry?: boolean
-      }
-      if (
-        error.response?.status === 401 &&
-        originalRequest &&
-        !originalRequest._retry
-      ) {
-        originalRequest._retry = true
-        const newAccessToken = await refreshAccessToken()
-        if (newAccessToken) {
-          axios.defaults.headers.common['Authorization'] =
-            `Bearer ${newAccessToken}`
-          originalRequest.headers['Authorization'] = `Bearer ${newAccessToken}`
-          return axiosClient(originalRequest)
+      try {
+        const originalRequest = error.config as InternalAxiosRequestConfig & {
+          _retry?: boolean
         }
+        if (
+          error.response?.status === 401 &&
+          originalRequest &&
+          !originalRequest._retry
+        ) {
+          originalRequest._retry = true
+          const newAccessToken = await refreshAccessToken()
+          if (newAccessToken) {
+            axios.defaults.headers.common['Authorization'] =
+              `Bearer ${newAccessToken}`
+            originalRequest.headers['Authorization'] =
+              `Bearer ${newAccessToken}`
+            return axiosClient(originalRequest)
+          }
+        }
+        return Promise.reject(error)
+      } catch (error) {
+        console.error('Error in response interceptor:', error)
+        throw error
       }
-      return Promise.reject(error)
     }
 
     const requestInterceptorId =

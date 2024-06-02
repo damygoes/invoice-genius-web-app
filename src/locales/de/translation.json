@@ -57,6 +57,8 @@
   "invoicing": "Rechnungsstellung",
   "private": "Privat",
   "business": "Geschäftlich",
+  "Clients": "Kunden",
+  "Invoice": "Rechnung",
   "profileForm": {
     "title": {
       "private": "Profil",
@@ -181,6 +183,7 @@
     }
   },
   "savedClients": {
+    "title": "Gespeicherte Kunden",
     "buttons": {
       "add": "Kunde hinzufügen",
       "edit": "Kunde bearbeiten",
@@ -188,6 +191,7 @@
     }
   },
   "invoicingPage": {
+    "title": "Rechnungsstellung",
     "buttons": {
       "add": "Rechnung hinzufügen",
       "edit": "Rechnung bearbeiten",
@@ -235,6 +239,52 @@
       "subtitle": "Bitte geben Sie den Bestätigungscode ein, der Ihnen per E-Mail zugesandt wurde",
       "label": "Bestätigungscode",
       "otpFormError": "OTP muss 6 Zeichen lang sein"
+    }
+  },
+  "clientForm": {
+    "title": "Kundeninformationen",
+    "buttons": {
+      "save": "Kunde speichern",
+      "update": "Kunde aktualisieren",
+      "isCreating": "Erstellung läuft...",
+      "isUpdating": "Aktualisierung läuft..."
+    },
+    "toasts": {
+      "success": {
+        "add": {
+          "title": "Kunde erfolgreich hinzugefügt."
+        },
+        "update": {
+          "title": "Kunde erfolgreich aktualisiert."
+        }
+      },
+      "error": {
+        "add": {
+          "title": "Fehler beim Hinzufügen des Kunden. Bitte versuchen Sie es erneut."
+        },
+        "update": {
+          "title": "Fehler beim Aktualisieren des Kunden. Bitte versuchen Sie es erneut."
+        }
+      }
+    },
+    "deleteModal": {
+      "title": "Kunden löschen",
+      "description": "Möchten Sie diesen Kunden wirklich löschen?",
+      "loadingText": "Löschen läuft...",
+      "toasts": {
+        "success": {
+          "title": "Kunde gelöscht",
+          "description": "Der Kunde wurde erfolgreich gelöscht."
+        },
+        "error": {
+          "title": "Fehler beim Löschen des Kunden",
+          "description": "Der Kunde konnte nicht gelöscht werden. Bitte versuchen Sie es erneut."
+        }
+      }
+    },
+    "emptyData": {
+      "title": "Sie haben noch keine Kunden",
+      "description": "Klicken Sie auf die Schaltfläche oben, um einen neuen Kunden hinzuzufügen."
     }
   }
 }

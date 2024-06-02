@@ -1,3 +1,4 @@
+import { cn } from '@/lib/utils'
 import { useState } from 'react'
 import { Button } from '../ui/button'
 
@@ -10,12 +11,14 @@ type GenericSelectProps<T> = {
   options: OptionType<T>[]
   selectedOption: T | null
   onSelect: (option: T) => void
+  className?: string
 }
 
 const GenericSelect = <T extends string | number | symbol>({
   options,
   selectedOption,
-  onSelect
+  onSelect,
+  className
 }: GenericSelectProps<T>) => {
   const [selectedValue, setSelectedValue] = useState<T | null>(selectedOption)
 
@@ -25,7 +28,9 @@ const GenericSelect = <T extends string | number | symbol>({
   }
 
   return (
-    <div className='flex w-full items-center justify-center gap-5'>
+    <div
+      className={cn('flex w-full items-center justify-center gap-5', className)}
+    >
       {options.map(option => (
         <Button
           type='button'

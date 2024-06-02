@@ -1,46 +1,49 @@
+import { useSavedClient } from '@/features/invoicing-service/saved-clients/useSavedClient'
 import { useInvoicing } from '@/features/invoicing-service/utils/useInvoicing'
 import { cn } from '@/lib/utils'
-import { UserRoundPlus } from 'lucide-react'
+import { UserRoundPlus, X } from 'lucide-react'
 import { useTranslation } from 'react-i18next'
 import { Button, buttonVariants } from '../ui/button'
 
 type SaveClientButtonProps = {
-  onClick?: () => void
   disabled?: boolean
   className?: string
-  variant?:
-    | 'default'
-    | 'destructive'
-    | 'outline'
-    | 'secondary'
-    | 'ghost'
-    | 'link'
 }
 
-const SaveClientButton = ({
-  onClick,
-  disabled,
-  className,
-  variant
-}: SaveClientButtonProps) => {
+const SaveClientButton = ({ disabled, className }: SaveClientButtonProps) => {
   const { t } = useTranslation()
-  const { setClientForm } = useInvoicing()
+  const { isClientForm, setClientForm } = useInvoicing()
+  const { resetClientStore } = useSavedClient()
 
-  const handleClick = () => {
-    setClientForm(true)
-    onClick && onClick()
+  const handleCancelClick = () => {
+    resetClientStore()
+    setClientForm(false)
   }
-  return (
-    <Button
-      className={cn(buttonVariants({ variant, className }))}
-      onClick={handleClick}
-      disabled={disabled}
-      variant={variant}
-    >
-      <UserRoundPlus size={16} className='mr-2' />
-      {t('savedClients.buttons.add', 'Add Client')}
-    </Button>
-  )
+
+  if (isClientForm) {
+    return (
+      <Button
+        onClick={handleCancelClick}
+        disabled={disabled}
+        variant='secondary'
+      >
+        <X size={16} className='mr-2' />
+        {t('common.cancel', 'Cancel')}
+      </Button>
+    )
+  } else {
+    return (
+      <Button
+        className={cn(buttonVariants({ className }))}
+        onClick={() => setClientForm(true)}
+        disabled={disabled}
+        variant='default'
+      >
+        <UserRoundPlus size={16} className='mr-2' />
+        {t('savedClients.buttons.add', 'Add Client')}
+      </Button>
+    )
+  }
 }
 
 export default SaveClientButton

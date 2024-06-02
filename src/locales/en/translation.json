@@ -57,6 +57,8 @@
   "invoicing": "Invoicing",
   "private": "Private",
   "business": "Business",
+  "Clients": "Clients",
+  "Invoice": "Invoice",
   "profileForm": {
     "title": {
       "private": "Profile",
@@ -181,6 +183,7 @@
     }
   },
   "savedClients": {
+    "title": "Clients",
     "buttons": {
       "add": "Add Client",
       "edit": "Edit Client",
@@ -188,6 +191,7 @@
     }
   },
   "invoicingPage": {
+    "title": "Invoices",
     "buttons": {
       "add": "Add Invoice",
       "edit": "Edit Invoice",
@@ -235,6 +239,52 @@
       "subtitle": "Please enter the verification code sent to your email",
       "label": "Verification Code",
       "otpFormError": "OTP must be 6 characters"
+    }
+  },
+  "clientForm": {
+    "title": "Client Information",
+    "buttons": {
+      "save": "Save Client",
+      "update": "Update Client",
+      "isCreating": "Creating Client...",
+      "isUpdating": "Updating Client..."
+    },
+    "toasts": {
+      "success": {
+        "add": {
+          "title": "Client added successfully."
+        },
+        "update": {
+          "title": "Client updated successfully."
+        }
+      },
+      "error": {
+        "add": {
+          "title": "Error adding client. Please try again."
+        },
+        "update": {
+          "title": "Error updating client. Please try again."
+        }
+      }
+    },
+    "deleteModal": {
+      "title": "Delete Client",
+      "description": "Are you sure you want to delete the following client:",
+      "loadingText": "Deleting...",
+      "toasts": {
+        "success": {
+          "title": "Client deleted successfully.",
+          "description": "The following client has been deleted:"
+        },
+        "error": {
+          "title": "Something went wrong. Please try again.",
+          "description": "An error occurred while deleting the client"
+        }
+      }
+    },
+    "emptyData": {
+      "title": "No clients yet.",
+      "description": "Start adding clients to manage them here."
     }
   }
 }

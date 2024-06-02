@@ -1,46 +1,45 @@
 import { useInvoicing } from '@/features/invoicing-service/utils/useInvoicing'
 import { cn } from '@/lib/utils'
-import { FilePlus2 } from 'lucide-react'
+import { FilePlus2, X } from 'lucide-react'
 import { useTranslation } from 'react-i18next'
 import { Button, buttonVariants } from '../ui/button'
 
 type CreateInvoiceButtonProps = {
-  onClick?: () => void
   disabled?: boolean
   className?: string
-  variant?:
-    | 'default'
-    | 'destructive'
-    | 'outline'
-    | 'secondary'
-    | 'ghost'
-    | 'link'
 }
 
 const CreateInvoiceButton = ({
-  onClick,
   disabled,
-  className,
-  variant
+  className
 }: CreateInvoiceButtonProps) => {
   const { t } = useTranslation()
-  const { setInvoiceForm } = useInvoicing()
+  const { isInvoiceForm, setInvoiceForm } = useInvoicing()
 
-  const handleClick = () => {
-    setInvoiceForm(true)
-    onClick && onClick()
+  if (isInvoiceForm) {
+    return (
+      <Button
+        onClick={() => setInvoiceForm(false)}
+        disabled={disabled}
+        variant='secondary'
+      >
+        <X size={16} className='mr-2' />
+        {t('common.cancel', 'Cancel')}
+      </Button>
+    )
+  } else {
+    return (
+      <Button
+        className={cn(buttonVariants({ className }))}
+        onClick={() => setInvoiceForm(true)}
+        disabled={disabled}
+        variant='default'
+      >
+        <FilePlus2 size={16} className='mr-2' />
+        {t('invoicingPage.buttons.add', 'Create Invoice')}
+      </Button>
+    )
   }
-  return (
-    <Button
-      className={cn(buttonVariants({ variant, className }))}
-      onClick={handleClick}
-      disabled={disabled}
-      variant={variant}
-    >
-      <FilePlus2 size={16} className='mr-2' />
-      {t('invoicingPage.buttons.add', 'Create Invoice')}
-    </Button>
-  )
 }
 
 export default CreateInvoiceButton

@@ -2,7 +2,7 @@ import { CheckCircle, Edit, Loader, X } from 'lucide-react'
 import { useTranslation } from 'react-i18next'
 import { Button } from '../ui/button'
 
-type ProfileFormButtonsProps = {
+type FormButtonsProps = {
   isFormInEditMode: boolean
   setIsFormInEditMode: (value: boolean) => void
   updateMutation: {
@@ -10,11 +10,11 @@ type ProfileFormButtonsProps = {
   }
 }
 
-const ProfileFormButtons = ({
+const FormButtons = ({
   isFormInEditMode,
   setIsFormInEditMode,
   updateMutation
-}: ProfileFormButtonsProps) => {
+}: FormButtonsProps) => {
   const { t } = useTranslation()
 
   const handleEditClick = () => setIsFormInEditMode(true)
@@ -40,7 +40,7 @@ const ProfileFormButtons = ({
           className='w-1/3'
           onClick={handleEditClick}
         >
-          <Edit size={16} className='mr-2' />
+          <Edit size={16} className='mr-2 shrink-0' />
           {t('profileForm.buttons.edit', 'Edit')}
         </Button>
       )}
@@ -66,4 +66,4 @@ const ProfileFormButtons = ({
   )
 }
 
-export default ProfileFormButtons
+export default FormButtons
