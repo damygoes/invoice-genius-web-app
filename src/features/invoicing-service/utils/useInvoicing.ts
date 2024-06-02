@@ -1,5 +1,5 @@
-// import useAxiosInterceptor from "@/services/axios/axiosClient";
 import { create } from 'zustand'
+import { InvoicingService } from './InvoicingService'
 
 type IInvoicingStore = {
   isClientForm: boolean
@@ -7,6 +7,11 @@ type IInvoicingStore = {
   setClientForm: (isOpen: boolean) => void
   setInvoiceForm: (isOpen: boolean) => void
 }
+
+export const possibleInvoiceManagementServices = [
+  'Invoice',
+  'Clients'
+] as InvoicingService[]
 
 const invoiceManagementStore = create<IInvoicingStore>(set => ({
   isClientForm: false,
@@ -16,8 +21,6 @@ const invoiceManagementStore = create<IInvoicingStore>(set => ({
 }))
 
 export const useInvoicing = () => {
-  //   const axiosClient = useAxiosInterceptor();
-
   const { isClientForm, isInvoiceForm, setClientForm, setInvoiceForm } =
     invoiceManagementStore()
 

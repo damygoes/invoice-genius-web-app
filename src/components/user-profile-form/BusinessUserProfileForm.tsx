@@ -11,6 +11,7 @@ import { z } from 'zod'
 import ControlledEditingInput from '../controlled-editing-input/ControlledEditingInput'
 import ControlledEditingTextarea from '../controlled-editing-text-area/ControlledEditingTextarea'
 import AvatarUploader from '../shared/AvatarUploader'
+import FormButtons from '../shared/FormButtons'
 import {
   Form,
   FormControl,
@@ -22,7 +23,6 @@ import {
 import { ScrollArea } from '../ui/scroll-area'
 import { Typography } from '../ui/typography'
 import { useToast } from '../ui/use-toast'
-import ProfileFormButtons from './ProfileFormButtons'
 
 type BusinessUserProfileFormProps = {
   profile: BusinessUserProfile | null
@@ -402,7 +402,7 @@ const BusinessUserProfileForm = ({
             />
           </div>
         </ScrollArea>
-        <ProfileFormButtons
+        <FormButtons
           isFormInEditMode={isFormInEditMode}
           setIsFormInEditMode={setIsFormInEditMode}
           updateMutation={updateMutation}
@@ -413,48 +413,3 @@ const BusinessUserProfileForm = ({
 }
 
 export default BusinessUserProfileForm
-
-{
-  /* <div className="flex items-center justify-between gap-3 overflow-hidden">
-          {isFormInEditMode && (
-            <Button
-              type="button"
-              variant="outline"
-              className="w-1/3"
-              onClick={() => setIsFormInEditMode(false)}
-              disabled={updateMutation.isPending}
-            >
-              <X size={16} className="mr-2" />
-              {t("profileForm.buttons.cancel", "Cancel")}
-            </Button>
-          )}
-          {!isFormInEditMode && (
-            <Button
-              type="button"
-              variant="outline"
-              className="w-1/3"
-              onClick={() => setIsFormInEditMode(true)}
-            >
-              <Edit size={16} className="mr-2" />
-              {t("profileForm.buttons.edit", "Edit")}
-            </Button>
-          )}
-          <Button
-            type="submit"
-            className="flex-1"
-            disabled={!isFormInEditMode || updateMutation.isPending}
-          >
-            {updateMutation.isPending ? (
-              <>
-                <Loader size={16} className="mr-2 animate-spin" />
-                {t("profileForm.updating", "Updating...")}
-              </>
-            ) : (
-              <>
-                <CheckCircle size={16} className="mr-2" />
-                {t("profileForm.buttons.update", "Update")}
-              </>
-            )}
-          </Button>
-        </div> */
-}

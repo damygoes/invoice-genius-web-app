@@ -1,16 +1,19 @@
 import { ENV_VARIABLES } from '@/lib/env'
 import axios from 'axios'
 
-async function refreshAccessToken(): Promise<string | null> {
-  const refreshToken = localStorage.getItem('refreshToken')
-  if (!refreshToken) {
-    return null
-  }
-
+const refreshAccessToken = async () => {
   try {
+    const refreshToken = localStorage.getItem('refreshToken')
+    if (!refreshToken) {
+      // console.error("No refresh token available");
+      throw new Error('No refresh token available')
+    }
+
     const response = await axios.post(
-      ENV_VARIABLES.REFRESH_TOKEN_URL,
-      { refreshToken },
+      `${ENV_VARIABLES.REFRESH_TOKEN_URL}`,
+      {
+        refreshToken
+      },
       {
         headers: {
           'Content-Type': 'application/json'
@@ -18,23 +21,20 @@ async function refreshAccessToken(): Promise<string | null> {
       }
     )
 
-    if (response.status === 200) {
-      const { accessToken } = response.data
-      localStorage.setItem('accessToken', accessToken)
-      return accessToken
-    } else {
-      localStorage.removeItem('accessToken')
-      localStorage.removeItem('refreshToken')
-      window.location.href = '/'
+    const newAccessToken = response.data.accessToken
+    if (!newAccessToken) {
+      console.error('Failed to obtain new access token')
+      throw new Error('Failed to obtain new access token')
     }
-  } catch (error) {
-    console.error('Error refreshing access token', error)
-    localStorage.removeItem('accessToken')
-    localStorage.removeItem('refreshToken')
-    window.location.href = '/'
-  }
 
-  return null
+    // console.log("Successfully refreshed access token:", newAccessToken);
+
+    localStorage.setItem('accessToken', newAccessToken)
+    return newAccessToken
+  } catch (error) {
+    console.error('Error refreshing access token:', error)
+    throw error
+  }
 }
 
 export default refreshAccessToken

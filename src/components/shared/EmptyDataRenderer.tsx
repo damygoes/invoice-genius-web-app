@@ -1,3 +1,4 @@
+import { cn } from '@/lib/utils'
 import { ReactNode } from 'react'
 import { Button } from '../ui/button'
 import { Heading } from '../ui/heading'
@@ -11,6 +12,7 @@ type EmptyDataRendererProps = {
   buttonText?: string
   onClick?: () => void
   actionComponent?: ReactNode
+  className?: string
 }
 
 const EmptyIcon = Icons.empty
@@ -21,7 +23,8 @@ const EmptyDataRenderer = ({
   withActionButton,
   buttonText,
   actionComponent,
-  onClick
+  onClick,
+  className
 }: EmptyDataRendererProps) => {
   if (withActionButton && !actionComponent) {
     if (!buttonText) {
@@ -33,7 +36,12 @@ const EmptyDataRenderer = ({
   }
 
   return (
-    <section className='flex h-full w-full flex-col items-center justify-center gap-4 rounded-lg border border-dotted border-input shadow-sm'>
+    <section
+      className={cn(
+        'flex h-full w-full flex-col items-center justify-center gap-4 rounded-lg border border-dotted border-input shadow-sm',
+        className
+      )}
+    >
       <EmptyIcon className='size-24' />
       <div className='flex flex-col items-center gap-1 text-center'>
         <Heading>{title}</Heading>

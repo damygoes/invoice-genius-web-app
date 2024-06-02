@@ -12,6 +12,7 @@ import { useTranslation } from 'react-i18next'
 import { z } from 'zod'
 import ControlledEditingInput from '../controlled-editing-input/ControlledEditingInput'
 import AvatarUploader from '../shared/AvatarUploader'
+import FormButtons from '../shared/FormButtons'
 import {
   Form,
   FormControl,
@@ -23,7 +24,6 @@ import {
 import { ScrollArea } from '../ui/scroll-area'
 import { Typography } from '../ui/typography'
 import { useToast } from '../ui/use-toast'
-import ProfileFormButtons from './ProfileFormButtons'
 
 type BusinessUserProfileFormProps = {
   profile: PrivateUserProfile | null
@@ -390,7 +390,7 @@ const PrivateUserForm = ({
             />
           </div>
         </ScrollArea>
-        <ProfileFormButtons
+        <FormButtons
           isFormInEditMode={isFormInEditMode}
           setIsFormInEditMode={setIsFormInEditMode}
           updateMutation={updateMutation}

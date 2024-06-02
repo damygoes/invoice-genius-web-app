@@ -1,9 +1,12 @@
+import CreateInvoiceButton from '@/components/invoicing/CreateInvoiceButton'
 import { Heading } from '@/components/ui/heading'
 import { ScrollArea } from '@/components/ui/scroll-area'
 import { AnimatePresence, Reorder } from 'framer-motion'
 import { useState } from 'react'
+import { useTranslation } from 'react-i18next'
 
 const InvoiceList = () => {
+  const { t } = useTranslation()
   const [invoices, setInvoices] = useState([
     { id: 1, name: 'Abacus Media GmbH' },
     { id: 2, name: 'ByteWorks Ltd.' },
@@ -38,7 +41,10 @@ const InvoiceList = () => {
   ])
   return (
     <section className='flex h-full w-full flex-col items-start justify-start gap-4'>
-      <Heading>Invoices</Heading>
+      <div className='flex w-full items-center justify-between'>
+        <Heading>{t('invoicingPage.title', 'Invoices')}</Heading>
+        <CreateInvoiceButton />
+      </div>
       <ScrollArea className='flex h-full w-full flex-col items-start justify-between gap-5 rounded-lg'>
         <Reorder.Group
           axis='y'
