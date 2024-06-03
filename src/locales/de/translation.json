@@ -297,6 +297,13 @@
     "noOptions": "Keine Optionen"
   },
   "invoiceTemplate": {
-    "title": "Rechnung erstellen"
+    "title": "Rechnung erstellen",
+    "tableHeader": {
+      "service": "Service",
+      "description": "Beschreibung",
+      "rate": "Rate",
+      "hours": "Stunden",
+      "amount": "Betrag"
+    }
   }
 }

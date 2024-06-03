@@ -297,6 +297,13 @@
     "noOptions": "No clients found"
   },
   "invoiceTemplate": {
-    "title": "Generate Invoice"
+    "title": "Generate Invoice",
+    "tableHeader": {
+      "service": "Service",
+      "description": "Description",
+      "rate": "Rate",
+      "hours": "Hours",
+      "amount": "Amount"
+    }
   }
 }
