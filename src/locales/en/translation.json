@@ -291,5 +291,12 @@
     "title": " Oops! Lost in the Ledger?",
     "description": "It looks like the page you're searching for is out of balance.",
     "action": "Back to business"
+  },
+  "clientSelectDropdown": {
+    "placeholder": "Select a client",
+    "noOptions": "No clients found"
+  },
+  "invoiceTemplate": {
+    "title": "Generate Invoice"
   }
 }

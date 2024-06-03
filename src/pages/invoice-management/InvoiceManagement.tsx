@@ -2,6 +2,7 @@ import ConditionalSplitLayout from '@/components/conditional-split-layout/Condit
 import PageLayout from '@/components/layout/page-layout/PageLayout'
 import ClientForm from '@/components/saved-clients/ClientForm'
 import InvoiceList from '@/features/invoicing-service/invoicing/InvoiceList'
+import InvoiceTemplate from '@/features/invoicing-service/invoicing/invoice-template/InvoiceTemplate'
 import SavedClientsList from '@/features/invoicing-service/saved-clients/SavedClientsList'
 import { InvoicingService } from '@/features/invoicing-service/utils/InvoicingService'
 import {
@@ -23,7 +24,7 @@ const InvoiceManagement = () => {
           <ConditionalSplitLayout
             mainComponentToRender={<InvoiceList />}
             splitCondition={isInvoiceForm}
-            componentToRenderWhenSplit={<div> Invoice Form</div>}
+            componentToRenderWhenSplit={<InvoiceTemplate />}
           />
         )
       case 'Clients':
@@ -40,7 +41,7 @@ const InvoiceManagement = () => {
           <ConditionalSplitLayout
             mainComponentToRender={<InvoiceList />}
             splitCondition={isInvoiceForm}
-            componentToRenderWhenSplit={<div> Invoice Form</div>}
+            componentToRenderWhenSplit={<InvoiceTemplate />}
           />
         )
     }

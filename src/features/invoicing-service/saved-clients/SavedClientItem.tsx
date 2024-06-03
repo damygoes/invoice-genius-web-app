@@ -5,7 +5,7 @@ import { SavedClient } from '@/types/SavedClient'
 import { useTranslation } from 'react-i18next'
 import { GetSavedClientDetails } from '../utils/getSavedClientDetails'
 import { useInvoicing } from '../utils/useInvoicing'
-import { useSavedClient } from './useSavedClient'
+import { useSavedClient } from '../utils/useSavedClient'
 
 type SavedClientItemProps = {
   savedClient: SavedClient

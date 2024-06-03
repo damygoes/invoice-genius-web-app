@@ -284,12 +284,19 @@
     },
     "emptyData": {
       "title": "Sie haben noch keine Kunden",
-      "description": "Klicken Sie auf die Schaltfläche oben, um einen neuen Kunden hinzuzufügen."
+      "description": "Bitte fügen Sie einen neuen Kunden hinzu."
     }
   },
   "error404Page": {
     "title": "Ups! Im Hauptbuch verloren?",
     "description": "Es sieht so aus, als ob auf der gesuchten Seite ein Ungleichgewicht herrscht.",
     "action": "Zurück zum Geschäftlichen"
+  },
+  "clientSelectDropdown": {
+    "placeholder": "Kunden auswählen",
+    "noOptions": "Keine Optionen"
+  },
+  "invoiceTemplate": {
+    "title": "Rechnung erstellen"
   }
 }
