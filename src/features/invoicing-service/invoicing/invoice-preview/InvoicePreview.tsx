@@ -63,7 +63,9 @@ const InvoicePreview = () => {
         <Typography size='2xl' className='font-semibold'>
           {UserBusinessProfile.businessName}
         </Typography>
-        <Typography className='font-light'>{UserBusinessAddress}</Typography>
+        <Typography className='font-light' size='sm'>
+          {UserBusinessAddress}
+        </Typography>
         <div className='flex w-full items-center justify-center gap-2'>
           <Typography size='xs' className='font-light'>
             {UserBusinessProfile.businessEmail}
@@ -86,7 +88,7 @@ const InvoicePreview = () => {
           </span>
         </Typography>
       </div>
-      <div className='flex w-full max-w-40 flex-col flex-wrap'>
+      <div className='flex w-full max-w-36 flex-col flex-wrap'>
         <Typography size='lg' className='font-semibold'>
           Invoice To
         </Typography>

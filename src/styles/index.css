@@ -80,3 +80,27 @@
   -ms-overflow-style: none; /* IE and Edge */
   scrollbar-width: none; /* Firefox */
 }
+
+/* printing */
+@media print {
+  body * {
+    visibility: visible;
+  }
+
+  #printInvoice,
+  #printInvoice * {
+    visibility: visible;
+  }
+
+  #printInvoice {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+  }
+
+  /* Hide page URL, Vite+React+TS header */
+  @page {
+    margin: 0;
+  }
+}
