@@ -7,6 +7,7 @@ import { useTranslation } from 'react-i18next'
 
 const InvoiceList = () => {
   const { t } = useTranslation()
+
   const [invoices, setInvoices] = useState([
     { id: 1, name: 'Abacus Media GmbH' },
     { id: 2, name: 'ByteWorks Ltd.' },

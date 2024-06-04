@@ -1,6 +1,7 @@
-import { Button } from '@/components/ui/button'
+import TooltipIcon from '@/components/shared/TooltipIcon'
 import { TableCell, TableRow } from '@/components/ui/table'
 import { Trash } from 'lucide-react'
+import { useTranslation } from 'react-i18next'
 import { InvoiceTemplateTableRowItemType } from '../../utils/InvoiceTemplateTableRowItem'
 import InvoiceTemplateTableRowItemInput from './InvoiceTemplateTableRowItemInput'
 
@@ -17,12 +18,13 @@ const InvoiceTemplateTableRowItem = ({
   updateRow,
   removeRow
 }: InvoiceTemplateTableRowItemProps) => {
+  const { t } = useTranslation()
   const handleChange = (
     field: keyof InvoiceTemplateTableRowItemType,
     value: string | number
   ) => {
     const newItem = { ...item, [field]: value }
-    newItem.amount = newItem.rate * newItem.hours // Calculate amount
+    newItem.amount = newItem.rate * newItem.hours
     updateRow(index, newItem)
   }
 
@@ -58,9 +60,12 @@ const InvoiceTemplateTableRowItem = ({
         {(item.rate * item.hours).toFixed(2)}
       </TableCell>
       <TableCell>
-        <Button variant='ghost' size='icon' onClick={() => removeRow(index)}>
-          <Trash size={14} />
-        </Button>
+        <TooltipIcon
+          icon={Trash}
+          tooltipContent={t('invoiceTemplateRowItem.delete', 'Remove row')}
+          isAction
+          onClick={() => removeRow(index)}
+        />
       </TableCell>
     </TableRow>
   )

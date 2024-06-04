@@ -1,3 +1,4 @@
+import { useInvoiceStore } from '@/features/invoicing-service/utils/useInvoiceTemplate'
 import { useInvoicing } from '@/features/invoicing-service/utils/useInvoicing'
 import { cn } from '@/lib/utils'
 import { FilePlus2, X } from 'lucide-react'
@@ -15,14 +16,16 @@ const CreateInvoiceButton = ({
 }: CreateInvoiceButtonProps) => {
   const { t } = useTranslation()
   const { isInvoiceForm, setInvoiceForm } = useInvoicing()
+  const { resetInvoiceTemplateState } = useInvoiceStore()
+
+  const handleCancel = () => {
+    resetInvoiceTemplateState()
+    setInvoiceForm(false)
+  }
 
   if (isInvoiceForm) {
     return (
-      <Button
-        onClick={() => setInvoiceForm(false)}
-        disabled={disabled}
-        variant='secondary'
-      >
+      <Button onClick={handleCancel} disabled={disabled} variant='secondary'>
         <X size={16} className='mr-2' />
         {t('common.cancel', 'Cancel')}
       </Button>

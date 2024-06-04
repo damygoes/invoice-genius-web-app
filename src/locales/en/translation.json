@@ -22,7 +22,8 @@
     "delete": "Delete",
     "loading": "Loading...",
     "drag": "Drag to reorder",
-    "edit": "Edit"
+    "edit": "Edit",
+    "back": "Back"
   },
   "userTypeSelect": {
     "private": "Private",
@@ -305,5 +306,9 @@
       "hours": "Hours",
       "amount": "Amount"
     }
+  },
+  "invoiceTemplateRowItem": {
+    "add": "Add Item",
+    "delete": "Delete Item"
   }
 }

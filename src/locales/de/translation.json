@@ -22,7 +22,8 @@
     "delete": "Löschen",
     "loading": "Laden...",
     "drag": "Ziehen zum Neuanordnen",
-    "edit": "Bearbeiten"
+    "edit": "Bearbeiten",
+    "back": "Zurück"
   },
   "userTypeSelect": {
     "private": "Privat",
@@ -305,5 +306,9 @@
       "hours": "Stunden",
       "amount": "Betrag"
     }
+  },
+  "invoiceTemplateRowItem": {
+    "add": "Artikel hinzufügen",
+    "delete": "Artikel löschen"
   }
 }
