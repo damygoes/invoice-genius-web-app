@@ -10,6 +10,8 @@ const InvoiceTemplate = () => {
   const {
     setSelectedClient,
     invoiceTemplateStep,
+    invoiceItems,
+    selectedClient,
     // setInvoiceTemplateStep,
     setIsPreviewModalOpen
   } = useInvoiceStore()
@@ -49,7 +51,11 @@ const InvoiceTemplate = () => {
         <InvoiceTemplateTemplatingStep />
 
         <div className='flex shrink-0 items-center justify-between gap-4'>
-          <Button variant='outline' onClick={handlePreviewClick}>
+          <Button
+            variant='outline'
+            onClick={handlePreviewClick}
+            disabled={!selectedClient || !invoiceItems.length}
+          >
             Preview Invoice
           </Button>
           {/* <Button variant="outline" onClick={handleDownloadInvoice}>
