@@ -13,12 +13,23 @@ type InvoiceTemplateTableRowItemType = {
   amount: number
 }
 
+export type InvoicePayload = {
+  client: string
+  items: InvoiceTemplateTableRowItemType[]
+  invoiceSubTotal: number
+  invoiceVAT: number
+  invoiceTotal: number
+  dueDate: Date
+}
+
 type InvoiceState = {
   isPreviewModalOpen: boolean
   setIsPreviewModalOpen: (isOpen: boolean) => void
   invoiceTemplateStep: InvoiceTemplateSteps
   setInvoiceTemplateStep: (step: InvoiceTemplateSteps) => void
   selectedClient: string | null
+  invoiceDueDate: Date | null
+  setInvoiceDueDate: (date: Date | null) => void
   invoiceItems: InvoiceTemplateTableRowItemType[]
   setSelectedClient: (client: string | null) => void
   addRow: () => void
@@ -49,6 +60,8 @@ export const useInvoiceStore = create<InvoiceState>()(
       setInvoiceTemplateStep: step => set({ invoiceTemplateStep: step }),
       selectedClient: null,
       invoiceItems: initialState,
+      invoiceDueDate: null,
+      setInvoiceDueDate: date => set({ invoiceDueDate: date }),
       setSelectedClient: client => set({ selectedClient: client }),
       addRow: () =>
         set(state => ({
@@ -100,7 +113,13 @@ export const useInvoiceStoreActions = () => {
     return response.data as SavedClient
   }
 
+  const sendInvoice = async (invoice: InvoicePayload) => {
+    const response = await axiosClient.post('/invoices/send-invoice', invoice)
+    return response.data
+  }
+
   return {
-    getSelectedClientDetails
+    getSelectedClientDetails,
+    sendInvoice
   }
 }

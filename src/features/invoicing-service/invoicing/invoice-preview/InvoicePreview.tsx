@@ -1,6 +1,7 @@
 import { Typography } from '@/components/ui/typography'
 import { useUser } from '@/hooks/useUser'
 import { useQuery } from '@tanstack/react-query'
+import { format } from 'date-fns'
 import { GetSavedClientDetails } from '../../utils/getSavedClientDetails'
 import {
   useInvoiceStore,
@@ -11,7 +12,7 @@ import InvoiceTotalCard from '../InvoiceTotalCard'
 import InvoicePreviewItems from './InvoicePreviewItems'
 
 const InvoicePreview = () => {
-  const { selectedClient } = useInvoiceStore()
+  const { selectedClient, invoiceDueDate } = useInvoiceStore()
   const { getSelectedClientDetails } = useInvoiceStoreActions()
   const { user, getUserProfile } = useUser()
 
@@ -55,6 +56,12 @@ const InvoicePreview = () => {
     return null
   }
 
+  if (!invoiceDueDate) {
+    return null
+  }
+
+  const InvoiceDueDate = format(invoiceDueDate, 'dd-MM-yyyy')
+
   const UserBusinessAddress = `${UserBusinessProfile.businessAddress.street} ${UserBusinessProfile.businessAddress.number} ${UserBusinessProfile.businessAddress.zip} ${UserBusinessProfile.businessAddress.city} ${UserBusinessProfile.businessAddress.state} ${UserBusinessProfile.businessAddress.country}`
 
   return (
@@ -82,10 +89,8 @@ const InvoicePreview = () => {
       </div>
       <div className='flex w-full items-center justify-end'>
         <Typography size='sm' className='font-light '>
-          Date:
-          <span className='ml-2 text-sm'>
-            {new Date().toLocaleDateString()}
-          </span>
+          Due Date:
+          <span className='ml-2 text-sm'>{InvoiceDueDate}</span>
         </Typography>
       </div>
       <div className='flex w-full max-w-36 flex-col flex-wrap'>
