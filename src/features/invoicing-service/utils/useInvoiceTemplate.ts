@@ -5,7 +5,7 @@ import { persist } from 'zustand/middleware'
 
 type InvoiceTemplateSteps = 'template' | 'preview'
 
-type InvoiceTemplateTableRowItemType = {
+export type InvoiceTemplateTableRowItemType = {
   serviceName: string
   serviceDescription: string
   rate: number

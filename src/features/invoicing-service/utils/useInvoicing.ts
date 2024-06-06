@@ -1,3 +1,5 @@
+import useAxiosInterceptor from '@/services/axios/axiosClient'
+import { InvoiceItem } from '@/types/Invoice'
 import { create } from 'zustand'
 import { InvoicingService } from './InvoicingService'
 
@@ -29,5 +31,17 @@ export const useInvoicing = () => {
     isInvoiceForm,
     setClientForm,
     setInvoiceForm
+  }
+}
+
+export const useInvoicingActions = () => {
+  const axiosClient = useAxiosInterceptor()
+  const fetchInvoices = async () => {
+    const response = await axiosClient.get('/invoices')
+    return response.data as InvoiceItem[]
+  }
+
+  return {
+    fetchInvoices
   }
 }
