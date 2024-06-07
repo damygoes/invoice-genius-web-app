@@ -15,7 +15,6 @@ const InvoiceItemStatusBadge = ({ status }: InvoiceItemStatusBadgeProps) => {
 
   return (
     <Badge
-      //   variant={variant}
       className={cn(badgeVariants({ variant }), `bg-${color}`)}
       style={customStyle}
     >

@@ -14,37 +14,37 @@ export const GetInvoiceStatusBadge = (status: InvoiceStatus): BadgeInfo => {
       return {
         variant: 'outline',
         color: 'none',
-        text: t('invoice.status.draft', 'Draft')
+        text: t('invoiceItemStatus.draft', 'Draft')
       }
     case 'pending':
       return {
         variant: 'outline',
         color: 'secondary',
-        text: t('invoice.status.pending', 'Pending')
+        text: t('invoiceItemStatus.pending', 'Pending')
       }
     case 'paid':
       return {
         color: '#52BE80',
         variant: 'default',
-        text: t('invoice.status.paid', 'Paid')
+        text: t('invoiceItemStatus.paid', 'Paid')
       }
     case 'overdue':
       return {
         color: '#FF5733',
         variant: 'destructive',
-        text: t('invoice.status.overdue', 'Overdue')
+        text: t('invoiceItemStatus.overdue', 'Overdue')
       }
     case 'declined':
       return {
         color: '#F56565',
         variant: 'destructive',
-        text: t('invoice.status.declined', 'Declined')
+        text: t('invoiceItemStatus.declined', 'Declined')
       }
     default:
       return {
         color: 'none',
         variant: 'default',
-        text: t('invoice.status.unknown', 'Unknown')
+        text: t('invoiceItemStatus.unknown', 'Unknown')
       }
   }
 }

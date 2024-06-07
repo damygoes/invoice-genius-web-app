@@ -2,43 +2,14 @@ import { Button } from '@/components/ui/button'
 import { Dialog, DialogContent, DialogFooter } from '@/components/ui/dialog'
 import { Printer } from 'lucide-react'
 import { useRef } from 'react'
+import { useTranslation } from 'react-i18next'
 import { useInvoiceStore } from '../../utils/useInvoiceTemplate'
 import InvoicePreview from './InvoicePreview'
 
 const InvoicePreviewModal = () => {
   const { isPreviewModalOpen, setIsPreviewModalOpen } = useInvoiceStore()
+  const { t } = useTranslation()
   const invoiceRef = useRef(null)
-
-  // const handleDownloadInvoice = async () => {
-  //   if (invoiceRef.current) {
-  //     const element = invoiceRef.current;
-  //     const pdf = new jsPDF("p", "mm", "a4");
-  //     const pdfWidth = pdf.internal.pageSize.getWidth();
-  //     const pdfHeight = pdf.internal.pageSize.getHeight();
-
-  //     const canvas = await html2canvas(element, {
-  //       scale: 2,
-  //     });
-  //     const imgData = canvas.toDataURL("image/png");
-  //     const imgProps = pdf.getImageProperties(imgData);
-  //     const imgHeight = (imgProps.height * pdfWidth) / imgProps.width;
-
-  //     let heightLeft = imgHeight;
-  //     let position = 0;
-
-  //     pdf.addImage(imgData, "PNG", 0, position, pdfWidth, imgHeight);
-  //     heightLeft -= pdfHeight;
-
-  //     while (heightLeft >= 0) {
-  //       position = heightLeft - imgHeight;
-  //       pdf.addPage();
-  //       pdf.addImage(imgData, "PNG", 0, position, pdfWidth, imgHeight);
-  //       heightLeft -= pdfHeight;
-  //     }
-
-  //     pdf.save("invoice.pdf");
-  //   }
-  // };
 
   const handlePrintInvoice = () => {
     if (invoiceRef.current) {
@@ -63,11 +34,8 @@ const InvoicePreviewModal = () => {
         <DialogFooter>
           <Button type='button' onClick={handlePrintInvoice}>
             <Printer size={16} className='mr-2' />
-            Print Invoice
+            {t('invoiceTemplate.buttons.printInvoice', 'Print Invoice')}
           </Button>
-          {/* <Button type="button" onClick={handleDownloadInvoice}>
-            Download Invoice
-          </Button> */}
         </DialogFooter>
       </DialogContent>
     </Dialog>

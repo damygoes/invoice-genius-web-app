@@ -105,11 +105,9 @@ const InvoiceTemplate = () => {
               sendInvoiceMutation.isPending
             }
           >
-            Preview Invoice
+            {t('invoiceTemplate.buttons.preview', 'Preview')}
           </Button>
-          {/* <Button variant="outline" onClick={handleDownloadInvoice}>
-            Download Invoice
-          </Button> */}
+
           <Button
             className='flex-1'
             onClick={handleSendInvoice}
@@ -117,11 +115,11 @@ const InvoiceTemplate = () => {
           >
             {sendInvoiceMutation.isPending ? (
               <>
-                <Loader size={16} className='mr-3 animate-spin' /> Sending
-                invoice...
+                <Loader size={16} className='mr-3 animate-spin' />
+                {t('invoiceTemplate.buttons.sending', 'Sending...')}
               </>
             ) : (
-              'Send Invoice'
+              t('invoiceTemplate.buttons.send', 'Send Invoice')
             )}
           </Button>
         </div>
@@ -131,10 +129,3 @@ const InvoiceTemplate = () => {
 }
 
 export default InvoiceTemplate
-
-// there will be a button to add more items or rows to the invoice. There will also be a minus button to remove an item or row.
-// i should probably add each row or item into an array in the global store and then use the array reduce method to calculate the total amount of the invoice and total hours worked.
-// i would then add the 19% VAT to the total amount and display the total amount including VAT.
-// there would be a button to create a preview of the invoice.
-// i would also add a button to download the invoice as a PDF file.
-// the send invoice button would be disabled until the invoice is previewed. It would then be enabled to send the invoice to the email address of the selected client.

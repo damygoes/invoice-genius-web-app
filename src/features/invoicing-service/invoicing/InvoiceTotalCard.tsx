@@ -1,8 +1,10 @@
-import { Typography } from '@/components/ui/typography'
+import { useTranslation } from 'react-i18next'
+import InvoiceItemLabel from '../invoice-item/InvoiceItemLabel'
 import { useInvoiceStore } from '../utils/useInvoiceTemplate'
 
 const InvoiceTotalCard = () => {
   const { getSubtotal, getVat, getTotal } = useInvoiceStore()
+  const { t } = useTranslation()
 
   const subtotal = getSubtotal()
   const vat = getVat()
@@ -11,20 +13,27 @@ const InvoiceTotalCard = () => {
   return (
     <section className='flex w-full flex-col items-end justify-start gap-2 rounded-md bg-input p-4'>
       <div className='flex items-center justify-end gap-5 font-light'>
-        <Typography size='sm'>Subtotal</Typography>
-        <Typography>{subtotal.toFixed(2)}</Typography>
+        <InvoiceItemLabel
+          label={t('invoiceTemplate.subTotal', 'Subtotal')}
+          labelSize='sm'
+          value={subtotal.toFixed(2)}
+        />
       </div>
       <div className='flex items-center justify-end gap-5 font-light'>
-        <Typography size='sm'>
-          VAT <span className='italic'>(19% mwst)</span>
-        </Typography>
-        <Typography>{vat.toFixed(2)}</Typography>
+        <InvoiceItemLabel
+          label={t('invoiceTemplate.vat', 'VAT')}
+          labelSize='xs'
+          value={vat.toFixed(2)}
+        />
       </div>
       <div className='flex items-center justify-end gap-5'>
-        <Typography size='lg'>Total Amount</Typography>
-        <Typography className='font-semibold' size='lg'>
-          {total.toFixed(2)}
-        </Typography>
+        <InvoiceItemLabel
+          label={t('invoiceTemplate.total', 'Total')}
+          labelSize='lg'
+          value={total.toFixed(2)}
+          valueSize='lg'
+          valueClassName='font-semibold'
+        />
       </div>
     </section>
   )

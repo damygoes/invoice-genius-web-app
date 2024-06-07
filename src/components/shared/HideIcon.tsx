@@ -28,7 +28,7 @@ const HideIcon = ({
         />
       </TooltipTrigger>
       <TooltipContent side={side}>
-        {tooltipContent || `${t('common.showDetails', 'Show details')}`}
+        {tooltipContent || `${t('common.hideDetails', 'Hide details')}`}
       </TooltipContent>
     </Tooltip>
   )

@@ -2,6 +2,7 @@ import { Typography } from '@/components/ui/typography'
 import { useUser } from '@/hooks/useUser'
 import { useQuery } from '@tanstack/react-query'
 import { format } from 'date-fns'
+import { useTranslation } from 'react-i18next'
 import { GetSavedClientDetails } from '../../utils/getSavedClientDetails'
 import {
   useInvoiceStore,
@@ -15,6 +16,7 @@ const InvoicePreview = () => {
   const { selectedClient, invoiceDueDate } = useInvoiceStore()
   const { getSelectedClientDetails } = useInvoiceStoreActions()
   const { user, getUserProfile } = useUser()
+  const { t } = useTranslation()
 
   const {
     data: ClientDetails,
@@ -89,13 +91,13 @@ const InvoicePreview = () => {
       </div>
       <div className='flex w-full items-center justify-end'>
         <Typography size='sm' className='font-light '>
-          Due Date:
+          {t('invoicePreview.dueDate', 'Due date')}:
           <span className='ml-2 text-sm'>{InvoiceDueDate}</span>
         </Typography>
       </div>
       <div className='flex w-full max-w-36 flex-col flex-wrap'>
         <Typography size='lg' className='font-semibold'>
-          Invoice To
+          {t('invoicePreview.invoiceRecipient', 'Recipient')}
         </Typography>
         <Typography className='font-light' size='sm'>
           {clientInformation.name} <br /> {clientInformation.address}

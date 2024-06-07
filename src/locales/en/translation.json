@@ -23,7 +23,9 @@
     "loading": "Loading...",
     "drag": "Drag to reorder",
     "edit": "Edit",
-    "back": "Back"
+    "back": "Back",
+    "showDetails": "Show Details",
+    "hideDetails": "Hide Details"
   },
   "userTypeSelect": {
     "private": "Private",
@@ -305,10 +307,53 @@
       "rate": "Rate",
       "hours": "Hours",
       "amount": "Amount"
+    },
+    "subTotal": "Subtotal",
+    "vat": "VAT (19%)",
+    "total": "Total",
+    "buttons": {
+      "preview": "Preview Invoice",
+      "previewError": "Error previewing invoice. Please try again.",
+      "send": "Send Invoice",
+      "sendPending": "Sending Invoice...",
+      "sendError": "Error sending invoice. Please try again.",
+      "printInvoice": "Print Invoice"
     }
   },
   "invoiceTemplateRowItem": {
     "add": "Add Item",
     "delete": "Delete Item"
+  },
+  "invoiceItem": {
+    "deleteInvoice": "Delete invoice",
+    "recipient": "Recipient",
+    "subTotal": "Subtotal",
+    "vat": "VAT",
+    "total": "Total",
+    "invoiceDate": "Invoice Date",
+    "dueDate": "Due Date",
+    "invoiceNumber": "Invoice Number",
+    "invoiceItems": "Invoice Items",
+    "invoiceItem": "Invoice Item",
+    "invoiceItemDescription": "Description",
+    "invoiceItemRate": "Rate",
+    "invoiceItemHours": "Hours",
+    "invoiceItemAmount": "Amount",
+    "invoiceStatus": "Invoice Status"
+  },
+  "invoiceItemStatus": {
+    "paid": "Paid",
+    "pending": "Pending",
+    "overdue": "Overdue",
+    "draft": "Draft",
+    "declined": "Declined",
+    "unknown": "None"
+  },
+  "invoicePreview": {
+    "invoiceRecipient": "Recipient",
+    "dueDate": "Due Date"
+  },
+  "errors": {
+    "unknownError": "Something went wrong. Please try again."
   }
 }

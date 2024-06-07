@@ -1,5 +1,4 @@
 import DeleteIcon from '@/components/shared/DeleteIcon'
-import EditIcon from '@/components/shared/EditIcon'
 import HideIcon from '@/components/shared/HideIcon'
 import RevealIcon from '@/components/shared/RevealIcon'
 import { Typography } from '@/components/ui/typography'
@@ -11,6 +10,8 @@ import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { GetSavedClientDetails } from '../utils/getSavedClientDetails'
 import { useSavedClient } from '../utils/useSavedClient'
+import InvoiceItemLabel from './InvoiceItemLabel'
+import InvoiceItemSkeleton from './InvoiceItemSkeleton'
 import InvoiceItemStatusBadge from './InvoiceItemStatusBadge'
 
 type InvoiceProps = {
@@ -31,11 +32,11 @@ const Invoice = ({ invoice, index }: InvoiceProps) => {
     })
 
   if (isFetchingClientDetails) {
-    return <div>Loading...</div>
+    return <InvoiceItemSkeleton />
   }
 
   if (!fetchedClientDetails) {
-    return <div>Error...</div>
+    return <div>Error </div>
   }
 
   const clientDetails = GetSavedClientDetails(fetchedClientDetails)
@@ -46,10 +47,6 @@ const Invoice = ({ invoice, index }: InvoiceProps) => {
 
   const { name, address } = clientDetails
 
-  const handleEditInvoice = () => {
-    // Handle edit invoice
-  }
-
   const handleDeleteInvoice = () => {
     // Handle delete invoice
   }
@@ -59,68 +56,73 @@ const Invoice = ({ invoice, index }: InvoiceProps) => {
       <div
         key={invoice.id}
         className={cn(
-          'flex w-full cursor-grab items-center justify-start gap-5 bg-accent p-3 shadow-sm',
+          'flex w-full cursor-grab flex-wrap items-center justify-start gap-5 bg-accent p-3 shadow-sm',
           {
             'rounded-md': !showInvoiceDetails,
             'rounded-t-md': showInvoiceDetails
           }
         )}
       >
-        <Typography>{index + 1}</Typography>
-        <div className='min-w-96 flex-1 space-y-1'>
-          <Typography size='xs'>Invoice recipient:</Typography>
+        <Typography className='hidden lg:flex'>{index + 1}</Typography>
+        <div className='min-w-full flex-1 space-y-1 lg:min-w-96'>
+          <InvoiceItemLabel
+            label={t('invoiceItem.recipient', 'Recipient')}
+            labelSize='xs'
+          />
           <div>
-            <Typography size='2xl'>{name}</Typography>
-            <Typography size='xs' className='max-w-36'>
+            <Typography size='xl' className='font-semibold'>
+              {name}
+            </Typography>
+            <Typography size='xs' className='lg:max-w-36'>
               {address}
             </Typography>
           </div>
         </div>
         <div className='flex-1 space-y-1'>
-          <div className='flex items-center gap-3'>
-            <Typography size='xs' className='min-w-12'>
-              Subtotal:
-            </Typography>
-            <Typography size='sm'>{invoice.subTotal}</Typography>
-          </div>
-          <div className='flex items-center gap-3'>
-            <Typography size='xs' className='min-w-12'>
-              VAT:
-            </Typography>
-            <Typography size='sm'>{invoice.vat}</Typography>
-          </div>
-          <div className='flex items-center gap-3'>
-            <Typography size='xs' className='min-w-12'>
-              Total:
-            </Typography>
-            <Typography size='sm' className='font-semibold'>
-              {invoice.amount}
-            </Typography>
+          <div className='flex-1 space-y-1'>
+            <InvoiceItemLabel
+              label={t('invoiceItem.subTotal', 'Subtotal')}
+              value={invoice.subTotal}
+            />
+            <InvoiceItemLabel
+              label={t('invoiceItem.vat', 'VAT')}
+              value={invoice.vat}
+            />
+            <InvoiceItemLabel
+              label={t('invoiceItem.total', 'Total')}
+              value={invoice.amount}
+              valueClassName='font-semibold'
+            />
           </div>
         </div>
-        <div className='flex-1 space-y-1'>
-          <Typography size='xs'>Invoice status:</Typography>
+        <div className='flex-1 space-y-3'>
+          <InvoiceItemLabel
+            label={t('invoiceItem.invoiceStatus', 'Status')}
+            labelSize='xs'
+          />
           <InvoiceItemStatusBadge status={invoice.status} />
         </div>
         <div className='flex-1 space-y-1'>
-          <Typography size='xs'>Issued on:</Typography>
+          <InvoiceItemLabel
+            label={t('invoiceItem.invoiceDate', 'Invoice date')}
+            labelSize='xs'
+          />
           <Typography size='sm'>
             {formatToReadableDate(invoice.createdAt)}
           </Typography>
         </div>
         <div className='flex-1 space-y-1'>
-          <Typography size='xs'>Due date:</Typography>
+          <InvoiceItemLabel
+            label={t('invoiceItem.dueDate', 'Due date')}
+            labelSize='xs'
+          />
           <Typography size='sm'>
             {formatToReadableDate(invoice.dueDate)}
           </Typography>
         </div>
         <section className='z-10 flex items-center gap-4'>
-          <EditIcon
-            tooltipContent={`${t('invoiceItem.buttons.edit', 'Edit invoice')}`}
-            onClick={handleEditInvoice}
-          />
           <DeleteIcon
-            tooltipContent={`${t('invoiceItem.buttons.delete', 'Delete client')}`}
+            tooltipContent={`${t('invoiceItem.deleteInvoice', 'Delete invoice')}`}
             onClick={handleDeleteInvoice}
           />
           {showInvoiceDetails ? (
