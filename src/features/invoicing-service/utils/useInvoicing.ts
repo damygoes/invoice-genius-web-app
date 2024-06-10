@@ -36,12 +36,25 @@ export const useInvoicing = () => {
 
 export const useInvoicingActions = () => {
   const axiosClient = useAxiosInterceptor()
+
+  const handlePrintInvoice = (invoiceRef: React.RefObject<HTMLDivElement>) => {
+    if (invoiceRef.current) {
+      const printContents = (invoiceRef.current as HTMLDivElement).innerHTML
+      const originalContents = document.body.innerHTML
+      document.body.innerHTML = printContents
+      window.print()
+      document.body.innerHTML = originalContents
+      window.location.reload() // Reload the window to restore the original contents
+    }
+  }
+
   const fetchInvoices = async () => {
     const response = await axiosClient.get('/invoices')
     return response.data as InvoiceItem[]
   }
 
   return {
-    fetchInvoices
+    fetchInvoices,
+    handlePrintInvoice
   }
 }

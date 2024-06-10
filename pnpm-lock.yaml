@@ -143,6 +143,9 @@ dependencies:
   tailwind-merge:
     specifier: ^2.2.1
     version: 2.3.0
+  vaul:
+    specifier: ^0.9.1
+    version: 0.9.1(@types/react-dom@18.3.0)(@types/react@18.3.2)(react-dom@18.3.1)(react@18.3.1)
   zod:
     specifier: ^3.23.8
     version: 3.23.8
@@ -14571,6 +14574,23 @@ packages:
       }
     engines: { node: '>= 0.8' }
     dev: true
+
+  /vaul@0.9.1(@types/react-dom@18.3.0)(@types/react@18.3.2)(react-dom@18.3.1)(react@18.3.1):
+    resolution:
+      {
+        integrity: sha512-fAhd7i4RNMinx+WEm6pF3nOl78DFkAazcN04ElLPFF9BMCNGbY/kou8UMhIcicm0rJCNePJP0Yyza60gGOD0Jw==
+      }
+    peerDependencies:
+      react: ^16.8 || ^17.0 || ^18.0
+      react-dom: ^16.8 || ^17.0 || ^18.0
+    dependencies:
+      '@radix-ui/react-dialog': 1.0.5(@types/react-dom@18.3.0)(@types/react@18.3.2)(react-dom@18.3.1)(react@18.3.1)
+      react: 18.3.1
+      react-dom: 18.3.1(react@18.3.1)
+    transitivePeerDependencies:
+      - '@types/react'
+      - '@types/react-dom'
+    dev: false
 
   /vite@5.2.11(@types/node@20.12.12):
     resolution:

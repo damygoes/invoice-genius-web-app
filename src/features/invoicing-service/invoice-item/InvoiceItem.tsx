@@ -1,6 +1,7 @@
 import DeleteIcon from '@/components/shared/DeleteIcon'
 import HideIcon from '@/components/shared/HideIcon'
 import RevealIcon from '@/components/shared/RevealIcon'
+import UnknownErrorFallback from '@/components/shared/UnknownErrorFallback'
 import { Typography } from '@/components/ui/typography'
 import { cn } from '@/lib/utils'
 import { InvoiceItem } from '@/types/Invoice'
@@ -10,16 +11,16 @@ import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { GetSavedClientDetails } from '../utils/getSavedClientDetails'
 import { useSavedClient } from '../utils/useSavedClient'
+import InvoiceItemDetails from './InvoiceItemDetails'
 import InvoiceItemLabel from './InvoiceItemLabel'
 import InvoiceItemSkeleton from './InvoiceItemSkeleton'
 import InvoiceItemStatusBadge from './InvoiceItemStatusBadge'
 
 type InvoiceProps = {
   invoice: InvoiceItem
-  index: number
 }
 
-const Invoice = ({ invoice, index }: InvoiceProps) => {
+const Invoice = ({ invoice }: InvoiceProps) => {
   const { getSavedClient } = useSavedClient()
   const { t } = useTranslation()
   const [showInvoiceDetails, setShowInvoiceDetails] = useState(false)
@@ -36,7 +37,7 @@ const Invoice = ({ invoice, index }: InvoiceProps) => {
   }
 
   if (!fetchedClientDetails) {
-    return <div>Error </div>
+    return <UnknownErrorFallback />
   }
 
   const clientDetails = GetSavedClientDetails(fetchedClientDetails)
@@ -63,7 +64,9 @@ const Invoice = ({ invoice, index }: InvoiceProps) => {
           }
         )}
       >
-        <Typography className='hidden lg:flex'>{index + 1}</Typography>
+        <Typography className='hidden lg:flex' size='xs'>
+          {invoice.invoiceNumber}
+        </Typography>
         <div className='min-w-full flex-1 space-y-1 lg:min-w-96'>
           <InvoiceItemLabel
             label={t('invoiceItem.recipient', 'Recipient')}
@@ -132,35 +135,9 @@ const Invoice = ({ invoice, index }: InvoiceProps) => {
           )}
         </section>
       </div>
-      {showInvoiceDetails && (
-        <section className='flex w-full items-center justify-start gap-5 rounded-b-md bg-accent p-3 shadow-sm'>
-          Invoice Details
-        </section>
-      )}
+      {showInvoiceDetails && <InvoiceItemDetails invoice={invoice} />}
     </div>
   )
 }
 
 export default Invoice
-
-// {
-//     id: 'clx2d65fs00029hbnea3cfj1k',
-//     clientId: 'invoice-genius-saved-client-b72a7d56-d117-4421-9521-9f58974434ec',
-//     invoiceDate: '2024-06-05T21:51:57.444Z',
-//     dueDate: '2024-06-26T22:00:00.000Z',
-//     amount: 4284,
-//     vat: 684,
-//     subTotal: 3600,
-//     status: 'pending',
-//     invoiceItems: [
-//       {
-//         rate: 450,
-//         hours: 8,
-//         amount: 3600,
-//         serviceName: 'Logo',
-//         serviceDescription: ''
-//       }
-//     ],
-//     createdAt: '2024-06-05T21:51:56.447Z',
-//     updatedAt: '2024-06-05T21:51:56.447Z'
-//   },

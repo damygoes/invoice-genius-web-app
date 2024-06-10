@@ -67,7 +67,8 @@
       "private": "Profil",
       "business": "Geschäftsprofil",
       "businessAddress": "Geschäftsadresse",
-      "privateAddress": "Adresse"
+      "privateAddress": "Adresse",
+      "paymentInformation": "Zahlungsinformationen"
     },
     "labels": {
       "businessName": "Firmenname",
@@ -88,7 +89,11 @@
       "industry": "Branche",
       "industryPlaceholder": "z.b IT, Finanzen, etc.",
       "businessInfo": "Betriebsinformationen",
-      "username": "Benutzername"
+      "username": "Benutzername",
+      "payPalEmail": "PayPal Email (optional)",
+      "bankName": "Bankname",
+      "iban": "IBAN",
+      "bic": "BIC"
     },
     "toasts": {
       "success": "Profil erfolgreich aktualisiert.",
@@ -317,7 +322,10 @@
       "send": "Rechnung senden",
       "sendPending": "Senden läuft...",
       "sendError": "Fehler beim Senden der Rechnung. Bitte versuchen Sie es erneut.",
-      "printInvoice": "Rechnung drucken"
+      "printInvoice": "Rechnung drucken",
+      "printError": "Fehler beim Drucken der Rechnung. Bitte versuchen Sie es erneut.",
+      "saveAsDraft": "Als Entwurf speichern",
+      "saveAsDraftPending": "Speichern läuft..."
     }
   },
   "invoiceTemplateRowItem": {
@@ -349,11 +357,36 @@
     "declined": "Abgelehnt",
     "unknown": "Keine"
   },
-  "invoicePreview": {
-    "invoiceRecipient": "Rechnungsempfänger",
-    "dueDate": "Fälligkeitsdatum"
-  },
   "errors": {
     "unknownError": "Etwas ist schief gelaufen. Bitte versuchen Sie es erneut."
+  },
+  "pageNavigator": {
+    "next": "Weiter",
+    "previous": "Zurück"
+  },
+  "invoicePreviewPage": {
+    "invoiceRecipient": "Rechnungsempfänger",
+    "dueDate": "Fälligkeitsdatum",
+    "invoiceDate": "Rechnungsdatum",
+    "invoiceNumber": "Rechnungsnummer",
+    "buttons": {
+      "backToInvoices": "Zurück zu den Rechnungen"
+    }
+  },
+  "invoiceFooter": {
+    "thankYou": "Vielen Dank für Ihre Geschäftsbeziehung.",
+    "payment": {
+      "cash": "Zahlungen können in bar bei Lieferung erfolgen.",
+      "payPal": "Zahlungen können über PayPal an: ",
+      "bankTransfer": "Zahlungen können per Banküberweisung an: ",
+      "quote": "Bitte geben Sie die Rechnungsnummer als Referenz an.",
+      "noPayPal": "Keine PayPal-Informationen verfügbar."
+    }
+  },
+  "invoicePage": {
+    "emptyData": {
+      "title": "Sie haben noch keine Rechnungen",
+      "description": "Beginnen Sie hier mit der Rechnungserstellung, um sie zu verwalten."
+    }
   }
 }

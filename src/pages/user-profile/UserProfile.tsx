@@ -46,7 +46,7 @@ const UserProfile = () => {
 
   return (
     <PageLayout showHeader={false}>
-      <ResizablePanelGroup direction='horizontal' className='space-x-4 p-8'>
+      <ResizablePanelGroup direction='horizontal' className='space-x-4 p-5'>
         <ResizablePanel className='h-full w-full overflow-auto rounded-xl bg-card p-4 shadow-sm'>
           {FormComponent}
         </ResizablePanel>

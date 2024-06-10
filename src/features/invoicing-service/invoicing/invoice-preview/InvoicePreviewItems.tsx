@@ -1,11 +1,22 @@
 import { Typography } from '@/components/ui/typography'
-import { useInvoiceStore } from '../../utils/useInvoiceTemplate'
+import { useTranslation } from 'react-i18next'
+import {
+  InvoiceTemplateTableRowItemType,
+  useInvoiceStore
+} from '../../utils/useInvoiceTemplate'
 
-const InvoicePreviewItems = () => {
+type InvoicePreviewItemsProps = {
+  existingItems?: InvoiceTemplateTableRowItemType[]
+}
+const InvoicePreviewItems = ({ existingItems }: InvoicePreviewItemsProps) => {
+  const { t } = useTranslation()
   const { invoiceItems } = useInvoiceStore()
+
+  const invoiceItemsToRender = existingItems || invoiceItems
+
   return (
     <div className='flex w-full flex-col items-start justify-start gap-3'>
-      {invoiceItems.map((item, index) => (
+      {invoiceItemsToRender.map((item, index) => (
         <div
           key={index}
           className='flex w-full items-center justify-between gap-4 rounded-none border border-l-0 border-r-0 border-t-0 border-solid border-border px-2 py-1 '
@@ -19,7 +30,7 @@ const InvoicePreviewItems = () => {
           </div>
           <div className='flex flex-1 flex-col'>
             <Typography size='xs' className='text-muted-foreground'>
-              Rate:
+              {t('invoiceItem.invoiceItemRate', 'Rate')}
             </Typography>
             <Typography size='sm' className='font-semibold'>
               {item.rate}
@@ -28,7 +39,7 @@ const InvoicePreviewItems = () => {
           </div>
           <div className='flex flex-1 flex-col'>
             <Typography size='xs' className='text-muted-foreground'>
-              Hours:
+              {t('invoiceItem.invoiceItemHours', 'Hours')}
             </Typography>
             <Typography size='sm' className='font-semibold'>
               {item.hours}
@@ -36,7 +47,7 @@ const InvoicePreviewItems = () => {
           </div>
           <div className='flex flex-1 flex-col'>
             <Typography size='xs' className='text-muted-foreground'>
-              Amount:
+              {t('invoiceItem.invoiceItemAmount', 'Amount')}
             </Typography>
             <Typography size='sm' className='font-semibold'>
               {item.amount.toFixed(2)}

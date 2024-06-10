@@ -67,7 +67,8 @@
       "private": "Profile",
       "business": "Company Profile",
       "businessAddress": "Company Address",
-      "privateAddress": "Address"
+      "privateAddress": "Address",
+      "paymentInformation": "Payment Information"
     },
     "labels": {
       "businessName": "Business Name",
@@ -88,7 +89,11 @@
       "industry": "Industry",
       "industryPlaceholder": "e.g. Marketing & Advertising, IT Services, etc.",
       "businessInfo": "Business Info",
-      "username": "Username"
+      "username": "Username",
+      "payPalEmail": "PayPal Email (optional)",
+      "bankName": "Bank Name",
+      "iban": "IBAN",
+      "bic": "BIC"
     },
     "toasts": {
       "success": "Profile updated successfully.",
@@ -317,7 +322,10 @@
       "send": "Send Invoice",
       "sendPending": "Sending Invoice...",
       "sendError": "Error sending invoice. Please try again.",
-      "printInvoice": "Print Invoice"
+      "printInvoice": "Print Invoice",
+      "printError": "Error printing invoice. Please try again.",
+      "saveAsDraft": "Save as Draft",
+      "saveAsDraftPending": "Saving as Draft..."
     }
   },
   "invoiceTemplateRowItem": {
@@ -349,11 +357,36 @@
     "declined": "Declined",
     "unknown": "None"
   },
-  "invoicePreview": {
-    "invoiceRecipient": "Recipient",
-    "dueDate": "Due Date"
-  },
   "errors": {
     "unknownError": "Something went wrong. Please try again."
+  },
+  "pageNavigator": {
+    "next": "Next",
+    "previous": "Previous"
+  },
+  "invoicePreviewPage": {
+    "invoiceRecipient": "Recipient",
+    "dueDate": "Due Date",
+    "invoiceDate": "Invoice Date",
+    "invoiceNumber": "Invoice Number",
+    "buttons": {
+      "backToInvoices": "Back to Invoices"
+    }
+  },
+  "invoiceFooter": {
+    "thankYou": "Thank you for your business!",
+    "payment": {
+      "cash": "Payments can be made by cash.",
+      "payPal": "Payments can be made via PayPal to: ",
+      "bankTransfer": "Payments can be made via bank transfer to: ",
+      "quote": "Please quote the invoice number on the remittance advice.",
+      "noPayPal": "No PayPal email provided."
+    }
+  },
+  "invoicePage": {
+    "emptyData": {
+      "title": "No invoices yet.",
+      "description": "Start creating invoices to manage them here."
+    }
   }
 }

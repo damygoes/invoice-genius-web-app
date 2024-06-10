@@ -36,6 +36,21 @@ export const businessUserProfileFormSchema = z.object({
   }),
   industry: z.string().min(2, {
     message: 'Industry is required'
+  }),
+  payPalEmail: z
+    .string()
+    .email({
+      message: 'Invalid email format'
+    })
+    .optional(),
+  bankName: z.string().min(2, {
+    message: 'Bank name is required'
+  }),
+  iban: z.string().min(2, {
+    message: 'IBAN is required'
+  }),
+  bic: z.string().min(2, {
+    message: 'BIC is required'
   })
 })
 

@@ -49,7 +49,7 @@ const DesktopNavigationLinks = () => {
   if (user?.selectedServices?.includes('invoicing')) {
     navigationLinks.push({
       title: `${t('sidebarNav.invoicing', 'Invoicing')}`,
-      href: '/invoice-management',
+      href: '/invoicing',
       icon: BookUser
     })
   }

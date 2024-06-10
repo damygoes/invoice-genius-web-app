@@ -1,4 +1,5 @@
 import CreateInvoiceButton from '@/components/invoicing/CreateInvoiceButton'
+import EmptyDataRenderer from '@/components/shared/EmptyDataRenderer'
 import UnknownErrorFallback from '@/components/shared/UnknownErrorFallback'
 import { Heading } from '@/components/ui/heading'
 import { ScrollArea } from '@/components/ui/scroll-area'
@@ -42,22 +43,29 @@ const InvoiceList = () => {
         <Heading>{t('invoicingPage.title', 'Invoices')}</Heading>
         <CreateInvoiceButton />
       </div>
-      <ScrollArea className='flex h-full w-full flex-col items-start justify-between gap-5 rounded-lg'>
-        <Reorder.Group
-          axis='y'
-          values={invoices}
-          onReorder={setInvoices}
-          className='flex w-full flex-col gap-2'
-        >
-          <AnimatePresence>
-            {invoices.map((invoice, index) => (
-              <Reorder.Item key={invoice.id} value={invoice}>
-                <Invoice key={invoice.id} invoice={invoice} index={index} />
-              </Reorder.Item>
-            ))}
-          </AnimatePresence>
-        </Reorder.Group>
-      </ScrollArea>
+      {invoices.length === 0 ? (
+        <EmptyDataRenderer
+          title={`${t('invoicePage.emptyData.title', 'No Invoices')}`}
+          description={`${t('invoicePage.emptyData.description', "You don't have any invoices yet. Create a new invoice to get started.")}`}
+        />
+      ) : (
+        <ScrollArea className='flex h-full w-full flex-col items-start justify-between gap-5 rounded-lg'>
+          <Reorder.Group
+            axis='y'
+            values={invoices}
+            onReorder={setInvoices}
+            className='flex w-full flex-col gap-2'
+          >
+            <AnimatePresence>
+              {invoices.map(invoice => (
+                <Reorder.Item key={invoice.id} value={invoice}>
+                  <Invoice key={invoice.id} invoice={invoice} />
+                </Reorder.Item>
+              ))}
+            </AnimatePresence>
+          </Reorder.Group>
+        </ScrollArea>
+      )}
     </section>
   )
 }

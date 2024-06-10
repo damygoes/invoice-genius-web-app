@@ -11,7 +11,7 @@ const InvoiceTotalCard = () => {
   const total = getTotal()
 
   return (
-    <section className='flex w-full flex-col items-end justify-start gap-2 rounded-md bg-input p-4'>
+    <section className='flex w-full flex-col items-end justify-start gap-2 rounded-md bg-input/50 p-4'>
       <div className='flex items-center justify-end gap-5 font-light'>
         <InvoiceItemLabel
           label={t('invoiceTemplate.subTotal', 'Subtotal')}
