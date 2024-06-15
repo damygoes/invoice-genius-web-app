@@ -80,6 +80,11 @@ export const useSavedClient = () => {
     }
   }
 
+  const getSavedClient = async (id: string): Promise<SavedClient> => {
+    const response = await axiosClient.get(`clients/${id}`)
+    return response.data
+  }
+
   return {
     savedclientToEdit,
     setSavedClientToEdit,
@@ -91,6 +96,7 @@ export const useSavedClient = () => {
     savedClientDeleteModal,
     setSavedClientDeleteModal,
     savedClientToDelete,
-    setSavedClientToDelete
+    setSavedClientToDelete,
+    getSavedClient
   }
 }

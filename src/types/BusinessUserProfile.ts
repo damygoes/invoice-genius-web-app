@@ -15,4 +15,8 @@ export type BusinessUserProfile = {
   businessPhone: string
   businessMobile: string
   industry: string
+  payPalEmail: string
+  bankName: string
+  iban: string
+  bic: string
 }

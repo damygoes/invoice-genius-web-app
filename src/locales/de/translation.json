@@ -22,7 +22,10 @@
     "delete": "Löschen",
     "loading": "Laden...",
     "drag": "Ziehen zum Neuanordnen",
-    "edit": "Bearbeiten"
+    "edit": "Bearbeiten",
+    "back": "Zurück",
+    "showDetails": "Details anzeigen",
+    "hideDetails": "Details ausblenden"
   },
   "userTypeSelect": {
     "private": "Privat",
@@ -64,7 +67,8 @@
       "private": "Profil",
       "business": "Geschäftsprofil",
       "businessAddress": "Geschäftsadresse",
-      "privateAddress": "Adresse"
+      "privateAddress": "Adresse",
+      "paymentInformation": "Zahlungsinformationen"
     },
     "labels": {
       "businessName": "Firmenname",
@@ -85,7 +89,11 @@
       "industry": "Branche",
       "industryPlaceholder": "z.b IT, Finanzen, etc.",
       "businessInfo": "Betriebsinformationen",
-      "username": "Benutzername"
+      "username": "Benutzername",
+      "payPalEmail": "PayPal Email (optional)",
+      "bankName": "Bankname",
+      "iban": "IBAN",
+      "bic": "BIC"
     },
     "toasts": {
       "success": "Profil erfolgreich aktualisiert.",
@@ -284,12 +292,101 @@
     },
     "emptyData": {
       "title": "Sie haben noch keine Kunden",
-      "description": "Klicken Sie auf die Schaltfläche oben, um einen neuen Kunden hinzuzufügen."
+      "description": "Bitte fügen Sie einen neuen Kunden hinzu."
     }
   },
   "error404Page": {
     "title": "Ups! Im Hauptbuch verloren?",
     "description": "Es sieht so aus, als ob auf der gesuchten Seite ein Ungleichgewicht herrscht.",
     "action": "Zurück zum Geschäftlichen"
+  },
+  "clientSelectDropdown": {
+    "placeholder": "Kunden auswählen",
+    "noOptions": "Keine Optionen"
+  },
+  "invoiceTemplate": {
+    "title": "Rechnung erstellen",
+    "tableHeader": {
+      "service": "Service",
+      "description": "Beschreibung",
+      "rate": "Rate",
+      "hours": "Stunden",
+      "amount": "Betrag"
+    },
+    "subTotal": "Zwischensumme",
+    "vat": "MwSt (19%)",
+    "total": "Gesamt",
+    "buttons": {
+      "preview": "Rechnungsvorschau",
+      "previewError": "Fehler beim Generieren der Vorschau. Bitte versuchen Sie es erneut.",
+      "send": "Rechnung senden",
+      "sendPending": "Senden läuft...",
+      "sendError": "Fehler beim Senden der Rechnung. Bitte versuchen Sie es erneut.",
+      "printInvoice": "Rechnung drucken",
+      "printError": "Fehler beim Drucken der Rechnung. Bitte versuchen Sie es erneut.",
+      "saveAsDraft": "Als Entwurf speichern",
+      "saveAsDraftPending": "Speichern läuft..."
+    }
+  },
+  "invoiceTemplateRowItem": {
+    "add": "Artikel hinzufügen",
+    "delete": "Artikel löschen"
+  },
+  "invoiceItem": {
+    "deleteInvoice": "Rechnung löschen",
+    "recipient": "Empfänger",
+    "subTotal": "Zw.Summe",
+    "vat": "MwSt",
+    "total": "Gesamt",
+    "invoiceDate": "Rechnungsdatum",
+    "dueDate": "Fälligkeitsdatum",
+    "invoiceNumber": "Rechnungsnummer",
+    "invoiceItems": "Rechnungspositionen",
+    "invoiceItem": "Rechnungsposition",
+    "invoiceItemDescription": "Beschreibung",
+    "invoiceItemRate": "Rate",
+    "invoiceItemHours": "Stunden",
+    "invoiceItemAmount": "Betrag",
+    "invoiceStatus": "Rechnungsstatus"
+  },
+  "invoiceItemStatus": {
+    "paid": "Bezahlt",
+    "pending": "Ausstehend",
+    "overdue": "Überfällig",
+    "draft": "Entwurf",
+    "declined": "Abgelehnt",
+    "unknown": "Keine"
+  },
+  "errors": {
+    "unknownError": "Etwas ist schief gelaufen. Bitte versuchen Sie es erneut."
+  },
+  "pageNavigator": {
+    "next": "Weiter",
+    "previous": "Zurück"
+  },
+  "invoicePreviewPage": {
+    "invoiceRecipient": "Rechnungsempfänger",
+    "dueDate": "Fälligkeitsdatum",
+    "invoiceDate": "Rechnungsdatum",
+    "invoiceNumber": "Rechnungsnummer",
+    "buttons": {
+      "backToInvoices": "Zurück zu den Rechnungen"
+    }
+  },
+  "invoiceFooter": {
+    "thankYou": "Vielen Dank für Ihre Geschäftsbeziehung.",
+    "payment": {
+      "cash": "Zahlungen können in bar bei Lieferung erfolgen.",
+      "payPal": "Zahlungen können über PayPal an: ",
+      "bankTransfer": "Zahlungen können per Banküberweisung an: ",
+      "quote": "Bitte geben Sie die Rechnungsnummer als Referenz an.",
+      "noPayPal": "Keine PayPal-Informationen verfügbar."
+    }
+  },
+  "invoicePage": {
+    "emptyData": {
+      "title": "Sie haben noch keine Rechnungen",
+      "description": "Beginnen Sie hier mit der Rechnungserstellung, um sie zu verwalten."
+    }
   }
 }

@@ -10,8 +10,8 @@ import { QueryClient, useMutation, useQuery } from '@tanstack/react-query'
 import { AnimatePresence, Reorder } from 'framer-motion'
 import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
+import { useSavedClient } from '../utils/useSavedClient'
 import SavedClientItem from './SavedClientItem'
-import { useSavedClient } from './useSavedClient'
 
 const SavedClientsList = () => {
   const queryClient = new QueryClient()

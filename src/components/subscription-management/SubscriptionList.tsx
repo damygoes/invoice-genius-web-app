@@ -8,6 +8,7 @@ import { useTranslation } from 'react-i18next'
 import DeleteIcon from '../shared/DeleteIcon'
 import EmptyDataRenderer from '../shared/EmptyDataRenderer'
 import LoadingSkeleton from '../shared/LoadingSkeleton'
+import UnknownErrorFallback from '../shared/UnknownErrorFallback'
 import { Checkbox } from '../ui/checkbox'
 import { MinusCheckbox } from '../ui/minus-checkbox'
 import { ScrollArea } from '../ui/scroll-area'
@@ -51,7 +52,7 @@ const SubscriptionList = () => {
   }
 
   if (isError) {
-    return <div>Error Component...</div>
+    return <UnknownErrorFallback />
   }
 
   if (!UserSubscriptions) {

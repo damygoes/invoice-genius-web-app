@@ -22,7 +22,10 @@
     "delete": "Delete",
     "loading": "Loading...",
     "drag": "Drag to reorder",
-    "edit": "Edit"
+    "edit": "Edit",
+    "back": "Back",
+    "showDetails": "Show Details",
+    "hideDetails": "Hide Details"
   },
   "userTypeSelect": {
     "private": "Private",
@@ -64,7 +67,8 @@
       "private": "Profile",
       "business": "Company Profile",
       "businessAddress": "Company Address",
-      "privateAddress": "Address"
+      "privateAddress": "Address",
+      "paymentInformation": "Payment Information"
     },
     "labels": {
       "businessName": "Business Name",
@@ -85,7 +89,11 @@
       "industry": "Industry",
       "industryPlaceholder": "e.g. Marketing & Advertising, IT Services, etc.",
       "businessInfo": "Business Info",
-      "username": "Username"
+      "username": "Username",
+      "payPalEmail": "PayPal Email (optional)",
+      "bankName": "Bank Name",
+      "iban": "IBAN",
+      "bic": "BIC"
     },
     "toasts": {
       "success": "Profile updated successfully.",
@@ -291,5 +299,94 @@
     "title": " Oops! Lost in the Ledger?",
     "description": "It looks like the page you're searching for is out of balance.",
     "action": "Back to business"
+  },
+  "clientSelectDropdown": {
+    "placeholder": "Select a client",
+    "noOptions": "No clients found"
+  },
+  "invoiceTemplate": {
+    "title": "Generate Invoice",
+    "tableHeader": {
+      "service": "Service",
+      "description": "Description",
+      "rate": "Rate",
+      "hours": "Hours",
+      "amount": "Amount"
+    },
+    "subTotal": "Subtotal",
+    "vat": "VAT (19%)",
+    "total": "Total",
+    "buttons": {
+      "preview": "Preview Invoice",
+      "previewError": "Error previewing invoice. Please try again.",
+      "send": "Send Invoice",
+      "sendPending": "Sending Invoice...",
+      "sendError": "Error sending invoice. Please try again.",
+      "printInvoice": "Print Invoice",
+      "printError": "Error printing invoice. Please try again.",
+      "saveAsDraft": "Save as Draft",
+      "saveAsDraftPending": "Saving as Draft..."
+    }
+  },
+  "invoiceTemplateRowItem": {
+    "add": "Add Item",
+    "delete": "Delete Item"
+  },
+  "invoiceItem": {
+    "deleteInvoice": "Delete invoice",
+    "recipient": "Recipient",
+    "subTotal": "Subtotal",
+    "vat": "VAT",
+    "total": "Total",
+    "invoiceDate": "Invoice Date",
+    "dueDate": "Due Date",
+    "invoiceNumber": "Invoice Number",
+    "invoiceItems": "Invoice Items",
+    "invoiceItem": "Invoice Item",
+    "invoiceItemDescription": "Description",
+    "invoiceItemRate": "Rate",
+    "invoiceItemHours": "Hours",
+    "invoiceItemAmount": "Amount",
+    "invoiceStatus": "Invoice Status"
+  },
+  "invoiceItemStatus": {
+    "paid": "Paid",
+    "pending": "Pending",
+    "overdue": "Overdue",
+    "draft": "Draft",
+    "declined": "Declined",
+    "unknown": "None"
+  },
+  "errors": {
+    "unknownError": "Something went wrong. Please try again."
+  },
+  "pageNavigator": {
+    "next": "Next",
+    "previous": "Previous"
+  },
+  "invoicePreviewPage": {
+    "invoiceRecipient": "Recipient",
+    "dueDate": "Due Date",
+    "invoiceDate": "Invoice Date",
+    "invoiceNumber": "Invoice Number",
+    "buttons": {
+      "backToInvoices": "Back to Invoices"
+    }
+  },
+  "invoiceFooter": {
+    "thankYou": "Thank you for your business!",
+    "payment": {
+      "cash": "Payments can be made by cash.",
+      "payPal": "Payments can be made via PayPal to: ",
+      "bankTransfer": "Payments can be made via bank transfer to: ",
+      "quote": "Please quote the invoice number on the remittance advice.",
+      "noPayPal": "No PayPal email provided."
+    }
+  },
+  "invoicePage": {
+    "emptyData": {
+      "title": "No invoices yet.",
+      "description": "Start creating invoices to manage them here."
+    }
   }
 }

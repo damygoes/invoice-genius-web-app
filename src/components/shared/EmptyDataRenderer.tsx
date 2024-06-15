@@ -1,13 +1,12 @@
 import { cn } from '@/lib/utils'
 import { ReactNode } from 'react'
 import { Button } from '../ui/button'
-import { Heading } from '../ui/heading'
 import { Typography } from '../ui/typography'
 import { Icons } from './Icons'
 
 type EmptyDataRendererProps = {
   title: string
-  description: string
+  description?: string
   withActionButton?: boolean
   buttonText?: string
   onClick?: () => void
@@ -44,7 +43,7 @@ const EmptyDataRenderer = ({
     >
       <EmptyIcon className='size-24' />
       <div className='flex flex-col items-center gap-1 text-center'>
-        <Heading>{title}</Heading>
+        <Typography size='2xl'>{title}</Typography>
         <Typography className='text-muted-foreground' size='sm'>
           {description}
         </Typography>

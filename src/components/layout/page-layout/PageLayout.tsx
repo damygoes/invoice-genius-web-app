@@ -8,6 +8,7 @@ import {
 } from '@/components/ui/breadcrumb'
 import { Input } from '@/components/ui/input'
 import useMediaQuery from '@/hooks/useMediaQuery'
+import { cn } from '@/lib/utils'
 import { Search } from 'lucide-react'
 import React from 'react'
 import { Link } from 'react-router-dom'
@@ -16,11 +17,13 @@ interface PageLayoutProps extends React.HTMLAttributes<HTMLDivElement> {
   children: React.ReactNode
   pageNavComponent?: React.ReactNode
   showHeader?: boolean
+  className?: string
 }
 const PageLayout = ({
   children,
   pageNavComponent,
-  showHeader = true
+  showHeader = true,
+  className
 }: PageLayoutProps) => {
   const screenSize = useMediaQuery()
 
@@ -62,7 +65,12 @@ const PageLayout = ({
           </div>
         </header>
       )}
-      <main className='scrollbar-hide h-full w-full flex-1 overflow-y-auto overflow-x-hidden rounded-t-lg bg-secondary'>
+      <main
+        className={cn(
+          'scrollbar-hide h-full w-full flex-1 overflow-y-auto overflow-x-hidden rounded-t-lg bg-secondary',
+          className
+        )}
+      >
         {children}
       </main>
     </section>

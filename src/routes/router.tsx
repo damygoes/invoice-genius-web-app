@@ -3,6 +3,7 @@ import Error404Page from '@/components/shared/Error404Page'
 import {
   DashboardPage,
   InvoiceManagementPage,
+  InvoicePreviewPage,
   OnboardingPage,
   ReceiptManagementPage,
   SubscriptionsManagementPage,
@@ -47,12 +48,10 @@ export const router = createBrowserRouter(
           }}
         />
         ,
+        <Route path='invoicing' element={<InvoiceManagementPage />} />
         <Route
-          path='invoice-management'
-          element={<InvoiceManagementPage />}
-          loader={() => {
-            return <div>Invoice Loader</div>
-          }}
+          path='invoicing/invoice-preview'
+          element={<InvoicePreviewPage />}
         />
         <Route
           path='profile'

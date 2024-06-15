@@ -12,6 +12,7 @@ import ControlledEditingInput from '../controlled-editing-input/ControlledEditin
 import ControlledEditingTextarea from '../controlled-editing-text-area/ControlledEditingTextarea'
 import AvatarUploader from '../shared/AvatarUploader'
 import FormButtons from '../shared/FormButtons'
+import { Divider } from '../ui/divider'
 import {
   Form,
   FormControl,
@@ -58,7 +59,11 @@ const BusinessUserProfileForm = ({
       businessEmail: '',
       businessPhone: '',
       businessMobile: '',
-      industry: ''
+      industry: '',
+      payPalEmail: '',
+      bankName: '',
+      iban: '',
+      bic: ''
     }
   })
 
@@ -90,6 +95,10 @@ const BusinessUserProfileForm = ({
       form.setValue('businessPhone', profile.businessPhone ?? '')
       form.setValue('businessMobile', profile.businessMobile ?? '')
       form.setValue('industry', profile.industry ?? '')
+      form.setValue('payPalEmail', profile.payPalEmail ?? '')
+      form.setValue('bankName', profile.bankName ?? '')
+      form.setValue('iban', profile.iban ?? '')
+      form.setValue('bic', profile.bic ?? '')
     }
   }, [form, profile])
 
@@ -129,10 +138,7 @@ const BusinessUserProfileForm = ({
         <Typography size='2xl'>
           {t('profileForm.title.business', 'Business Profile')}
         </Typography>
-        <AvatarUploader
-          containerClassName='size-14'
-          // isLoading={isAvatarLoading}
-        />
+        <AvatarUploader containerClassName='size-14' />
       </div>
 
       <form
@@ -162,7 +168,6 @@ const BusinessUserProfileForm = ({
               </FormItem>
             )}
           />
-
           <FormField
             control={form.control}
             name='businessInfo'
@@ -202,7 +207,8 @@ const BusinessUserProfileForm = ({
               </FormItem>
             )}
           />
-          <div className='grid w-full grid-cols-1 lg:grid-cols-2 lg:gap-x-5 lg:gap-y-2'>
+          <Divider orientation='horizontal' variant='secondary' />
+          <div className='mt-3 grid w-full grid-cols-1 lg:grid-cols-2 lg:gap-x-5 lg:gap-y-2'>
             <Typography className='col-span-2 mb-2 font-semibold'>
               {t('profileForm.title.businessAddress', 'Business Address')}
             </Typography>
@@ -392,6 +398,93 @@ const BusinessUserProfileForm = ({
                   <FormControl>
                     <ControlledEditingInput
                       placeholder={`${t('profileForm.labels.mobile', 'Mobile')}`}
+                      disabled={!isFormInEditMode}
+                      {...field}
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+          </div>
+          <Divider
+            orientation='horizontal'
+            variant='secondary'
+            className='my-5'
+          />
+          <div className='grid w-full grid-cols-1 lg:grid-cols-2 lg:gap-x-5 lg:gap-y-2'>
+            <Typography className='col-span-2 mb-2 font-semibold'>
+              {t('profileForm.title.paymentInformation', 'Payment Information')}
+            </Typography>
+            <div className='grid grid-cols-1 gap-3 gap-x-5 lg:col-span-2 lg:grid-cols-3 lg:gap-y-2'>
+              <FormField
+                control={form.control}
+                name='bankName'
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>
+                      {t('profileForm.labels.bankName', 'Bank Name')}
+                    </FormLabel>
+                    <FormControl>
+                      <ControlledEditingInput
+                        placeholder={`${t('profileForm.labels.bankName', 'Bank Name')}`}
+                        disabled={!isFormInEditMode}
+                        {...field}
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+
+              <FormField
+                control={form.control}
+                name='iban'
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>
+                      {t('profileForm.labels.iban', 'IBAN')}
+                    </FormLabel>
+                    <FormControl>
+                      <ControlledEditingInput
+                        placeholder={`${t('profileForm.labels.iban', 'IBAN')}`}
+                        disabled={!isFormInEditMode}
+                        {...field}
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <FormField
+                control={form.control}
+                name='bic'
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>{t('profileForm.labels.bic', 'BIC')}</FormLabel>
+                    <FormControl>
+                      <ControlledEditingInput
+                        placeholder={`${t('profileForm.labels.bic', 'BIC')}`}
+                        disabled={!isFormInEditMode}
+                        {...field}
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+            </div>
+            <FormField
+              control={form.control}
+              name='payPalEmail'
+              render={({ field }) => (
+                <FormItem className='col-span-2 mb-5'>
+                  <FormLabel>
+                    {t('profileForm.labels.payPalEmail', 'PayPal Email')}
+                  </FormLabel>
+                  <FormControl>
+                    <ControlledEditingInput
+                      placeholder={`${t('profileForm.labels.payPalEmail', 'PayPal Email')}`}
                       disabled={!isFormInEditMode}
                       {...field}
                     />

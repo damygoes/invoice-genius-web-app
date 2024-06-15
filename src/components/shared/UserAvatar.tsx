@@ -1,12 +1,17 @@
 import { useAvatar } from '@/hooks/useAvatar'
 import { useUser } from '@/hooks/useUser'
+import { cn } from '@/lib/utils'
 import { convertBase64StringToUrl } from '@/utils/convertBase64StringToUrl'
 import { useQuery } from '@tanstack/react-query'
 import { CircleUserRound } from 'lucide-react'
 import { useEffect, useState } from 'react'
 import { Avatar, AvatarFallback, AvatarImage } from '../ui/avatar'
 
-const UserAvatar = () => {
+type UserAvatarProps = {
+  className?: string
+}
+
+const UserAvatar = ({ className }: UserAvatarProps) => {
   const { fetchAvatar } = useAvatar()
   const { user } = useUser()
   const [avatarUrl, setAvatarUrl] = useState<string>('')
@@ -28,7 +33,7 @@ const UserAvatar = () => {
   }, [data])
 
   return (
-    <Avatar>
+    <Avatar className={cn(className)}>
       <AvatarImage src={avatarUrl} />
       <AvatarFallback>
         <CircleUserRound size={12} />
