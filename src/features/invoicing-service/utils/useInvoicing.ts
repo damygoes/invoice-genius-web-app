@@ -8,6 +8,11 @@ type IInvoicingStore = {
   isInvoiceForm: boolean
   setClientForm: (isOpen: boolean) => void
   setInvoiceForm: (isOpen: boolean) => void
+  invoiceToDelete: InvoiceItem | null
+  setInvoiceToDelete: (invoice: InvoiceItem | null) => void
+  invoiceDeleteModalOpen: boolean
+  setInvoiceDeleteModalOpen: (isOpen: boolean) => void
+  resetInvoiceStore: () => void
 }
 
 export const possibleInvoiceManagementServices = [
@@ -19,18 +24,40 @@ const invoiceManagementStore = create<IInvoicingStore>(set => ({
   isClientForm: false,
   isInvoiceForm: false,
   setClientForm: isOpen => set({ isClientForm: isOpen }),
-  setInvoiceForm: isOpen => set({ isInvoiceForm: isOpen })
+  setInvoiceForm: isOpen => set({ isInvoiceForm: isOpen }),
+  invoiceToDelete: null,
+  setInvoiceToDelete: invoice => set({ invoiceToDelete: invoice }),
+  invoiceDeleteModalOpen: false,
+  setInvoiceDeleteModalOpen: isOpen => set({ invoiceDeleteModalOpen: isOpen }),
+  resetInvoiceStore: () => {
+    set({ isClientForm: false, isInvoiceForm: false })
+    set({ invoiceToDelete: null, invoiceDeleteModalOpen: false })
+  }
 }))
 
 export const useInvoicing = () => {
-  const { isClientForm, isInvoiceForm, setClientForm, setInvoiceForm } =
-    invoiceManagementStore()
+  const {
+    isClientForm,
+    isInvoiceForm,
+    setClientForm,
+    setInvoiceForm,
+    invoiceToDelete,
+    setInvoiceToDelete,
+    invoiceDeleteModalOpen,
+    setInvoiceDeleteModalOpen,
+    resetInvoiceStore
+  } = invoiceManagementStore()
 
   return {
     isClientForm,
     isInvoiceForm,
     setClientForm,
-    setInvoiceForm
+    setInvoiceForm,
+    invoiceToDelete,
+    setInvoiceToDelete,
+    invoiceDeleteModalOpen,
+    setInvoiceDeleteModalOpen,
+    resetInvoiceStore
   }
 }
 
@@ -53,8 +80,14 @@ export const useInvoicingActions = () => {
     return response.data as InvoiceItem[]
   }
 
+  const deleteInvoice = async (invoiceId: string) => {
+    const response = await axiosClient.delete(`/invoices/${invoiceId}`)
+    return response.data
+  }
+
   return {
     fetchInvoices,
-    handlePrintInvoice
+    handlePrintInvoice,
+    deleteInvoice
   }
 }

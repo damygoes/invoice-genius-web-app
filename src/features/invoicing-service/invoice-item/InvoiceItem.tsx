@@ -10,6 +10,7 @@ import { useQuery } from '@tanstack/react-query'
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { GetSavedClientDetails } from '../utils/getSavedClientDetails'
+import { useInvoicing } from '../utils/useInvoicing'
 import { useSavedClient } from '../utils/useSavedClient'
 import InvoiceItemDetails from './InvoiceItemDetails'
 import InvoiceItemLabel from './InvoiceItemLabel'
@@ -22,6 +23,7 @@ type InvoiceProps = {
 
 const Invoice = ({ invoice }: InvoiceProps) => {
   const { getSavedClient } = useSavedClient()
+  const { setInvoiceToDelete, setInvoiceDeleteModalOpen } = useInvoicing()
   const { t } = useTranslation()
   const [showInvoiceDetails, setShowInvoiceDetails] = useState(false)
 
@@ -48,12 +50,13 @@ const Invoice = ({ invoice }: InvoiceProps) => {
 
   const { name, address } = clientDetails
 
-  const handleDeleteInvoice = () => {
-    // Handle delete invoice
+  const handleDeleteInvoice = (invoice: InvoiceItem) => {
+    setInvoiceToDelete(invoice)
+    setInvoiceDeleteModalOpen(true)
   }
 
   return (
-    <div>
+    <>
       <div
         key={invoice.id}
         className={cn(
@@ -126,7 +129,7 @@ const Invoice = ({ invoice }: InvoiceProps) => {
         <section className='z-10 flex items-center gap-4'>
           <DeleteIcon
             tooltipContent={`${t('invoiceItem.deleteInvoice', 'Delete invoice')}`}
-            onClick={handleDeleteInvoice}
+            onClick={() => handleDeleteInvoice(invoice)}
           />
           {showInvoiceDetails ? (
             <HideIcon onClick={() => setShowInvoiceDetails(false)} />
@@ -136,7 +139,7 @@ const Invoice = ({ invoice }: InvoiceProps) => {
         </section>
       </div>
       {showInvoiceDetails && <InvoiceItemDetails invoice={invoice} />}
-    </div>
+    </>
   )
 }
 

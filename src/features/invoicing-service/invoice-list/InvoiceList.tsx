@@ -1,4 +1,5 @@
 import CreateInvoiceButton from '@/components/invoicing/CreateInvoiceButton'
+import DeleteInvoiceItemModal from '@/components/invoicing/DeleteInvoiceItemModal'
 import EmptyDataRenderer from '@/components/shared/EmptyDataRenderer'
 import UnknownErrorFallback from '@/components/shared/UnknownErrorFallback'
 import { Heading } from '@/components/ui/heading'
@@ -9,12 +10,13 @@ import { AnimatePresence, Reorder } from 'framer-motion'
 import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import Invoice from '../invoice-item/InvoiceItem'
-import { useInvoicingActions } from '../utils/useInvoicing'
+import { useInvoicing, useInvoicingActions } from '../utils/useInvoicing'
 import InvoiceListSkeleton from './InvoiceListSkeleton'
 
 const InvoiceList = () => {
   const { t } = useTranslation()
   const { fetchInvoices } = useInvoicingActions()
+  const { invoiceDeleteModalOpen } = useInvoicing()
   const { data: fetchedInvoices, isLoading: isFetchingInvoices } = useQuery({
     queryKey: ['invoices'],
     queryFn: fetchInvoices,
@@ -49,7 +51,7 @@ const InvoiceList = () => {
           description={`${t('invoicePage.emptyData.description', "You don't have any invoices yet. Create a new invoice to get started.")}`}
         />
       ) : (
-        <ScrollArea className='flex h-full w-full flex-col items-start justify-between gap-5 rounded-lg'>
+        <ScrollArea className='scrollbar-hide flex h-full w-full flex-col items-start justify-between gap-5 rounded-lg'>
           <Reorder.Group
             axis='y'
             values={invoices}
@@ -66,6 +68,7 @@ const InvoiceList = () => {
           </Reorder.Group>
         </ScrollArea>
       )}
+      {invoiceDeleteModalOpen && <DeleteInvoiceItemModal />}
     </section>
   )
 }

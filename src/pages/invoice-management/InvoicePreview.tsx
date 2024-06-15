@@ -80,7 +80,7 @@ const InvoicePreview = () => {
       resetAll()
       toast({
         title: 'Invoice sent',
-        description: `The invoice has been sent to ${selectedClient}`,
+        description: 'The invoice has been sent successfully',
         variant: 'default'
       })
     } catch (error) {
