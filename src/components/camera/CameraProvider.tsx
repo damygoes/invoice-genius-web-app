@@ -1,58 +1,58 @@
-import { defaultErrorMessages } from "@/types/Camera";
-import { createContext, useRef, useState } from "react";
+import { defaultErrorMessages } from '@/types/Camera'
+import { createContext, useRef, useState } from 'react'
 
 interface CameraProviderProps {
-  children: React.ReactNode;
+  children: React.ReactNode
 }
 
 interface CameraContextType {
-  numberOfCameras: number;
-  activeDeviceId: string | undefined;
-  images: string[];
-  devices: MediaDeviceInfo[];
-  playerRef: React.RefObject<HTMLVideoElement>;
-  canvasRef: React.RefObject<HTMLCanvasElement>;
-  containerRef: React.RefObject<HTMLDivElement>;
-  notSupported: boolean;
-  permissionDenied: boolean;
+  numberOfCameras: number
+  activeDeviceId: string | undefined
+  images: string[]
+  devices: MediaDeviceInfo[]
+  playerRef: React.RefObject<HTMLVideoElement>
+  canvasRef: React.RefObject<HTMLCanvasElement>
+  containerRef: React.RefObject<HTMLDivElement>
+  notSupported: boolean
+  permissionDenied: boolean
 
-  setNumberOfCameras: React.Dispatch<React.SetStateAction<number>>;
-  setActiveDeviceId: React.Dispatch<React.SetStateAction<string | undefined>>;
-  setDevices: React.Dispatch<React.SetStateAction<MediaDeviceInfo[]>>;
-  addImage: (imageData: string) => void;
-  removeImage: (index: number) => void;
-  resetImages: () => void;
-  initCameraStream: () => Promise<void>;
-  takePhoto: () => string | undefined;
-  stopStream: () => void;
-  switchCamera: () => void;
+  setNumberOfCameras: React.Dispatch<React.SetStateAction<number>>
+  setActiveDeviceId: React.Dispatch<React.SetStateAction<string | undefined>>
+  setDevices: React.Dispatch<React.SetStateAction<MediaDeviceInfo[]>>
+  addImage: (imageData: string) => void
+  removeImage: (index: number) => void
+  resetImages: () => void
+  initCameraStream: () => Promise<void>
+  takePhoto: () => string | undefined
+  stopStream: () => void
+  switchCamera: () => void
 }
 
 export const CameraContext = createContext<CameraContextType | undefined>(
-  undefined,
-);
+  undefined
+)
 
 export const CameraProvider = ({ children }: CameraProviderProps) => {
   const [activeDeviceId, setActiveDeviceId] = useState<string | undefined>(
-    undefined,
-  );
-  const [images, setImages] = useState<string[]>([]);
-  const [numberOfCameras, setNumberOfCameras] = useState(0);
-  const [devices, setDevices] = useState<MediaDeviceInfo[]>([]);
+    undefined
+  )
+  const [images, setImages] = useState<string[]>([])
+  const [numberOfCameras, setNumberOfCameras] = useState(0)
+  const [devices, setDevices] = useState<MediaDeviceInfo[]>([])
 
-  const playerRef = useRef<HTMLVideoElement | null>(null);
-  const canvasRef = useRef<HTMLCanvasElement>(null);
-  const containerRef = useRef<HTMLDivElement>(null);
-  const [notSupported, setNotSupported] = useState<boolean>(false);
-  const [permissionDenied, setPermissionDenied] = useState<boolean>(false);
-  const [stream, setStream] = useState<MediaStream | null>(null);
+  const playerRef = useRef<HTMLVideoElement | null>(null)
+  const canvasRef = useRef<HTMLCanvasElement>(null)
+  const containerRef = useRef<HTMLDivElement>(null)
+  const [notSupported, setNotSupported] = useState<boolean>(false)
+  const [permissionDenied, setPermissionDenied] = useState<boolean>(false)
+  const [stream, setStream] = useState<MediaStream | null>(null)
 
   const initCameraStream = async () => {
-    stopStream();
+    stopStream()
     if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
-      console.error("Camera API not available");
-      setNotSupported(true);
-      return;
+      console.error('Camera API not available')
+      setNotSupported(true)
+      return
     }
 
     try {
@@ -63,46 +63,46 @@ export const CameraProvider = ({ children }: CameraProviderProps) => {
             deviceId: activeDeviceId ? { exact: activeDeviceId } : undefined,
             width: { min: 640, ideal: 1920 },
             height: { min: 400, ideal: 1080 },
-            aspectRatio: { ideal: 1.7777777778 },
-          },
+            aspectRatio: { ideal: 1.7777777778 }
+          }
         })
         .then((stream: MediaStream) => {
-          setStream(handleSuccess(stream));
+          setStream(handleSuccess(stream))
           if (playerRef.current) {
-            playerRef.current.srcObject = stream;
+            playerRef.current.srcObject = stream
           }
         })
         .catch((error: Error) => {
-          handleError(error);
-        });
+          handleError(error)
+        })
     } catch (error) {
-      console.error("Failed to get camera stream", error);
-      setPermissionDenied(true);
+      console.error('Failed to get camera stream', error)
+      setPermissionDenied(true)
     }
-  };
+  }
   const handleError = (error: Error) => {
-    console.error(error);
+    console.error(error)
 
     //https://developer.mozilla.org/en-US/docs/Web/API/MediaDevices/getUserMedia
-    if (error.name === "PermissionDeniedError") {
-      setPermissionDenied(true);
+    if (error.name === 'PermissionDeniedError') {
+      setPermissionDenied(true)
     } else {
-      setNotSupported(true);
+      setNotSupported(true)
     }
-  };
+  }
 
   const handleSuccess = (stream: MediaStream) => {
-    navigator.mediaDevices.enumerateDevices().then((mediaDevice) => {
-      const devices = mediaDevice.filter((i) => i.kind === "videoinput");
-      setNumberOfCameras(devices.length);
-      setDevices(devices);
+    navigator.mediaDevices.enumerateDevices().then(mediaDevice => {
+      const devices = mediaDevice.filter(i => i.kind === 'videoinput')
+      setNumberOfCameras(devices.length)
+      setDevices(devices)
       if (!activeDeviceId) {
-        setActiveDeviceId(devices[0]?.deviceId);
+        setActiveDeviceId(devices[0]?.deviceId)
       }
-    });
+    })
 
-    return stream;
-  };
+    return stream
+  }
 
   const takePhoto = (): string | undefined => {
     if (
@@ -110,83 +110,83 @@ export const CameraProvider = ({ children }: CameraProviderProps) => {
       !canvasRef.current ||
       !playerRef.current?.videoWidth ||
       !playerRef.current?.videoHeight ||
-      !canvasRef.current?.getContext("2d") ||
+      !canvasRef.current?.getContext('2d') ||
       !containerRef.current?.offsetWidth ||
       !containerRef.current?.offsetHeight
     )
-      return;
+      return
 
-    const playerWidth = playerRef.current.videoWidth ?? 1280;
-    const playerHeight = playerRef.current.videoHeight ?? 720;
-    const playerAR = playerWidth / playerHeight;
+    const playerWidth = playerRef.current.videoWidth ?? 1280
+    const playerHeight = playerRef.current.videoHeight ?? 720
+    const playerAR = playerWidth / playerHeight
 
-    const canvasWidth = containerRef?.current?.offsetWidth ?? 1280;
-    const canvasHeight = containerRef?.current?.offsetHeight ?? 1280;
-    const canvasAR = canvasWidth / canvasHeight;
+    const canvasWidth = containerRef?.current?.offsetWidth ?? 1280
+    const canvasHeight = containerRef?.current?.offsetHeight ?? 1280
+    const canvasAR = canvasWidth / canvasHeight
 
-    let sX, sY, sW, sH;
+    let sX, sY, sW, sH
 
     if (playerAR > canvasAR) {
-      sH = playerHeight;
-      sW = playerHeight * canvasAR;
-      sX = (playerWidth - sW) / 2;
-      sY = 0;
+      sH = playerHeight
+      sW = playerHeight * canvasAR
+      sX = (playerWidth - sW) / 2
+      sY = 0
     } else {
-      sW = playerWidth;
-      sH = playerWidth / canvasAR;
-      sX = 0;
-      sY = (playerHeight - sH) / 2;
+      sW = playerWidth
+      sH = playerWidth / canvasAR
+      sX = 0
+      sY = (playerHeight - sH) / 2
     }
 
-    canvasRef.current.width = sW;
-    canvasRef.current.height = sH;
+    canvasRef.current.width = sW
+    canvasRef.current.height = sH
 
-    const context = canvasRef.current.getContext("2d");
+    const context = canvasRef.current.getContext('2d')
     if (context && playerRef?.current) {
-      context.drawImage(playerRef.current, sX, sY, sW, sH, 0, 0, sW, sH);
+      context.drawImage(playerRef.current, sX, sY, sW, sH, 0, 0, sW, sH)
     }
 
-    const imgData = canvasRef.current.toDataURL("image/jpeg");
+    const imgData = canvasRef.current.toDataURL('image/jpeg')
 
-    return imgData;
-  };
+    return imgData
+  }
 
   const addImage = (imageData: string) => {
-    setImages((prevImages) => [...prevImages, imageData]);
-  };
+    setImages(prevImages => [...prevImages, imageData])
+  }
 
   const removeImage = (index: number) => {
-    setImages((prevImages) => prevImages.filter((_, i) => i !== index));
-  };
+    setImages(prevImages => prevImages.filter((_, i) => i !== index))
+  }
 
   const resetImages = () => {
-    setImages([]);
-  };
+    setImages([])
+  }
 
   const stopStream = () => {
     if (stream) {
-      stream.getTracks().forEach((track) => {
-        track.stop();
-      });
-      setStream(null);
+      stream.getTracks().forEach(track => {
+        track.stop()
+      })
+      setStream(null)
       if (playerRef.current) {
-        playerRef.current.srcObject = null;
+        playerRef.current.srcObject = null
       }
-      console.log("Camera stream stopped");
+      console.log('Camera stream stopped')
     }
-  };
+  }
 
   const switchCamera = () => {
     if (numberOfCameras < 1) {
-      throw new Error(defaultErrorMessages.noCameraAccessible);
+      throw new Error(defaultErrorMessages.noCameraAccessible)
     }
     const nextDevice = devices.find(
-      (device) => device.deviceId !== activeDeviceId,
-    );
+      device => device.deviceId !== activeDeviceId
+    )
     if (nextDevice) {
-      setActiveDeviceId(nextDevice.deviceId);
+      setActiveDeviceId(nextDevice.deviceId)
     }
-  };
+  }
   return (
     <CameraContext.Provider
       value={{
@@ -210,10 +210,10 @@ export const CameraProvider = ({ children }: CameraProviderProps) => {
         takePhoto,
         stopStream,
 
-        switchCamera,
+        switchCamera
       }}
     >
       {children}
     </CameraContext.Provider>
-  );
-};
+  )
+}

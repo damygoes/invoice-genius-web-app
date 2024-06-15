@@ -1,12 +1,12 @@
-import { useCamera } from "@/hooks/useCamera";
-import { CameraProps, defaultErrorMessages } from "@/types/Camera";
-import { TriangleAlert, X } from "lucide-react";
-import React, { useEffect, useImperativeHandle, useState } from "react";
+import { useCamera } from '@/hooks/useCamera'
+import { CameraProps, defaultErrorMessages } from '@/types/Camera'
+import { TriangleAlert, X } from 'lucide-react'
+import React, { useEffect, useImperativeHandle, useState } from 'react'
 
 export const CameraView = React.forwardRef<unknown, CameraProps>(
   (
     { errorMessages = defaultErrorMessages, videoReadyCallback = () => null },
-    ref,
+    ref
   ) => {
     const {
       playerRef,
@@ -17,27 +17,27 @@ export const CameraView = React.forwardRef<unknown, CameraProps>(
       activeDeviceId,
       initCameraStream,
       takePhoto,
-      stopStream,
-    } = useCamera();
+      stopStream
+    } = useCamera()
 
     useImperativeHandle(ref, () => ({
       takePhoto,
-      stopCamera: stopStream,
-    }));
+      stopCamera: stopStream
+    }))
 
     useEffect(() => {
       async function init() {
-        await initCameraStream();
+        await initCameraStream()
       }
-      init();
-    }, [activeDeviceId, initCameraStream]);
+      init()
+    }, [activeDeviceId, initCameraStream])
 
     return (
       <div
         ref={containerRef}
-        className="min-h-[calc(100vh_-_theme(spacing.16))] bg-muted"
+        className='min-h-[calc(100vh_-_theme(spacing.16))] bg-muted'
       >
-        <div className="absolute top-0 left-0 w-full h-svh">
+        <div className='absolute left-0 top-0 h-svh w-full'>
           <WarningMessage
             message={errorMessages.noCameraAccessible!}
             show={notSupported}
@@ -47,55 +47,55 @@ export const CameraView = React.forwardRef<unknown, CameraProps>(
             show={permissionDenied}
           />
           <video
-            className={"z-0 h-svh w-full transform object-cover"}
+            className={'z-0 h-svh w-full transform object-cover'}
             ref={playerRef}
-            id="video"
+            id='video'
             muted={true}
             autoPlay={true}
             playsInline={true}
             onLoadedData={videoReadyCallback}
           ></video>
-          <canvas className="hidden" ref={canvasRef} />
+          <canvas className='hidden' ref={canvasRef} />
         </div>
       </div>
-    );
-  },
-);
+    )
+  }
+)
 
-CameraView.displayName = "CameraView";
+CameraView.displayName = 'CameraView'
 
 function WarningMessage({ message, show }: { message: string; show: boolean }) {
-  const [toShow, setShow] = useState(show);
+  const [toShow, setShow] = useState(show)
   return toShow ? (
-    <div className="p-4 rounded-md bg-yellow-50">
-      <div className="flex">
-        <div className="flex-shrink-0">
+    <div className='bg-yellow-50 rounded-md p-4'>
+      <div className='flex'>
+        <div className='flex-shrink-0'>
           <TriangleAlert
-            className="w-5 h-5 text-yellow-400"
-            aria-hidden="true"
+            className='text-yellow-400 h-5 w-5'
+            aria-hidden='true'
           />
         </div>
-        <div className="ml-3">
-          <h3 className="text-sm font-medium text-yellow-800">
+        <div className='ml-3'>
+          <h3 className='text-yellow-800 text-sm font-medium'>
             Attention needed
           </h3>
-          <div className="mt-2 text-sm text-yellow-700">
+          <div className='text-yellow-700 mt-2 text-sm'>
             <p>{message}</p>
           </div>
         </div>
-        <div className="pl-3 ml-auto">
-          <div className="-mx-1.5 -my-1.5">
+        <div className='ml-auto pl-3'>
+          <div className='-mx-1.5 -my-1.5'>
             <button
-              type="button"
-              className="inline-flex rounded-md bg-yellow-50 p-1.5 text-yellow-500 hover:bg-yellow-100 focus:outline-none focus:ring-2 focus:ring-yellow-600 focus:ring-offset-2 focus:ring-offset-yellow-50"
+              type='button'
+              className='bg-yellow-50 text-yellow-500 hover:bg-yellow-100 focus:ring-yellow-600 focus:ring-offset-yellow-50 inline-flex rounded-md p-1.5 focus:outline-none focus:ring-2 focus:ring-offset-2'
               onClick={() => setShow(false)}
             >
-              <span className="sr-only">Dismiss</span>
-              <X className="w-5 h-5" aria-hidden="true" />
+              <span className='sr-only'>Dismiss</span>
+              <X className='h-5 w-5' aria-hidden='true' />
             </button>
           </div>
         </div>
       </div>
     </div>
-  ) : null;
+  ) : null
 }
